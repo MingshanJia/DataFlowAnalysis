@@ -53,6 +53,8 @@ typedef GepVFGNode GepSVFGNode;
 typedef PHIVFGNode PHISVFGNode;
 typedef IntraPHIVFGNode IntraPHISVFGNode;
 typedef InterPHIVFGNode InterPHISVFGNode;
+typedef CmpVFGNode CmpSVFGNode;
+typedef BinaryOPVFGNode BinaryOPSVFGNode;
 
 
 /*!

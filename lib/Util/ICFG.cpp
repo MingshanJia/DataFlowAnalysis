@@ -27,6 +27,7 @@
  *      Author: Yulei Sui
  */
 
+#include <WPA/Andersen.h>
 #include "Util/ICFG.h"
 #include "Util/ICFGStat.h"
 #include "Util/SVFUtil.h"
@@ -52,6 +53,9 @@ static llvm::cl::opt<bool> DumpLLVMInst("dump-inst", llvm::cl::init(false),
  */
 ICFG::ICFG(PTACallGraph* cg): totalICFGNode(0), callgraph(cg), pag(PAG::getPAG()) {
 	stat = new ICFGStat(this);
+	BVDataPTAImpl* pta = AndersenWaveDiff::createAndersenWaveDiff(getPAG()->getModule());
+	SVFGBuilder memSSA(true);
+	SVFG *svfg = memSSA.buildOriginalSVFG(pta);
 	vfg = new VFG(cg);
     DBOUT(DGENERAL, outs() << pasMsg("\tCreate ICFG ...\n"));
 	build();

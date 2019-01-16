@@ -620,6 +620,22 @@ struct DOTGraphTraits<SVFG*> : public DOTGraphTraits<PAG*> {
                 rawstr << getSourceLoc(stmtNode->getPAGDstNode()->getValue());
             }
         }
+        else if(BinaryOPSVFGNode* tphi = SVFUtil::dyn_cast<BinaryOPSVFGNode>(node)) {
+            rawstr << tphi->getRes()->getId() << " = Binary(";
+            for(BinaryOPSVFGNode::OPVers::const_iterator it = tphi->opVerBegin(), eit = tphi->opVerEnd();
+                it != eit; it++)
+                rawstr << it->second->getId() << ", ";
+            rawstr << ")\n";
+            rawstr << getSourceLoc(tphi->getRes()->getValue());
+        }
+        else if(CmpSVFGNode* tphi = SVFUtil::dyn_cast<CmpSVFGNode>(node)) {
+            rawstr << tphi->getRes()->getId() << " = cmp(";
+            for(CmpSVFGNode::OPVers::const_iterator it = tphi->opVerBegin(), eit = tphi->opVerEnd();
+                it != eit; it++)
+                rawstr << it->second->getId() << ", ";
+            rawstr << ")\n";
+            rawstr << getSourceLoc(tphi->getRes()->getValue());
+        }
         else if(MSSAPHISVFGNode* mphi = SVFUtil::dyn_cast<MSSAPHISVFGNode>(node)) {
             rawstr << "MR_" << mphi->getRes()->getMR()->getMRID()
                    << "V_" << mphi->getRes()->getResVer()->getSSAVersion() << " = PHI(";
@@ -708,6 +724,12 @@ struct DOTGraphTraits<SVFG*> : public DOTGraphTraits<PAG*> {
                 assert(0 && "No such kind edge!!");
             }
             rawstr <<  "";
+        }
+        else if (SVFUtil::isa<CmpSVFGNode>(node)) {
+            rawstr << "color=grey";
+        }
+        else if (SVFUtil::isa<BinaryOPSVFGNode>(node)) {
+            rawstr << "color=grey";
         }
         else if(SVFUtil::isa<MSSAPHISVFGNode>(node)) {
             rawstr <<  "color=black";

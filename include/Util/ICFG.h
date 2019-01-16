@@ -37,6 +37,7 @@ class PointerAnalysis;
 class ICFGStat;
 class StmtVFGNode;
 class VFG;
+class SVFG;
 
 /*!
  * Interprocedural Control-Flow Graph (ICFG)
@@ -75,6 +76,7 @@ protected:
     PTACallGraph* callgraph;
     PAG* pag;
 	VFG* vfg;
+	SVFG* svfg;
 
     /// Clean up memory
     void destroy();
@@ -102,6 +104,10 @@ public:
 	inline VFG* getVFG() const{
 		return vfg;
 	}
+
+    inline SVFG* getSVFG() const{
+        return svfg;
+    }
 
     /// Get a ICFG node
     inline ICFGNode* getICFGNode(NodeID id) const {

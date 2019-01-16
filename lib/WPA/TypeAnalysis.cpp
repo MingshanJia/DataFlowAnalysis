@@ -34,6 +34,8 @@
 #include "Util/ICFGStat.h"
 #include "Util/VFG.h"
 #include "WPA/IFDS.h"
+#include "WPA/SIFDS.h"
+
 
 using namespace SVFUtil;
 using namespace cppUtil;
@@ -46,9 +48,11 @@ void TypeAnalysis::initialize(SVFModule svfModule) {
     Andersen::initialize(svfModule);
 	if (genICFG) {
 		icfg = new ICFG(ptaCallGraph);
-		IFDS* ifds = new IFDS(icfg);
+		//IFDS* ifds = new IFDS(icfg);
+        SIFDS* sifds = new SIFDS(icfg);
 		icfg->dump("icfg_initial");
 		icfg->getVFG()->dump("vfg_initial");
+		icfg->getSVFG()->dump("svfg_initial");
 		if (print_stat)
 			icfg->getStat()->performStat();
 	}
