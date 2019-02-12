@@ -203,10 +203,6 @@ void ICFG::build(){
 void ICFG::connectGlobalToProgEntry()
 {
     const Function* mainFunc = SVFUtil::getProgEntryFunction(pag->getModule());
-	/// Return back if the main function is not found
-	if(mainFunc == NULL)
-		return;
-
     /// Return back if the main function is not found
     if(mainFunc == NULL)
         return;
