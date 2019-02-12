@@ -207,6 +207,10 @@ void ICFG::connectGlobalToProgEntry()
 	if(mainFunc == NULL)
 		return;
 
+    /// Return back if the main function is not found
+    if(mainFunc == NULL)
+        return;
+
     FunEntryBlockNode* entryNode = getFunEntryICFGNode(mainFunc);
     for(ICFGEdgeSetTy::const_iterator it = entryNode->getOutEdges().begin(), eit = entryNode->getOutEdges().end(); it!=eit; ++it){
         if(const IntraCFGEdge* intraEdge = SVFUtil::dyn_cast<IntraCFGEdge>(*it)){
