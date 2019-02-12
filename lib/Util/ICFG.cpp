@@ -55,7 +55,7 @@ ICFG::ICFG(PTACallGraph* cg): totalICFGNode(0), callgraph(cg), pag(PAG::getPAG()
 	stat = new ICFGStat(this);
 	BVDataPTAImpl* pta = AndersenWaveDiff::createAndersenWaveDiff(getPAG()->getModule());
 	SVFGBuilder memSSA(true);
-	SVFG *svfg = memSSA.buildOriginalSVFG(pta);
+	svfg = memSSA.buildOriginalSVFG(pta);
 	vfg = new VFG(cg);
     DBOUT(DGENERAL, outs() << pasMsg("\tCreate ICFG ...\n"));
 	build();
