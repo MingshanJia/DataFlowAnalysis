@@ -203,7 +203,11 @@ void ICFG::build(){
 void ICFG::connectGlobalToProgEntry()
 {
 	assert(getProgEntryFunction(pag->getModule()));
+
     const Function* mainFunc = SVFUtil::getProgEntryFunction(pag->getModule());
+	/// Return back if the main function is not found
+	if(mainFunc == NULL)
+		return;
 
     FunEntryBlockNode* entryNode = getFunEntryICFGNode(mainFunc);
     for(ICFGEdgeSetTy::const_iterator it = entryNode->getOutEdges().begin(), eit = entryNode->getOutEdges().end(); it!=eit; ++it){
