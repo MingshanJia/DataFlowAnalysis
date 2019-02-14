@@ -64,7 +64,7 @@ public:
     void propagate(PathNode *srcPN, ICFGNode *succ, Datafact& d);
     void PEPropagate(PathNode *srcPN, ICFGNode *succ, Datafact& d);
     //transfer function of given ICFGNode
-    Datafact& transferFun(const ICFGNode *icfgNode, Datafact& fact);
+    Datafact transferFun(const ICFGNode *icfgNode, Datafact& fact);
 
     //whether the variable is initialized
     bool isInitialized(const PAGNode *pagNode, Datafact& datafact);

@@ -63,12 +63,16 @@ void SIFDS::forwardTabulate() {
 
         if (isa<IntraBlockNode>(n) || isa<FunEntryBlockNode>(n)) {
 
-            Datafact& d = transferFun(n, d2);     //caculate datafact after execution of n
+            Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
+
             const ICFGEdge::ICFGEdgeSetTy &outEdges = n->getOutEdges();
             for (ICFGEdge::ICFGEdgeSetTy::iterator it = outEdges.begin(), eit =
                     outEdges.end(); it != eit; ++it) {
                 ICFGNode *succ = (*it)->getDstNode();
+                std::cout<< "succ ID: " << succ->getId() << std::endl;  //
+
                 propagate(srcPN, succ, d);
+
             }
         } else if (SVFUtil::isa<FunExitBlockNode>(n)) {
             if(srcPN->getCaller()){
@@ -119,7 +123,8 @@ bool SIFDS::isInitialized(const PAGNode *pagNode, Datafact& datafact) {
 // PHINode: resNode depends on operands -> getPAGNode
 // Cmp & Binary
 
-SIFDS::Datafact& SIFDS::transferFun(const ICFGNode *icfgNode, Datafact& fact) {
+SIFDS::Datafact SIFDS::transferFun(const ICFGNode *icfgNode, Datafact& fact_before) {
+    Datafact fact = fact_before;
     if (const IntraBlockNode *node = SVFUtil::dyn_cast<IntraBlockNode>(icfgNode)) {
         for (IntraBlockNode::StmtOrPHIVFGNodeVec::const_iterator it = node->vNodeBegin(), eit = node->vNodeEnd();
              it != eit; ++it) {

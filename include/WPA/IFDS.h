@@ -68,10 +68,10 @@ public:
     bool isNotInSummaryEdgeList(const ICFGNode *n1, Datafact& d1, ICFGNode *n2, Datafact& d2);
 
     //transfer function of given ICFGNode
-    Datafact& transferFun(const ICFGNode *icfgNode, Datafact& fact);
+    Datafact transferFun(const ICFGNode *icfgNode, Datafact& fact);
 
-    Datafact& getCalleeDatafact(const ICFGNode *icfgNode, Datafact& fact);
-    Datafact& getCallToRetDatafact(Datafact& fact);
+    Datafact getCalleeDatafact(const ICFGNode *icfgNode, Datafact& fact);
+    Datafact getCallToRetDatafact(Datafact& fact);
     void delDatafact(Datafact& d, s32_t kind);
 
     //whether the variable is initialized
