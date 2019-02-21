@@ -263,6 +263,8 @@ protected:
     }
     /// Add inter VF edge from callee return to callsite receive parameter
     inline VFGEdge* addInterEdgeFromFRToAR(FormalRetVFGNode* src, ActualRetVFGNode* dst, CallSiteID csId) {
+
+
         return addRetEdge(src->getId(),dst->getId(),csId);
     }
 
@@ -394,6 +396,9 @@ protected:
     void addStoreVFGNode(const StorePE* store) {
         StoreVFGNode* sNode = new StoreVFGNode(totalVFGNode++,store);
         addStmtVFGNode(sNode, store);
+
+        if (const DummyValPN* dummyVal = SVFUtil::dyn_cast<DummyValPN>(store->getSrcNode()))  // if src is dummyValPN
+            setDef(dummyVal,sNode);
 
         const PAGEdgeSet& globalPAGStores = getPAG()->getGlobalPAGEdgeSet();
         if (globalPAGStores.find(store) != globalPAGStores.end())
