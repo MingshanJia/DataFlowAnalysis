@@ -14,34 +14,40 @@
 class SIFDS {
 
 private:
+    SVFG* svfg;  // using svfg in sparsed version
+
     ICFG *icfg;
     PointerAnalysis *pta;
 
 public:
     class PathNode;
+    class StartPathNode;
     class PathEdge;
 
-    typedef std::set<const PAGNode *> Datafact;    //set of uninitialized variables at ICFGNode
+    typedef std::pair<const PAGNode*, bool> MarkedVar;   // false is initialised, true is uninitialised, ex: <PAGNodeID 1, true>
+    typedef std::set<MarkedVar> Datafact; //ex: {<PAGNode 1, true>, <PAGNode 2, false>}
+
+
+    //typedef std::set<const PAGNode *> Datafact;    //set of uninitialized variables at ICFGNode
     typedef std::set<Datafact> Facts;       //different datafacts from different path
-    typedef std::set<const ICFGNode *> ICFGNodeSet;
+    typedef std::set<const SVFGNode *> SVFGNodeSet;
     typedef std::list<PathEdge *> PathEdgeSet;    //to do : list -> vector (faster)
-    typedef std::map<const ICFGNode *, Facts> ICFGNodeToDataFactsMap;
+    typedef std::map<const SVFGNode *, Facts> SVFGNodeToDataFactsMap;
 
 protected:
     PathEdgeSet WorkList;         //worklist used during the tabulation algorithm
     PathEdgeSet PathEdgeList;     //used to restore all PathEdges (result)
     PathEdgeSet SummaryEdgeList;  //used to restore all SummaryEdges
-    ICFGNodeSet ICFGDstNodeSet;
-    ICFGNodeSet SummaryICFGDstNodeSet;
-    ICFGNodeToDataFactsMap ICFGNodeToFacts;
-    ICFGNodeToDataFactsMap SummaryICFGNodeToFacts;
-    ICFGNode *mainEntryNode;
-    Facts MainExitFacts;
+    SVFGNodeSet SVFGDstNodeSet;
+    SVFGNodeSet SummaryICFGDstNodeSet;
+    SVFGNodeToDataFactsMap SVFGNodeToFacts;
+    SVFGNodeToDataFactsMap SummarySVFGNodeToFacts;
+    Facts FinalFacts;
     int32_t estimatedDatafacts;
 
 public:
-    inline VFG *getVFG() const {
-        return icfg->getVFG();
+    inline VFG *getSVFG() const {
+        return icfg->getSVFG();
     }
 
     inline ICFG *getICFG() const {
@@ -61,13 +67,15 @@ public:
     void forwardTabulate();
 
     //add new PathEdge components into PathEdgeList and WorkList
-    void propagate(PathNode *srcPN, ICFGNode *succ, Datafact& d);
-    void PEPropagate(PathNode *srcPN, ICFGNode *succ, Datafact& d);
+    void propagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d);
+    void PEPropagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d);
     //transfer function of given ICFGNode
-    Datafact transferFun(const ICFGNode *icfgNode, Datafact& fact);
+    Datafact transferFun(const SVFGNode *svfgNode, Datafact& fact);
 
     //whether the variable is initialized
     bool isInitialized(const PAGNode *pagNode, Datafact& datafact);
+    bool isUninitialized(const PAGNode *pagNode, Datafact& datafact);
+    bool isUnknown(const PAGNode *pagNode, Datafact& datafact);
 
     //print ICFGNodes and theirs datafacts
     void getIFDSStat();
@@ -84,62 +92,76 @@ public:
         return pta->getPts(id);
     }
 
-    // in order to denote : <node, d> , d here is datafact before the execution of node
-    class PathNode {
-        const ICFGNode *icfgNode;
+
+    class PathNode{
+        const SVFGNode *svfgNode;
         Datafact datafact;
-        PathNode *caller;   // for sp node
 
-        //Constructor
     public:
-        PathNode(){
-        }
 
-        PathNode(const ICFGNode *node, const Datafact& fact) : caller (NULL){
-            icfgNode = node;
+        PathNode(const SVFGNode *node, const Datafact& fact) {
+            svfgNode = node;
             datafact = fact;
         }
 
-        void setCaller(PathNode *caller){
-            this->caller = caller;
-        }
-
-        PathNode* getCaller(){
-            return this->caller;
-        }
-
-        void setICFGNode(ICFGNode *node) {
-            icfgNode = node;
+        void setSVFGNode(SVFGNode *node) {
+            svfgNode = node;
         }
 
         void setDataFact(Datafact &fact) {
             datafact = fact;
         }
 
-        const ICFGNode *getICFGNode() const {
-            return icfgNode;
+        const SVFGNode *getSVFGNode() const {
+            return svfgNode;
         }
 
         Datafact &getDataFact() {
             return datafact;
         }
+    };
 
+    class StartPathNode : public PathNode {
+
+        CallSiteID callsiteID;               // use callsite ID to match call and return
+        StartPathNode *upperLvlStartPN;   // Upper Level Start PathNode, to deal with Function call
+
+    public:
+        //Constructor
+        StartPathNode(const SVFGNode *node, const Datafact& fact) : PathNode(node, fact), upperLvlStartPN (NULL) ,callsiteID(0){
+        }
+
+        void setUpperLvlStartPN(StartPathNode *pathNode){
+            upperLvlStartPN = pathNode;
+        }
+
+        PathNode* getUpperLvlStartPN(){
+            return upperLvlStartPN;
+        }
+
+        CallSiteID getCallSiteID(){
+            return callsiteID;
+        }
+
+        void setCallSiteID(CallSiteID csId){
+            callsiteID = csId;
+        }
     };
 
 // in order to denote : <node1, d1> --> <node2, d2>
     class PathEdge {
-        PathNode *srcNode;
+        StartPathNode *srcNode;
         PathNode *dstNode;
 
     public:
         PathEdge();
 
-        PathEdge(PathNode *src, PathNode *dst) {
+        PathEdge(StartPathNode *src, PathNode *dst) {
             srcNode = src;
             dstNode = dst;
         }
 
-        void setStartPathNode(PathNode *node) {
+        void setStartPathNode(StartPathNode *node) {
             srcNode = node;
         }
 
@@ -151,7 +173,7 @@ public:
             return dstNode;
         }
 
-        PathNode *getSrcPathNode() const {
+        StartPathNode *getSrcPathNode() const {
             return srcNode;
         }
     };
