@@ -48,8 +48,7 @@ void TypeAnalysis::initialize(SVFModule svfModule) {
     Andersen::initialize(svfModule);
 	if (genICFG) {
 		icfg = new ICFG(ptaCallGraph);
-		//IFDS* ifds = new IFDS(icfg);
-        SIFDS* sifds = new SIFDS(icfg);
+		IFDS* ifds = new IFDS(icfg);
 		icfg->dump("icfg_initial");
 		icfg->getVFG()->dump("vfg_initial");
 		icfg->getSVFG()->dump("svfg_initial");

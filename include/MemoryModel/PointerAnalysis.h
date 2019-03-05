@@ -70,6 +70,7 @@ public:
         ADAPTFSCS_WPA,		///< Adaptive Flow-, context-, sensitive WPA
         ADAPTFSCSPS_WPA,	///< Adaptive Flow-, context-, path- sensitive WPA
         TypeCPP_WPA, ///<  Type-based analysis for C++
+        SIFDS_WPA,
 
         // Demand driven analysis
         FieldS_DDA,		///< Field sensitive DDA
