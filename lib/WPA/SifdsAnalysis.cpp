@@ -8,7 +8,6 @@
 #include "Util/PTAStat.h"
 #include "Util/ICFGStat.h"
 #include "Util/VFG.h"
-#include "WPA/IFDS.h"
 #include "WPA/SIFDS.h"
 
 
@@ -26,14 +25,9 @@ void SifdsAnalysis::initialize(SVFModule svfModule) {
     icfg->getSVFG()->dump("svfg_initial");
 }
 
-/// Finalize analysis
-void SifdsAnalysis::finalize() {
-    Andersen::finalize();
-}
 
 void SifdsAnalysis::analyze(SVFModule svfModule){
     initialize(svfModule);
-    finalize();
 }
 
 

@@ -25,8 +25,6 @@ public:
     /// Initialize analysis
     void initialize(SVFModule svfModule);
 
-    /// Finalize analysis
-    virtual inline void finalize();
 
     /// Methods for support type inquiry through isa, cast, and dyn_cast:
     //@{

@@ -32,13 +32,13 @@
  *
  */
 
-
+#include <WPA/TypeAnalysis.h>
 #include "Util/SVFModule.h"
 #include "MemoryModel/PointerAnalysis.h"
 #include "WPA/WPAPass.h"
 #include "WPA/Andersen.h"
 #include "WPA/FlowSensitive.h"
-#include "WPA/TypeAnalysis.h"
+#include "WPA/SifdsAnalysis.h"
 
 char WPAPass::ID = 0;
 
@@ -58,7 +58,8 @@ static llvm::cl::bits<PointerAnalysis::PTATY> PASelected(llvm::cl::desc("Select 
             clEnumValN(PointerAnalysis::AndersenWaveDiff_WPA, "ander", "Diff wave propagation inclusion-based analysis"),
             clEnumValN(PointerAnalysis::AndersenWaveDiffWithType_WPA, "andertype", "Diff wave propagation with type inclusion-based analysis"),
             clEnumValN(PointerAnalysis::FSSPARSE_WPA, "fspta", "Sparse flow sensitive pointer analysis"),
-			clEnumValN(PointerAnalysis::TypeCPP_WPA, "type", "Type-based fast analysis for Callgraph, PAG and CHA")
+			clEnumValN(PointerAnalysis::TypeCPP_WPA, "type", "Type-based fast analysis for Callgraph, PAG and CHA"),
+			clEnumValN(PointerAnalysis::SIFDS_WPA, "sifds", "Sparse Precise Interprecedure Dataflow Analysis")
         ));
 
 
@@ -128,6 +129,9 @@ void WPAPass::runPointerAnalysis(SVFModule svfModule, u32_t kind)
             break;
         case PointerAnalysis::TypeCPP_WPA:
             _pta = new TypeAnalysis();
+            break;
+        case PointerAnalysis::SIFDS_WPA:
+            _pta = new SifdsAnalysis();
             break;
         default:
             assert(false && "This pointer analysis has not been implemented yet.\n");

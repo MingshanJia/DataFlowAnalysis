@@ -34,7 +34,6 @@
 #include "Util/ICFGStat.h"
 #include "Util/VFG.h"
 #include "WPA/IFDS.h"
-#include "WPA/SIFDS.h"
 
 
 using namespace SVFUtil;
