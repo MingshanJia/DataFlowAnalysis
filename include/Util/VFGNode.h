@@ -47,7 +47,7 @@ public:
     /// 20 kinds of ICFG node
     /// Gep represents offset edge for field sensitivity
     enum VFGNodeK {
-        Addr, Copy, Gep, Store, Load, Cmp, BinaryOp, TPhi, TIntraPhi, TInterPhi,
+        Addr, Copy, Gep, Store, DummyStore, Load, Cmp, BinaryOp, TPhi, TIntraPhi, TInterPhi,
         MPhi, MIntraPhi, MInterPhi, FRet, ARet, AParm, FParm,
 		FunRet, APIN, APOUT, FPIN, FPOUT, NPtr
     };
@@ -205,6 +205,34 @@ public:
     }
     static inline bool classof(const GenericVFGNodeTy *node) {
         return node->getNodeKind() == Store;
+    }
+    //@}
+};
+
+class DummyStoreVFGNode: public StmtVFGNode{
+private:
+    DummyStoreVFGNode();                      ///< place holder
+    DummyStoreVFGNode(const DummyStoreVFGNode &);  ///< place holder
+    void operator=(const DummyStoreVFGNode &); ///< place holder
+
+public:
+    /// Constructor
+    DummyStoreVFGNode(NodeID id,const StorePE* edge): StmtVFGNode(id,edge,Store) {
+
+    }
+    /// Methods for support type inquiry through isa, cast, and dyn_cast:
+    //@{
+    static inline bool classof(const DummyStoreVFGNode *) {
+        return true;
+    }
+    static inline bool classof(const StmtVFGNode *node) {
+        return node->getNodeKind() == DummyStore;
+    }
+    static inline bool classof(const VFGNode *node) {
+        return node->getNodeKind() == DummyStore;
+    }
+    static inline bool classof(const GenericVFGNodeTy *node) {
+        return node->getNodeKind() == DummyStore;
     }
     //@}
 };

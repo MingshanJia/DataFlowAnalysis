@@ -158,6 +158,15 @@ void SVFG::connectIndirectSVFGEdges() {
                 }
             }
         }
+        else if(const DummyStoreSVFGNode* storeNode = SVFUtil::dyn_cast<DummyStoreSVFGNode>(node)) {
+            CHISet& chiSet = mssa->getCHISet(SVFUtil::cast<StorePE>(storeNode->getPAGEdge()));
+            for(CHISet::iterator it = chiSet.begin(), eit = chiSet.end(); it!=eit; ++it) {
+                if(STORECHI* chi = SVFUtil::dyn_cast<STORECHI>(*it)) {
+                    NodeID def = getDef(chi->getOpVer());
+                    addIntraIndirectVFEdge(def,nodeId, chi->getOpVer()->getMR()->getPointsTo());
+                }
+            }
+        }
         else if(const FormalINSVFGNode* formalIn = SVFUtil::dyn_cast<FormalINSVFGNode>(node)) {
             PTACallGraphEdge::CallInstSet callInstSet;
             mssa->getPTA()->getPTACallGraph()->getDirCallSitesInvokingCallee(formalIn->getEntryChi()->getFunction(),callInstSet);
@@ -243,6 +252,24 @@ void SVFG::connectFromGlobalToProgEntry()
 
                 /// add indirect value flow edge
                 addIntraIndirectVFEdge(store->getId(), formalInID, formalInPts);
+            }
+        }
+        else if (const DummyStoreSVFGNode* dstore = SVFUtil::dyn_cast<DummyStoreSVFGNode>(*storeIt)) {
+            /// connect this store to main function entry
+            const PointsTo& storePts = mssa->getPTA()->getPts(
+                    dstore->getPAGDstNodeID());
+
+            for (NodeBS::iterator fiIt = formalIns.begin(), fiEit =
+                    formalIns.end(); fiIt != fiEit; ++fiIt) {
+                NodeID formalInID = *fiIt;
+                PointsTo formalInPts = ((FormalINSVFGNode*) getSVFGNode(formalInID))->getPointsTo();
+
+                formalInPts &= storePts;
+                if (formalInPts.empty())
+                    continue;
+
+                /// add indirect value flow edge
+                addIntraIndirectVFEdge(dstore->getId(), formalInID, formalInPts);
             }
         }
     }
@@ -720,7 +747,10 @@ struct DOTGraphTraits<SVFG*> : public DOTGraphTraits<PAG*> {
             } else if (SVFUtil::isa<GepPE>(edge)) {
                 rawstr <<  "color=purple";
             } else if (SVFUtil::isa<StorePE>(edge)) {
-                rawstr <<  "color=blue";
+                if(edge->getSrcNode()->getNodeKind() == PAGNode::DummyValNode)
+                    rawstr <<  "color=blue, style = dotted";
+                else
+                    rawstr <<  "color=blue";
             } else if (SVFUtil::isa<LoadPE>(edge)) {
                 rawstr <<  "color=red";
             } else {

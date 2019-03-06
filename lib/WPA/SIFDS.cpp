@@ -267,7 +267,7 @@ void SIFDS::getIFDSStat() {
     estimatedDatafacts = fact.size();
     cout << "Datafact(D)         " << estimatedDatafacts << endl;
     std::cout << "-------------------------------------------------------\n";
-  cout << "}\n";
+  cout << "\n";
 }
 
 SIFDS::Datafact SIFDS::concernedDatafact() {

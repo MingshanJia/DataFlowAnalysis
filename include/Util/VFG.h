@@ -397,12 +397,20 @@ protected:
         StoreVFGNode* sNode = new StoreVFGNode(totalVFGNode++,store);
         addStmtVFGNode(sNode, store);
 
-        if (const DummyValPN* dummyVal = SVFUtil::dyn_cast<DummyValPN>(store->getSrcNode()))  // if src is dummyValPN
-            setDef(dummyVal,sNode);
-
         const PAGEdgeSet& globalPAGStores = getPAG()->getGlobalPAGEdgeSet();
         if (globalPAGStores.find(store) != globalPAGStores.end())
             globalVFGNodes.insert(sNode);
+    }
+
+    void addDummyStoreVFGNode(const StorePE* store) {
+        DummyStoreVFGNode* dsNode = new DummyStoreVFGNode(totalVFGNode++,store);
+        addStmtVFGNode(dsNode, store);
+
+        setDef(store->getSrcNode(),dsNode);
+
+        const PAGEdgeSet& globalPAGStores = getPAG()->getGlobalPAGEdgeSet();
+        if (globalPAGStores.find(store) != globalPAGStores.end())
+            globalVFGNodes.insert(dsNode);
     }
 
     /// Add an actual parameter VFG node

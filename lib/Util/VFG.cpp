@@ -112,7 +112,10 @@ void VFG::addVFGNodes() {
     PAGEdge::PAGEdgeSetTy& stores = getPAGEdgeSet(PAGEdge::Store);
     for (PAGEdge::PAGEdgeSetTy::iterator iter = stores.begin(), eiter =
                 stores.end(); iter != eiter; ++iter) {
-        addStoreVFGNode(SVFUtil::cast<StorePE>(*iter));
+        if((*iter)->getSrcNode()->getNodeKind() == PAGNode::DummyValNode)
+            addDummyStoreVFGNode(SVFUtil::cast<StorePE>(*iter));
+        else
+            addStoreVFGNode(SVFUtil::cast<StorePE>(*iter));
     }
 
     PAGEdge::PAGEdgeSetTy& forks = getPAGEdgeSet(PAGEdge::ThreadFork);
@@ -685,6 +688,7 @@ struct DOTGraphTraits<VFG*> : public DOTGraphTraits<PAG*> {
 
     static std::string getNodeAttributes(NodeType *node, VFG *graph) {
         std::string str;
+        llvm::outs() << "NodeAttributes" ;
         raw_string_ostream rawstr(str);
 
         if(StmtVFGNode* stmtNode = SVFUtil::dyn_cast<StmtVFGNode>(node)) {
@@ -698,7 +702,10 @@ struct DOTGraphTraits<VFG*> : public DOTGraphTraits<PAG*> {
             } else if (SVFUtil::isa<GepPE>(edge)) {
                 rawstr <<  "color=purple";
             } else if (SVFUtil::isa<StorePE>(edge)) {
-                rawstr <<  "color=blue";
+                if(edge->getSrcNode()->getNodeKind() == PAGNode::DummyValNode)
+                    rawstr <<  "color=blue, style = dotted";
+                else
+                    rawstr <<  "color=blue";
 			} else if (SVFUtil::isa<LoadPE>(edge)) {
 				rawstr << "color=red";
 			} else {

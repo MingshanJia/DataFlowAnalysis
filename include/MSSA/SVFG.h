@@ -48,6 +48,7 @@ typedef StmtVFGNode StmtSVFGNode;
 typedef AddrVFGNode AddrSVFGNode;
 typedef CopyVFGNode CopySVFGNode;
 typedef StoreVFGNode StoreSVFGNode;
+typedef DummyStoreVFGNode DummyStoreSVFGNode;
 typedef LoadVFGNode LoadSVFGNode;
 typedef GepVFGNode GepSVFGNode;
 typedef PHIVFGNode PHISVFGNode;
