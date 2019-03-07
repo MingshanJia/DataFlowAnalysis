@@ -289,7 +289,7 @@ void VFG::connectDirectVFGEdges() {
 				addIntraDirectVFEdge(getDef(stmtNode->getPAGSrcNode()), nodeId);
 
             /// for store, connect the RHS/LHS pointer to its def
-            if(SVFUtil::isa<StoreVFGNode>(stmtNode) && (stmtNode->getPAGDstNode()->isConstantData() == false)) {
+            if((SVFUtil::isa<StoreVFGNode>(stmtNode) || SVFUtil::isa<DummyStoreVFGNode>(stmtNode)) && (stmtNode->getPAGDstNode()->isConstantData() == false)) {
 				addIntraDirectVFEdge(getDef(stmtNode->getPAGDstNode()), nodeId);
             }
 

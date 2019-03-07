@@ -150,7 +150,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         PAGNode *dstPagNode = stmtNode->getPAGDstNode();
         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
         // DummyStore: dstNode's points-to set is uninitialized, dstNode is initialiazed
-        if (stmtNode->getNodeKind() == SVFGNode::DummyStore) {
+        if (SVFUtil::isa<DummyStoreSVFGNode>(stmtNode)) {
             fact.insert({dstPagNode,false});
             fact.erase({dstPagNode,true});
 
@@ -161,8 +161,8 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
                 fact.erase({node,false});
             }
         }
-        // Copy: dstNode depends on srcNode
-        else if (stmtNode->getNodeKind() == SVFGNode::Copy || stmtNode->getNodeKind() == SVFGNode::Gep) {
+        // Copy/Gep: dstNode depends on srcNode
+        else if (SVFUtil::isa<CopySVFGNode>(stmtNode) || SVFUtil::isa<GepSVFGNode>(stmtNode)) {
             if (isInitialized(srcPagNode, fact)){
                 fact.insert({dstPagNode,false});
                 fact.erase({dstPagNode, true});
@@ -175,7 +175,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
                 fact = {};
         }
         // Store：dstNode->obj depends on srcNode
-        else if (stmtNode->getNodeKind() == SVFGNode::Store) {
+        else if (SVFUtil::isa<StoreSVFGNode>(stmtNode)) {
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             if (isInitialized(srcPagNode, fact) || srcPagNode->isConstantData()) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
@@ -194,7 +194,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         }
         // Load：Load: dstNode depends on scrNode->obj
         // if all obj are initialized, dstPagNode is initialized, otherwise dstPagNode is Unini
-        else if (stmtNode->getNodeKind() == SVFGNode::Load) {
+        else if (SVFUtil::isa<LoadSVFGNode>(stmtNode)) {
             PointsTo PTset = SIFDS::getPts(srcPagNode->getId());
             u32_t sum_ini = 0;
             u32_t sum_unknown = 0;
@@ -218,14 +218,8 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             }
         }
     }
-    //Compare: res must be initialized
-    else if (const CmpVFGNode *cmpNode = SVFUtil::dyn_cast<CmpVFGNode>(svfgNode)){
-        const PAGNode *resCmpNode = cmpNode->getRes();
-        fact.insert({resCmpNode,false});
-        fact.erase({resCmpNode,true});
-    }
     //BinaryOp: get complete datafact for binaryOp
-    else if (const BinaryOPVFGNode *biOpNode = SVFUtil::dyn_cast<BinaryOPVFGNode>(svfgNode)){
+    else if (const BinaryOPSVFGNode *biOpNode = SVFUtil::dyn_cast<BinaryOPSVFGNode>(svfgNode)){
         Facts permenant_facts = SVFGNodeToFacts[svfgNode];
         Datafact allFacts = {};
         for (Facts::iterator fit = permenant_facts.begin(), efit = permenant_facts.end(); fit != efit; ++fit) {
@@ -238,7 +232,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         const PAGNode *resBiOpNode = biOpNode->getRes();
         u32_t sum_ini = 0;
         u32_t sum_unknown = 0;
-        for(BinaryOPVFGNode::OPVers::const_iterator it = biOpNode->opVerBegin(), eit = biOpNode->opVerEnd(); it != eit; ++it){
+        for(BinaryOPSVFGNode::OPVers::const_iterator it = biOpNode->opVerBegin(), eit = biOpNode->opVerEnd(); it != eit; ++it){
             const PAGNode *opNode = it->second;
             sum_ini += isInitialized(opNode, fact);
             sum_unknown += isUnknown(opNode, fact);
