@@ -130,6 +130,7 @@ public:
 				|| node->getNodeKind() == Copy
 				|| node->getNodeKind() == Gep
 				|| node->getNodeKind() == Store
+				|| node->getNodeKind() == DummyStore
 				|| node->getNodeKind() == Load;
     }
     static inline bool classof(const GenericVFGNodeTy *node) {
@@ -137,6 +138,7 @@ public:
 				|| node->getNodeKind() == Copy
 				|| node->getNodeKind() == Gep
 				|| node->getNodeKind() == Store
+				|| node->getNodeKind() == DummyStore
 				|| node->getNodeKind() == Load;
     }
 
@@ -217,7 +219,7 @@ private:
 
 public:
     /// Constructor
-    DummyStoreVFGNode(NodeID id,const StorePE* edge): StmtVFGNode(id,edge,Store) {
+    DummyStoreVFGNode(NodeID id,const StorePE* edge): StmtVFGNode(id,edge,DummyStore) {
 
     }
     /// Methods for support type inquiry through isa, cast, and dyn_cast:

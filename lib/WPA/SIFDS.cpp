@@ -34,15 +34,14 @@ void SIFDS::initialize() {
     Datafact datafact = {};    // datafact = 0;
     for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
         const SVFGNode *node = it->second;
-        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
-            if(addrNode->hasOutgoingEdge()){
-                StartPathNode * srcPN = new StartPathNode(addrNode, datafact);
-                PathNode *dstPN = new PathNode(addrNode, datafact);
-                PathEdge *startPE = new PathEdge(srcPN, dstPN);
-                PathEdgeList.push_back(startPE);
-                WorkList.push_back(startPE);
-                SVFGDstNodeSet.insert(addrNode);  //will be used when propagate?
-            }
+        if(const DummyStoreSVFGNode* dsNode = SVFUtil::dyn_cast<DummyStoreSVFGNode>(node)){
+            StartPathNode * srcPN = new StartPathNode(dsNode, datafact);
+            PathNode *dstPN = new PathNode(dsNode, datafact);
+            PathEdge *startPE = new PathEdge(srcPN, dstPN);
+            PathEdgeList.push_back(startPE);
+            WorkList.push_back(startPE);
+            SVFGDstNodeSet.insert(dsNode);  //will be used when propagate?
+
         }
     }
     //initialize SVFGNodeToFacts
@@ -68,7 +67,7 @@ void SIFDS::forwardTabulate() {
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
 
-        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n)) {
+        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n)){
 
             Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
             if(!d.empty()){      // empty means unknown
@@ -150,10 +149,17 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
     if (const StmtSVFGNode *stmtNode = SVFUtil::dyn_cast<StmtSVFGNode>(svfgNode)) {
         PAGNode *dstPagNode = stmtNode->getPAGDstNode();
         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
-        // Addr: srcNode is uninitialized, dstNode is initialiazed
-        if (stmtNode->getNodeKind() == SVFGNode::Addr) {
+        // DummyStore: dstNode's points-to set is uninitialized, dstNode is initialiazed
+        if (stmtNode->getNodeKind() == SVFGNode::DummyStore) {
             fact.insert({dstPagNode,false});
             fact.erase({dstPagNode,true});
+
+            PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
+            for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+                PAGNode *node = getPAG()->getPAGNode(*it);
+                fact.insert({node,true});
+                fact.erase({node,false});
+            }
         }
         // Copy: dstNode depends on srcNode
         else if (stmtNode->getNodeKind() == SVFGNode::Copy || stmtNode->getNodeKind() == SVFGNode::Gep) {
@@ -171,29 +177,20 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         // Store：dstNode->obj depends on srcNode
         else if (stmtNode->getNodeKind() == SVFGNode::Store) {
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
-            if (srcPagNode->getNodeKind() == PAGNode::DummyValNode){
+            if (isInitialized(srcPagNode, fact) || srcPagNode->isConstantData()) {
+                for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+                    PAGNode *node = getPAG()->getPAGNode(*it);
+                    fact.insert({node,false});
+                    fact.erase({node,true});
+                }
+            } else if (isUninitialized(srcPagNode, fact)) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,true});
                     fact.erase({node,false});
                 }
-            }
-            else{
-                if (isInitialized(srcPagNode, fact) || srcPagNode->isConstantData()) {
-                    for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                        PAGNode *node = getPAG()->getPAGNode(*it);
-                        fact.insert({node,false});
-                        fact.erase({node,true});
-                    }
-                } else if (isUninitialized(srcPagNode, fact)) {
-                    for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                        PAGNode *node = getPAG()->getPAGNode(*it);
-                        fact.insert({node,true});
-                        fact.erase({node,false});
-                    }
-                } else if (isUnknown(srcPagNode, fact))
-                    fact = {};
-            }
+            } else if (isUnknown(srcPagNode, fact))
+                fact = {};
         }
         // Load：Load: dstNode depends on scrNode->obj
         // if all obj are initialized, dstPagNode is initialized, otherwise dstPagNode is Unini
