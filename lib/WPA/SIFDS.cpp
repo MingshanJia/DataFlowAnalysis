@@ -26,8 +26,8 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
 }
 
 /*initialization
-    PathEdgeList = {<addr_1, 0> --> <addr_1,0>, <addr_2, 0> --> <addr_2,0>, ... <addr_n, 0> --> <addr_n,0>}
-    WorkList = {<addr_1, 0> --> <addr_1,0>, <addr_2, 0> --> <addr_2,0>, ... <addr_n, 0> --> <addr_n,0>}
+    PathEdgeList = {<ds_1, 0> --> <ds_1,0>, <ds_2, 0> --> <ds_2,0>, ... <ds_n, 0> --> <ds_n,0>}
+    WorkList = {<ds_1, 0> --> <ds_1,0>, <ds_2, 0> --> <ds_2,0>, ... <ds_n, 0> --> <ds_n,0>}
     SummaryEdgeList = {}
  */
 void SIFDS::initialize() {
@@ -67,7 +67,7 @@ void SIFDS::forwardTabulate() {
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
 
-        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n)){
+        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n) || isa<IntraMSSAPHISVFGNode>(n)) {
 
             Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
             if(!d.empty()){      // empty means unknown
@@ -77,7 +77,8 @@ void SIFDS::forwardTabulate() {
                             outEdges.end(); it != eit; ++it) {
 
                         SVFGNode *succ = (*it)->getDstNode();
-                        if(succ != n)   //excludes the edge going back to itself(for dummy store)
+
+                        if (succ != n) //excludes the edge going back to itself(for dummy store)
                             propagate(srcPN, succ, d);
                     }
                 }else
@@ -220,32 +221,20 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
     }
     //BinaryOp: get complete datafact for binaryOp
     else if (const BinaryOPSVFGNode *biOpNode = SVFUtil::dyn_cast<BinaryOPSVFGNode>(svfgNode)){
-        Facts permenant_facts = SVFGNodeToFacts[svfgNode];
-        Datafact allFacts = {};
-        for (Facts::iterator fit = permenant_facts.begin(), efit = permenant_facts.end(); fit != efit; ++fit) {
-            Datafact temp_fact = (*fit);
-            for (Datafact::iterator dit = temp_fact.begin(), edit = temp_fact.end(); dit != edit; ++dit) {
-                allFacts.insert(*dit);
-            }
-        }
-        fact = allFacts; // combine all info
+
         const PAGNode *resBiOpNode = biOpNode->getRes();
-        u32_t sum_ini = 0;
-        u32_t sum_unknown = 0;
-        for(BinaryOPSVFGNode::OPVers::const_iterator it = biOpNode->opVerBegin(), eit = biOpNode->opVerEnd(); it != eit; ++it){
-            const PAGNode *opNode = it->second;
-            sum_ini += isInitialized(opNode, fact);
-            sum_unknown += isUnknown(opNode, fact);
+        assert(biOpNode->getOpVerNum() == 2);
+        const PAGNode *OpOne = biOpNode->getOpVer(0);
+        const PAGNode *OpTwo = biOpNode->getOpVer(1);
+
+        if(isUninitialized(OpOne, fact) || isUninitialized(OpTwo, fact)){
+            fact.insert({resBiOpNode,true});
+            
+            fact.erase({resBiOpNode,false});
         }
-        if (sum_unknown > 0)
-            fact = {};
-        else if (sum_ini == biOpNode->getOpVerNum()){
+        else if (isInitialized(OpOne, fact) || isInitialized(OpTwo, fact)){
             fact.insert({resBiOpNode,false});
             fact.erase({resBiOpNode,true});
-        }
-        else{
-            fact.insert({resBiOpNode,true});
-            fact.erase({resBiOpNode,false});
         }
     }
     return fact;
