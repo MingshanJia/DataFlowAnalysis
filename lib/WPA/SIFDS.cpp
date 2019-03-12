@@ -29,7 +29,7 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     PathEdgeList = {<ds_1, 0> --> <ds_1,0>, <ds_2, 0> --> <ds_2,0>, ... <ds_n, 0> --> <ds_n,0>}
     WorkList = {<ds_1, 0> --> <ds_1,0>, <ds_2, 0> --> <ds_2,0>, ... <ds_n, 0> --> <ds_n,0>}
     SummaryEdgeList = {}
- */
+*/
 void SIFDS::initialize() {
     Datafact datafact = {};    // datafact = 0;
     for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
@@ -41,7 +41,6 @@ void SIFDS::initialize() {
             PathEdgeList.push_back(startPE);
             WorkList.push_back(startPE);
             SVFGDstNodeSet.insert(dsNode);  //will be used when propagate?
-
         }
     }
     //initialize SVFGNodeToFacts
@@ -152,8 +151,6 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
         // DummyStore: dstNode's points-to set is uninitialized, dstNode is initialiazed
         if (SVFUtil::isa<DummyStoreSVFGNode>(stmtNode)) {
-            fact.insert({dstPagNode,false});
-            fact.erase({dstPagNode,true});
 
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
@@ -165,10 +162,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         // Copy/Gep: dstNode depends on srcNode
         else if (SVFUtil::isa<CopySVFGNode>(stmtNode) || SVFUtil::isa<GepSVFGNode>(stmtNode)) {
             if (isInitialized(srcPagNode, fact)){
+                fact = {};
                 fact.insert({dstPagNode,false});
                 fact.erase({dstPagNode, true});
             }
             else if (isUninitialized(srcPagNode, fact)){
+                fact = {};
                 fact.insert({dstPagNode,true});
                 fact.erase({dstPagNode,false});
             }
@@ -180,12 +179,14 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             if (isInitialized(srcPagNode, fact) || srcPagNode->isConstantData()) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+                    fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,false});
                     fact.erase({node,true});
                 }
             } else if (isUninitialized(srcPagNode, fact)) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+                    fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,true});
                     fact.erase({node,false});
@@ -210,10 +211,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             if(sum_unknown == PTset.count())
                 fact = {};
             else if (sum_ini + sum_unknown == PTset.count()){
+                fact = {};
                 fact.insert({dstPagNode,false});
                 fact.erase({dstPagNode,true});
             }
             else{
+                fact = {};
                 fact.insert({dstPagNode,true});
                 fact.erase({dstPagNode,false});
             }
@@ -228,11 +231,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         const PAGNode *OpTwo = biOpNode->getOpVer(1);
 
         if(isUninitialized(OpOne, fact) || isUninitialized(OpTwo, fact)){
+            fact = {};
             fact.insert({resBiOpNode,true});
-            
             fact.erase({resBiOpNode,false});
         }
         else if (isInitialized(OpOne, fact) || isInitialized(OpTwo, fact)){
+            fact = {};
             fact.insert({resBiOpNode,false});
             fact.erase({resBiOpNode,true});
         }
