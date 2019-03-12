@@ -118,7 +118,9 @@ bool SIFDS::isUnknown(const PAGNode *pagNode, Datafact& datafact) {
 
 bool SIFDS::isInitialized(const PAGNode *pagNode, Datafact& datafact) {
     Datafact::iterator it = datafact.find({pagNode,false});
-    if (it == datafact.end())
+    if(pagNode->isConstantData())
+        return true;
+    else if (it == datafact.end())
         return false;
     else
         return true;
@@ -177,7 +179,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         // Store：dstNode->obj depends on srcNode
         else if (SVFUtil::isa<StoreSVFGNode>(stmtNode)) {
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
-            if (isInitialized(srcPagNode, fact) || srcPagNode->isConstantData()) {
+            if (isInitialized(srcPagNode, fact)) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
                     fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
