@@ -66,7 +66,7 @@ void SIFDS::forwardTabulate() {
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
 
-        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n) || isa<IntraMSSAPHISVFGNode>(n)) {
+        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n) || isa<IntraMSSAPHISVFGNode>(n) || isa<InterPHISVFGNode>(n)) {
 
             Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
             if(!d.empty()){      // empty means unknown
@@ -77,7 +77,15 @@ void SIFDS::forwardTabulate() {
 
                         SVFGNode *succ = (*it)->getDstNode();
 
-                        if (succ != n) //excludes the edge going back to itself(for dummy store)
+                        if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
+                            CallSiteID cs = calldir->getCallSiteId();
+                            StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
+                            propagate(newSrcPN, succ, d);
+                        }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+                            if(retdir->getCallSiteId() == srcPN->getCallSiteID())
+                                propagate(srcPN->getUpperLvlStartPN(), succ, d);
+                        }
+                        else if (succ != n) //excludes the edge going back to itself(for dummy store)
                             propagate(srcPN, succ, d);
                     }
                 }else
@@ -241,6 +249,25 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             fact = {};
             fact.insert({resBiOpNode,false});
             fact.erase({resBiOpNode,true});
+        }
+    }
+    else if (const InterPHISVFGNode *interPhi = SVFUtil::dyn_cast<InterPHISVFGNode>(svfgNode)) {
+        const PAGNode *dstPagNode = interPhi->getRes();
+        u32_t sum_ini = 0;
+        u32_t sum_unini = 0;
+        for(PHISVFGNode::OPVers::const_iterator it = interPhi->opVerBegin(), eit = interPhi->opVerEnd(); it != eit; ++it){
+            sum_ini += isInitialized(it->second, fact);
+            sum_unini += isUninitialized(it->second, fact);
+        }
+        if (sum_ini == 1){
+            fact = {};
+            fact.insert({dstPagNode,false});
+            fact.erase({dstPagNode,true});
+        }
+        else if(sum_unini == 1){
+            fact = {};
+            fact.insert({dstPagNode,true});
+            fact.erase({dstPagNode,false});
         }
     }
     return fact;
