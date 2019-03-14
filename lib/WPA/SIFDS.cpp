@@ -84,16 +84,9 @@ void SIFDS::forwardTabulate() {
                             propagate(newSrcPN, succ, d);
 
                             std::cout <<  isInSummaryEdgeList(succ, d) << endl;
-                            if(isInSummaryEdgeList(succ, d)){
-                                for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it) {
-                                    Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
-                                    if (succ->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second)
-                                        PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(),(*it)->getDstPathNode()->getDataFact());
-                                }
-                            }
-//                            if(PathEdge *summary = isInSummaryEdgeList(succ, d)){
-//                                propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
-//                            }
+
+                            if(PathEdge *summary = isInSummaryEdgeList(succ, d))
+                                propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
 
                         }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
 
@@ -137,14 +130,14 @@ void SIFDS::SEPropagate(PathEdge *e){
     SummaryEdgeList.push_back(e);
 }
 
-bool SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
+SIFDS::PathEdge* SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
     SummaryEdgeList.unique();
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
         if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second)
-            return true;
+            return *it;
     }
-    return false;
+    return NULL;
 }
 
 bool SIFDS::isUnknown(const PAGNode *pagNode, Datafact& datafact) {

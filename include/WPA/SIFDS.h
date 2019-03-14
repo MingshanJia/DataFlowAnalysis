@@ -70,7 +70,7 @@ public:
     void propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void SEPropagate(PathEdge *e);
-    bool isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
+    PathEdge* isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
     //transfer function of given ICFGNode
     Datafact transferFun(const SVFGNode *svfgNode, Datafact& fact);
 
