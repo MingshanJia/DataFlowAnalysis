@@ -52,13 +52,13 @@ void SIFDS::initialize() {
         }
     }
     SummaryEdgeList = {};
-    FinalFacts = {};    //final facts after caculation
+    FinalFacts = {};    //TODO: cannot query finalfacts
 }
 
 void SIFDS::forwardTabulate() {
     while (!WorkList.empty()) {
-        PathEdge *e = WorkList.front();
-        WorkList.pop_front();
+        PathEdge *e = WorkList.back();
+        WorkList.pop_back();
         StartPathNode *srcPN = e->getSrcPathNode();
         const SVFGNode *sa = srcPN->getSVFGNode();
         Datafact& d1 = srcPN->getDataFact();
@@ -71,19 +71,37 @@ void SIFDS::forwardTabulate() {
             Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
             if(!d.empty()){      // empty means unknown
                 if (n->hasOutgoingEdge()){
+
                     const SVFGEdge::SVFGEdgeSetTy &outEdges = n->getOutEdges();
                     for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit =
                             outEdges.end(); it != eit; ++it) {
 
-                        SVFGNode *succ = (*it)->getDstNode();
+                        const SVFGNode *succ = (*it)->getDstNode();
 
                         if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
                             CallSiteID cs = calldir->getCallSiteId();
                             StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
                             propagate(newSrcPN, succ, d);
+
+                            std::cout <<  isInSummaryEdgeList(succ, d) << endl;
+                            if(isInSummaryEdgeList(succ, d)){
+                                for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it) {
+                                    Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
+                                    if (succ->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second)
+                                        PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(),(*it)->getDstPathNode()->getDataFact());
+                                }
+                            }
+//                            if(PathEdge *summary = isInSummaryEdgeList(succ, d)){
+//                                propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
+//                            }
+
                         }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+
+                            SEPropagate(e);
+
                             if(retdir->getCallSiteId() == srcPN->getCallSiteID())
                                 propagate(srcPN->getUpperLvlStartPN(), succ, d);
+
                         }
                         else if (succ != n) //excludes the edge going back to itself(for dummy store)
                             propagate(srcPN, succ, d);
@@ -96,7 +114,7 @@ void SIFDS::forwardTabulate() {
 }
 
 //add new PathEdge into PathEdgeList and WorkList
-void SIFDS::propagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d) {
+void SIFDS::propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d) {
     if (SVFGDstNodeSet.find(succ) == SVFGDstNodeSet.end()) {
         PEPropagate(srcPN, succ, d);
         SVFGDstNodeSet.insert(succ);
@@ -107,12 +125,26 @@ void SIFDS::propagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d) {
     }
 }
 
-void SIFDS:: PEPropagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d){
+void SIFDS:: PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d){
     PathNode *newDstPN = new PathNode(succ, d);
     PathEdge *e = new PathEdge(srcPN, newDstPN);
     WorkList.push_back(e);
     PathEdgeList.push_back(e);
     SVFGNodeToFacts[succ].insert(d);
+}
+
+void SIFDS::SEPropagate(PathEdge *e){
+    SummaryEdgeList.push_back(e);
+}
+
+bool SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
+    SummaryEdgeList.unique();
+    for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
+        Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
+        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second)
+            return true;
+    }
+    return false;
 }
 
 bool SIFDS::isUnknown(const PAGNode *pagNode, Datafact& datafact) {
@@ -376,6 +408,7 @@ void SIFDS::printPathEdgeList() {
     }
 }
 void SIFDS::printSummaryEdgeList() {
+    SummaryEdgeList.unique();
     std::cout << "\n*********** SummaryEdge **************\n";
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         NodeID srcID = (*it)->getSrcPathNode()->getSVFGNode()->getId();
@@ -385,13 +418,13 @@ void SIFDS::printSummaryEdgeList() {
 
         cout << "[SVFGNodeID:" << srcID << ",(";
         for (Datafact::const_iterator it = srcFact.begin(), eit = srcFact.end(); it != eit; it++){
-            std::cout << (*it).first->getId() << " ";
+            std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
         }
         if (!srcFact.empty())
             cout << "\b";
         cout << ")] --> [SVFGNodeID:" << dstID << ",(";
         for (Datafact::const_iterator it = dstFact.begin(), eit = dstFact.end(); it != eit; it++){
-            std::cout << (*it).first->getId() << " ";
+            std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
         }
         if (!dstFact.empty())
             cout << "\b";

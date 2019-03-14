@@ -39,7 +39,7 @@ protected:
     PathEdgeSet PathEdgeList;     //used to restore all PathEdges (result)
     PathEdgeSet SummaryEdgeList;  //used to restore all SummaryEdges
     SVFGNodeSet SVFGDstNodeSet;
-    SVFGNodeSet SummaryICFGDstNodeSet;
+    SVFGNodeSet SummarySVFGDstNodeSet;
     SVFGNodeToDataFactsMap SVFGNodeToFacts;
     SVFGNodeToDataFactsMap SummarySVFGNodeToFacts;
     Facts FinalFacts;
@@ -67,8 +67,10 @@ public:
     void forwardTabulate();
 
     //add new PathEdge components into PathEdgeList and WorkList
-    void propagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d);
-    void PEPropagate(StartPathNode *srcPN, SVFGNode *succ, Datafact& d);
+    void propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
+    void PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
+    void SEPropagate(PathEdge *e);
+    bool isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
     //transfer function of given ICFGNode
     Datafact transferFun(const SVFGNode *svfgNode, Datafact& fact);
 
@@ -131,11 +133,16 @@ public:
         StartPathNode(const SVFGNode *node, const Datafact& fact) : PathNode(node, fact), upperLvlStartPN (NULL) ,callsiteID(0){
         }
 
+        StartPathNode(const SVFGNode *node, const Datafact& fact, StartPathNode *upper, CallSiteID csId) : PathNode(node, fact){
+            upperLvlStartPN = upper;
+            callsiteID = csId;
+        }
+
         void setUpperLvlStartPN(StartPathNode *pathNode){
             upperLvlStartPN = pathNode;
         }
 
-        PathNode* getUpperLvlStartPN(){
+        StartPathNode* getUpperLvlStartPN(){
             return upperLvlStartPN;
         }
 
