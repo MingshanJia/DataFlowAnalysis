@@ -83,8 +83,7 @@ void SIFDS::forwardTabulate() {
                             StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
                             propagate(newSrcPN, succ, d);
 
-                            std::cout <<  isInSummaryEdgeList(succ, d) << endl;
-
+                            std::cout <<  isInSummaryEdgeList(succ, d) << endl; //summary test info
                             if(PathEdge *summary = isInSummaryEdgeList(succ, d))
                                 propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
 
@@ -357,23 +356,22 @@ void SIFDS::printFacts(Facts facts, bool ObjNodeOnly) {
     for (Facts::iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
         Datafact fact = (*fit);
         for (Datafact::iterator dit = fact.begin(), edit = fact.end(); dit != edit; ++dit) {
-            if ((*dit).second){
-                if (ObjNodeOnly){
-                    if (const ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>((*dit).first))
-                        finalFact.insert(*dit);
-                }
-                else
+            if (ObjNodeOnly){
+                if (const ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>((*dit).first))
                     finalFact.insert(*dit);
             }
+            else
+                finalFact.insert(*dit);
         }
     }
     if (finalFact.size() > 1){
         for (Datafact::iterator dit = finalFact.begin(), edit = --finalFact.end(); dit != edit; ++dit)
-            std::cout << (*dit).first->getId() << " ";
-        std::cout << (*finalFact.rbegin()).first->getId();   //print last element without " "
+            std::cout << "<" << (*dit).first->getId() << "," << (*dit).second << "> ";
+        //print last element without " "
+        std::cout << "<" << (*finalFact.rbegin()).first->getId() << "," << (*finalFact.rbegin()).second << ">";
     }
     else if (finalFact.size() == 1)
-        std::cout << (*finalFact.begin()).first->getId();
+        std::cout << "<" << (*finalFact.begin()).first->getId() << "," << (*finalFact.begin()).second << ">";
 }
 
 void SIFDS::printPathEdgeList() {
