@@ -48,8 +48,8 @@ void IFDS::initialize() {
 
 void IFDS::forwardTabulate() {
     while (!WorkList.empty()) {
-        PathEdge *e = WorkList.front();
-        WorkList.pop_front();
+        PathEdge *e = WorkList.back();
+        WorkList.pop_back();
         PathNode *srcPN = e->getSrcPathNode();
         const ICFGNode *sp = srcPN->getICFGNode();
         Datafact& d1 = srcPN->getDataFact();
