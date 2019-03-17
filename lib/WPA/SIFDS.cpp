@@ -50,9 +50,33 @@ void SIFDS::initialize() {
             SVFGNodeToFacts[node] = {};
             SummarySVFGNodeToFacts[node] = {};
         }
+
+        const SVFGEdge::SVFGEdgeSetTy &outEdges = node->getOutEdges();
+        for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
+            if((*it)->isCallDirectVFGEdge()){
+                SVFGCallEdges.insert(*it);
+                const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
+                std::cout<< calldir->getCallSiteId() << endl;
+            }
+        }
     }
     SummaryEdgeList = {};
     FinalFacts = {};    //TODO: cannot query finalfacts
+
+    // creat CS2SVFGEdgesMap
+    for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
+        const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
+        CallSiteID cs = calldir->getCallSiteId();
+        SVFGEdge::SVFGEdgeSetTy edgeList;
+        if (CSID2SVFGEdgesMap.find(cs) == CSID2SVFGEdgesMap.end()){
+            edgeList.insert(*it);
+            CSID2SVFGEdgesMap[cs] = edgeList;
+        }else{
+            edgeList = CSID2SVFGEdgesMap[cs];
+            edgeList.insert(*it);
+            CSID2SVFGEdgesMap[cs] = edgeList;
+        }
+    }
 }
 
 void SIFDS::forwardTabulate() {
@@ -126,8 +150,6 @@ void SIFDS:: PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d
 
 void SIFDS::SEPropagate(PathEdge *e){
     SummaryEdgeList.push_back(e);
-
-
 }
 
 SIFDS::PathEdge* SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
@@ -422,50 +444,55 @@ void SIFDS::printSummaryEdgeList() {
     }
 }
 void SIFDS::validateTests(const char *fun) {
-//    for (u32_t i = 0; i < icfg->getPAG()->getModule().getModuleNum(); ++i) {
-//        Module *module = icfg->getPAG()->getModule().getModule(i);
-//        if (Function *checkFun = module->getFunction(fun)) {
-//            for (Value::user_iterator i = checkFun->user_begin(), e =
-//                    checkFun->user_end(); i != e; ++i)
-//                if (SVFUtil::isa<CallInst>(*i) || SVFUtil::isa<InvokeInst>(*i)) {
-//                    CallSite cs(*i);
-//                    assert(cs.getNumArgOperands() == 1 && "arguments should one pointer!!");
-//                    Value *v1 = cs.getArgOperand(0);
-//                    NodeID ptr = icfg->getPAG()->getValueNode(v1);
-//                    PointsTo &pts = pta->getPts(ptr);
-//                    for (PointsTo::iterator it = pts.begin(), eit = pts.end(); it != eit; ++it) {
-//                        const PAGNode *objNode = icfg->getPAG()->getPAGNode(*it);
-//                        NodeID objNodeId = objNode->getId();
-//                        const CallBlockNode *callnode = icfg->getCallICFGNode(cs);
-//                        const Facts &facts = SVFGNodeToFacts[callnode];
-//
-//                        bool initialize = true;
-//                        for (Facts::const_iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
-//                            const Datafact &fact = (*fit);
-//                            if (fact.count(objNode))
-//                                initialize = false;
-//                        }
-//                        if (strcmp(fun, "checkInit") == 0) {
-//                            if (initialize)
-//                                std::cout << sucMsg("SUCCESS: ") << fun << " check <CFGId:" << callnode->getId()
-//                                          << ", objId:" << objNodeId << "> at ("
-//                                          << getSourceLoc(*i) << ")\n";
-//                            else
-//                                std::cout << errMsg("FAIL: ") << fun << " check <CFGId:" << callnode->getId()
-//                                          << ", objId:" << objNodeId << "> at ("
-//                                          << getSourceLoc(*i) << ")\n";
-//                        } else if (strcmp(fun, "checkUninit") == 0) {
-//                            if (initialize)
-//                                std::cout << errMsg("FAIL: ") << fun << " check <CFGId:" << callnode->getId()
-//                                          << ", objId:" << objNodeId << "> at ("
-//                                          << getSourceLoc(*i) << ")\n";
-//                            else
-//                                std::cout << sucMsg("SUCCESS: ") << fun << " check <CFGId:" << callnode->getId()
-//                                          << ", objId:" << objNodeId << "> at ("
-//                                          << getSourceLoc(*i) << ")\n";
-//                        }
-//                    }
-//                }
-//        }
-//    }
+
+    for (u32_t i = 0; i < icfg->getPAG()->getModule().getModuleNum(); ++i) {
+        Module *module = icfg->getPAG()->getModule().getModule(i);
+        PTACallGraph cg = PTACallGraph(module); // get call graph?
+        if (Function *checkFun = module->getFunction(fun)) {
+
+            for (Value::user_iterator i = checkFun->user_begin(), e =
+                    checkFun->user_end(); i != e; ++i)
+                if (SVFUtil::isa<CallInst>(*i) || SVFUtil::isa<InvokeInst>(*i)) {
+                    CallSite cs(*i);
+                    assert(cs.getNumArgOperands() == 1 && "arguments should one pointer!!");
+                    Value *v1 = cs.getArgOperand(0);
+                    NodeID ptr = icfg->getPAG()->getValueNode(v1);
+                    PointsTo &pts = pta->getPts(ptr);
+
+                    CallSiteID csId = cg.getCallSiteID(cs, checkFun); // get call site id for check fun
+                    assert(CSID2SVFGEdgesMap[csId].size() == 1);
+                    SVFGNode *targetNode = (*(CSID2SVFGEdgesMap[csId].begin()))->getSrcNode();
+
+                    const Facts &facts = SVFGNodeToFacts[targetNode];
+                    const PAGNode* objNode;
+
+                    bool initialize = true;
+                    for (Facts::const_iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
+                        const Datafact &fact = (*fit);
+                        objNode = fact.begin()->first;
+                        if(fact.begin()->second)
+                            initialize = false;
+                    }
+                    if (strcmp(fun, "checkInit") == 0) {
+                        if (initialize)
+                            std::cout << sucMsg("SUCCESS: ") << fun << " check <SVFGId:" << targetNode->getId()
+                                      << ", objId:" << objNode->getId() << "> at ("
+                                      << getSourceLoc(*i) << ")\n";
+                        else
+                            std::cout << errMsg("FAIL: ") << fun << " check <SVFGId:" << targetNode->getId()
+                                      << ", objId:" << objNode->getId() << "> at ("
+                                      << getSourceLoc(*i) << ")\n";
+                    } else if (strcmp(fun, "checkUninit") == 0) {
+                        if (initialize)
+                            std::cout << errMsg("FAIL: ") << fun << " check <SVFGId:" << targetNode->getId()
+                                      << ", objId:" << objNode->getId() << "> at ("
+                                      << getSourceLoc(*i) << ")\n";
+                        else
+                            std::cout << sucMsg("SUCCESS: ") << fun << " check <SVFGId:" << targetNode->getId()
+                                      << ", objId:" << objNode->getId() << "> at ("
+                                      << getSourceLoc(*i) << ")\n";
+                    }
+                }
+        }
+    }
 }
