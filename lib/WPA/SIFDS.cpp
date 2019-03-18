@@ -218,7 +218,6 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
                 PAGNode *node = getPAG()->getPAGNode(*it);
                 fact.insert({node,true});
-                fact.erase({node,false});
             }
         }
         // Copy/Gep: dstNode depends on srcNode
@@ -226,12 +225,10 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             if (isInitialized(srcPagNode, fact)){
                 fact = {};
                 fact.insert({dstPagNode,false});
-                fact.erase({dstPagNode, true});
             }
             else if (isUninitialized(srcPagNode, fact)){
                 fact = {};
                 fact.insert({dstPagNode,true});
-                fact.erase({dstPagNode,false});
             }
             else if (isUnknown(srcPagNode, fact))
                 fact = {};
@@ -244,14 +241,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
                     fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,false});
-                    fact.erase({node,true});
                 }
             } else if (isUninitialized(srcPagNode, fact)) {
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
                     fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,true});
-                    fact.erase({node,false});
                 }
             } else if (isUnknown(srcPagNode, fact))
                 fact = {};
@@ -275,12 +270,10 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             else if (sum_ini + sum_unknown == PTset.count()){
                 fact = {};
                 fact.insert({dstPagNode,false});
-                fact.erase({dstPagNode,true});
             }
             else{
                 fact = {};
                 fact.insert({dstPagNode,true});
-                fact.erase({dstPagNode,false});
             }
         }
     }
@@ -295,12 +288,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         if(isUninitialized(OpOne, fact) || isUninitialized(OpTwo, fact)){
             fact = {};
             fact.insert({resBiOpNode,true});
-            fact.erase({resBiOpNode,false});
+            //fact.erase({resBiOpNode,false});
         }
         else if (isInitialized(OpOne, fact) || isInitialized(OpTwo, fact)){
             fact = {};
             fact.insert({resBiOpNode,false});
-            fact.erase({resBiOpNode,true});
+            //fact.erase({resBiOpNode,true});
         }
     }
     else if (const InterPHISVFGNode *interPhi = SVFUtil::dyn_cast<InterPHISVFGNode>(svfgNode)) {
@@ -314,12 +307,12 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         if (sum_ini == 1){
             fact = {};
             fact.insert({dstPagNode,false});
-            fact.erase({dstPagNode,true});
+            //fact.erase({dstPagNode,true});
         }
         else if(sum_unini == 1){
             fact = {};
             fact.insert({dstPagNode,true});
-            fact.erase({dstPagNode,false});
+            //fact.erase({dstPagNode,false});
         }
     }
     return fact;
