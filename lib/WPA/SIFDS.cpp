@@ -34,13 +34,15 @@ void SIFDS::initialize() {
     Datafact datafact = {};    // datafact = 0;
     for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
         const SVFGNode *node = it->second;
-        if(const DummyStoreSVFGNode* dsNode = SVFUtil::dyn_cast<DummyStoreSVFGNode>(node)){
-            StartPathNode * srcPN = new StartPathNode(dsNode, datafact);
-            PathNode *dstPN = new PathNode(dsNode, datafact);
-            PathEdge *startPE = new PathEdge(srcPN, dstPN);
-            PathEdgeList.push_back(startPE);
-            WorkList.push_back(startPE);
-            SVFGDstNodeSet.insert(dsNode);  //will be used when propagate?
+        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
+            if(addrNode->hasOutgoingEdge()) {
+                StartPathNode *srcPN = new StartPathNode(addrNode, datafact);
+                PathNode *dstPN = new PathNode(addrNode, datafact);
+                PathEdge *startPE = new PathEdge(srcPN, dstPN);
+                PathEdgeList.push_back(startPE);
+                WorkList.push_back(startPE);
+                SVFGDstNodeSet.insert(addrNode);
+            }
         }
     }
     //initialize SVFGNodeToFacts
@@ -63,7 +65,7 @@ void SIFDS::initialize() {
     SummaryEdgeList = {};
     FinalFacts = {};    //TODO: cannot query finalfacts
 
-    // creat CS2SVFGEdgesMap
+    // creat CSID2SVFGEdgesMap
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
         const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
         CallSiteID cs = calldir->getCallSiteId();
@@ -205,9 +207,13 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
     if (const StmtSVFGNode *stmtNode = SVFUtil::dyn_cast<StmtSVFGNode>(svfgNode)) {
         PAGNode *dstPagNode = stmtNode->getPAGDstNode();
         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
-        // DummyStore: dstNode's points-to set is uninitialized, dstNode is initialiazed
-        if (SVFUtil::isa<DummyStoreSVFGNode>(stmtNode)) {
 
+        if (SVFUtil::isa<AddrSVFGNode>(stmtNode)){
+            fact.insert({dstPagNode, false});
+        }
+        // DummyStore: dstNode's points-to set is uninitialized, dstNode is initialiazed
+        else if (SVFUtil::isa<DummyStoreSVFGNode>(stmtNode)) {
+            fact = {};
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
                 PAGNode *node = getPAG()->getPAGNode(*it);
@@ -449,29 +455,29 @@ void SIFDS::validateTests(const char *fun) {
         Module *module = icfg->getPAG()->getModule().getModule(i);
         PTACallGraph cg = PTACallGraph(module); // get call graph?
         if (Function *checkFun = module->getFunction(fun)) {
-
             for (Value::user_iterator i = checkFun->user_begin(), e =
                     checkFun->user_end(); i != e; ++i)
                 if (SVFUtil::isa<CallInst>(*i) || SVFUtil::isa<InvokeInst>(*i)) {
                     CallSite cs(*i);
                     assert(cs.getNumArgOperands() == 1 && "arguments should one pointer!!");
                     Value *v1 = cs.getArgOperand(0);
-                    NodeID ptr = icfg->getPAG()->getValueNode(v1);
-                    PointsTo &pts = pta->getPts(ptr);
 
                     CallSiteID csId = cg.getCallSiteID(cs, checkFun); // get call site id for check fun
                     assert(CSID2SVFGEdgesMap[csId].size() == 1);
                     SVFGNode *targetNode = (*(CSID2SVFGEdgesMap[csId].begin()))->getSrcNode();
-
                     const Facts &facts = SVFGNodeToFacts[targetNode];
+
+                    assert(facts.size() && "facts at related load is empty");  //facts cannot be empty
                     const PAGNode* objNode;
 
                     bool initialize = true;
                     for (Facts::const_iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
-                        const Datafact &fact = (*fit);
-                        objNode = fact.begin()->first;
-                        if(fact.begin()->second)
-                            initialize = false;
+                        if (SVFUtil::isa<ObjPN>((*fit).begin()->first)){
+                            const Datafact &fact = (*fit);
+                            objNode = fact.begin()->first;
+                            if(fact.begin()->second)
+                                initialize = false;
+                        }
                     }
                     if (strcmp(fun, "checkInit") == 0) {
                         if (initialize)
