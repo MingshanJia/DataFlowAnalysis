@@ -92,38 +92,35 @@ void SIFDS::forwardTabulate() {
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
 
-        if (isa<StmtSVFGNode>(n) || isa<BinaryOPSVFGNode>(n) || isa<CmpSVFGNode>(n) || isa<IntraMSSAPHISVFGNode>(n) || isa<InterPHISVFGNode>(n)) {
+        Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
+        if(!d.empty()){      // empty means unknown
+            if (n->hasOutgoingEdge()){
 
-            Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
-            if(!d.empty()){      // empty means unknown
-                if (n->hasOutgoingEdge()){
+                const SVFGEdge::SVFGEdgeSetTy &outEdges = n->getOutEdges();
+                for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit =
+                        outEdges.end(); it != eit; ++it) {
 
-                    const SVFGEdge::SVFGEdgeSetTy &outEdges = n->getOutEdges();
-                    for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit =
-                            outEdges.end(); it != eit; ++it) {
+                    const SVFGNode *succ = (*it)->getDstNode();
 
-                        const SVFGNode *succ = (*it)->getDstNode();
+                    if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
+                        CallSiteID cs = calldir->getCallSiteId();
+                        StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
+                        propagate(newSrcPN, succ, d);
 
-                        if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
-                            CallSiteID cs = calldir->getCallSiteId();
-                            StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
-                            propagate(newSrcPN, succ, d);
+                        std::cout <<  isInSummaryEdgeList(succ, d) << endl; //summary test info
+                        if(PathEdge *summary = isInSummaryEdgeList(succ, d))
+                            propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
 
-                            std::cout <<  isInSummaryEdgeList(succ, d) << endl; //summary test info
-                            if(PathEdge *summary = isInSummaryEdgeList(succ, d))
-                                propagate(newSrcPN, summary->getDstPathNode()->getSVFGNode(), summary->getDstPathNode()->getDataFact());
+                    }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+                        if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
+                            SEPropagate(e);
 
-                        }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                            if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
-                                SEPropagate(e);
+                        if(retdir->getCallSiteId() == srcPN->getCallSiteID())
+                            propagate(srcPN->getUpperLvlStartPN(), succ, d);
 
-                            if(retdir->getCallSiteId() == srcPN->getCallSiteID())
-                                propagate(srcPN->getUpperLvlStartPN(), succ, d);
-
-                        }
-                        else if (succ != n) //excludes the edge going back to itself(for dummy store)
-                            propagate(srcPN, succ, d);
                     }
+                    else if (succ != n) //excludes the edge going back to itself(for dummy store)
+                        propagate(srcPN, succ, d);
                 }
             }
         }
