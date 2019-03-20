@@ -39,6 +39,7 @@ protected:
     PathEdgeSet WorkList;         //worklist used during the tabulation algorithm
     PathEdgeSet PathEdgeList;     //used to restore all PathEdges (result)
     PathEdgeSet SummaryEdgeList;  //used to restore all SummaryEdges
+    PathEdgeSet SubSummaryEdgeList;
     SVFGNodeSet SVFGDstNodeSet;
     SVFGNodeSet SummarySVFGDstNodeSet;
     SVFGNodeToDataFactsMap SVFGNodeToFacts;
@@ -73,7 +74,7 @@ public:
     void propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void SEPropagate(PathEdge *e);
-    PathEdge* isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
+    PathEdgeSet isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
     //transfer function of given ICFGNode
     Datafact transferFun(const SVFGNode *svfgNode, Datafact& fact);
 
