@@ -82,7 +82,7 @@ void SIFDS::initialize() {
     }
 
     PointsTo &PTset = SIFDS::getPts(37);
-    std::cout << "Pts of p1: ";
+    std::cout << "Pts of 37: ";
     for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
         PAGNode *node = getPAG()->getPAGNode(*it);
         std::cout <<node->getId() << ", ";
@@ -90,8 +90,16 @@ void SIFDS::initialize() {
     std::cout << endl;
 
     PointsTo &PTset2 = SIFDS::getPts(39);
-    std::cout << "Pts of p2: ";
+    std::cout << "Pts of 39: ";
     for (PointsTo::iterator it = PTset2.begin(), eit = PTset2.end(); it != eit; ++it) {
+        PAGNode *node = getPAG()->getPAGNode(*it);
+        std::cout <<node->getId() << ", ";
+    }
+    std::cout << endl;
+
+    PointsTo &PTset3 = SIFDS::getPts(12);
+    std::cout << "Pts of 12: ";
+    for (PointsTo::iterator it = PTset3.begin(), eit = PTset3.end(); it != eit; ++it) {
         PAGNode *node = getPAG()->getPAGNode(*it);
         std::cout <<node->getId() << ", ";
     }
@@ -262,14 +270,14 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         else if (SVFUtil::isa<StoreSVFGNode>(stmtNode)) {
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             if (isInitialized(srcPagNode, fact)) {
+                fact = {};
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                    fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,false});
                 }
             } else if (isUninitialized(srcPagNode, fact)) {
+                fact = {};
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                    fact = {};
                     PAGNode *node = getPAG()->getPAGNode(*it);
                     fact.insert({node,true});
                 }
@@ -431,7 +439,6 @@ void SIFDS::printPathEdgeList() {
         cout << "[SVFGNodeID:" << srcID << ",(";
         for (Datafact::const_iterator it = srcFact.begin(), eit = srcFact.end(); it != eit; it++){
             std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
-
         }
         if (!srcFact.empty())
             cout << "\b";
