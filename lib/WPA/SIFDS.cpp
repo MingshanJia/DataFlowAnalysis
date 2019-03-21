@@ -115,8 +115,27 @@ void SIFDS::forwardTabulate() {
                         SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
                         std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
                         if(!SubSummaryEdgeList.empty()){
-                            for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
-                                PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
+                            // use summary when call site is different (Write in paper)
+                            if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
+                                for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
+                                    PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
+                                }
+                            }
+                        }
+
+                    }else if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
+                        CallSiteID cs = callInd->getCallSiteId();
+                        StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
+                        propagate(newSrcPN, succ, d);
+
+                        SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
+                        std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
+                        if(!SubSummaryEdgeList.empty()){
+                            // use summary when call site is different
+                            if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
+                                for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
+                                    PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
+                                }
                             }
                         }
 
