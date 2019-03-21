@@ -81,29 +81,9 @@ void SIFDS::initialize() {
         }
     }
 
-    PointsTo &PTset = SIFDS::getPts(37);
-    std::cout << "Pts of 37: ";
-    for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-        PAGNode *node = getPAG()->getPAGNode(*it);
-        std::cout <<node->getId() << ", ";
-    }
-    std::cout << endl;
-
-    PointsTo &PTset2 = SIFDS::getPts(39);
-    std::cout << "Pts of 39: ";
-    for (PointsTo::iterator it = PTset2.begin(), eit = PTset2.end(); it != eit; ++it) {
-        PAGNode *node = getPAG()->getPAGNode(*it);
-        std::cout <<node->getId() << ", ";
-    }
-    std::cout << endl;
-
-    PointsTo &PTset3 = SIFDS::getPts(12);
-    std::cout << "Pts of 12: ";
-    for (PointsTo::iterator it = PTset3.begin(), eit = PTset3.end(); it != eit; ++it) {
-        PAGNode *node = getPAG()->getPAGNode(*it);
-        std::cout <<node->getId() << ", ";
-    }
-    std::cout << endl;
+    printPTset(34);
+    printPTset(36);
+    printPTset(6);
 }
 
 void SIFDS::forwardTabulate() {
@@ -526,4 +506,14 @@ void SIFDS::validateTests(const char *fun) {
                 }
         }
     }
+}
+
+void SIFDS::printPTset(u32_t id){
+    PointsTo &PTset = SIFDS::getPts(id);
+    std::cout << "Pts of " << id << ": ";
+    for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+        PAGNode *node = PAG::getPAG()->getPAGNode(*it);
+        std::cout <<node->getId() << ", ";
+    }
+    std::cout << endl;
 }

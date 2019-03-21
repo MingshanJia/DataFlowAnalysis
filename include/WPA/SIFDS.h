@@ -89,6 +89,7 @@ public:
     void printPathEdgeList();
     void printSummaryEdgeList();
     void validateTests(const char *fun);
+    void printPTset(u32_t id);
 
     void printFacts(Facts facts, bool ObjNodeOnly = false);
     Datafact concernedDatafact();
