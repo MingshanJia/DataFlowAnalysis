@@ -9,6 +9,7 @@
 
 #include "WPA/SIFDS.h"
 #include "Util/ICFGStat.h"
+#include <algorithm>
 
 using namespace std;
 using namespace SVFUtil;
@@ -81,9 +82,7 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(34);
-    printPTset(36);
-    printPTset(6);
+    printPTset(12);
 }
 
 void SIFDS::forwardTabulate() {
@@ -130,9 +129,12 @@ void SIFDS::forwardTabulate() {
                     } else if (const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
                         if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
                             SEPropagate(e);
+                        // use filtered datafact at ret of indirect value flow (Write in Paper)
+                        const PointsTo PTset = retind->getPointsTo();
+                        Datafact d_filter = FilterDatafact(d, PTset);
 
                         if(retind->getCallSiteId() == srcPN->getCallSiteID())
-                            propagate(srcPN->getUpperLvlStartPN(), succ, d);
+                            propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
                     }
                     else if (succ != n) //excludes the edge going back to itself(for dummy store)
                         propagate(srcPN, succ, d);
@@ -343,6 +345,23 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         }
     }
     return fact;
+}
+
+SIFDS::Datafact SIFDS::FilterDatafact(Datafact& d, const PointsTo &PTset){
+    Datafact d_filter = d;
+    // cannot process in original data structure
+    set<int> pts = {};
+    for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
+        pts.insert(*it);
+    }
+
+    for(Datafact::iterator it = d_filter.begin(), eit = d_filter.end(); it != eit; ){
+        if(pts.find(it->first->getId()) == pts.end()){
+            it = d_filter.erase(it);
+        }else
+            it++;
+    }
+    return d_filter;
 }
 
 // print ICFGNodes and theirs datafacts
