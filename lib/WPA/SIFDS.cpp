@@ -111,33 +111,14 @@ void SIFDS::forwardTabulate() {
                         StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
                         propagate(newSrcPN, succ, d);
 
-                        // use summaryEdge to speed up
-                        SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
-                        std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
-                        if(!SubSummaryEdgeList.empty()){
-                            // use summary when call site is different (Write in paper)
-                            if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
-                                for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
-                                    PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
-                                }
-                            }
-                        }
+                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);
 
                     }else if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
                         CallSiteID cs = callInd->getCallSiteId();
                         StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
                         propagate(newSrcPN, succ, d);
 
-                        SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
-                        std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
-                        if(!SubSummaryEdgeList.empty()){
-                            // use summary when call site is different
-                            if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
-                                for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
-                                    PEPropagate(newSrcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
-                                }
-                            }
-                        }
+                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);
 
                     }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
                         if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
@@ -189,10 +170,24 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d)
     PathEdgeSet SEset = {};
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
-        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second)
+        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second) //TODO:: d could be multiple?
             SEset.push_back(*it) ;
     }
     return SEset;
+}
+
+// use summaryEdge to speed up
+void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
+    SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
+    std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
+    if(!SubSummaryEdgeList.empty()){
+        // use summary when call site is different (Write in paper)
+        if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
+            for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
+                PEPropagate(srcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
+            }
+        }
+    }
 }
 
 bool SIFDS::isUnknown(const PAGNode *pagNode, Datafact& datafact) {
