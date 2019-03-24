@@ -9,7 +9,7 @@
 
 #include "WPA/SIFDS.h"
 #include "Util/ICFGStat.h"
-#include <algorithm>
+#include "Util/timequick.h"
 
 using namespace std;
 using namespace SVFUtil;
@@ -21,8 +21,12 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     icfg->updateCallgraph(pta);
     icfg->getVFG()->updateCallGraph(pta);
     getIFDSStat();
+    // start timing
+    tq_start(NULL);
     initialize();
     forwardTabulate();
+    tq_stop("Sparse IFDS Time:");
+    // end timing
     printRes();
 }
 
@@ -59,13 +63,11 @@ void SIFDS::initialize() {
         for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
             if((*it)->isCallDirectVFGEdge()){
                 SVFGCallEdges.insert(*it);
-                const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
-                std::cout<< calldir->getCallSiteId() << endl;
             }
         }
     }
     SummaryEdgeList = {};
-    FinalFacts = {};    //TODO: cannot query finalfacts
+    FinalFacts = {};
 
     // creat CSID2SVFGEdgesMap
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
@@ -82,7 +84,8 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(12);
+    printPTset(30);
+    printPTset(32);
 }
 
 void SIFDS::forwardTabulate() {
@@ -129,7 +132,7 @@ void SIFDS::forwardTabulate() {
                     } else if (const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
                         if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
                             SEPropagate(e);
-                        // use filtered datafact at ret of indirect value flow (Write in Paper)
+                        // use filtered datafact at ret of indirect value flow (Write in Paper) (Only need to consider ret with indirVF ?)
                         const PointsTo PTset = retind->getPointsTo();
                         Datafact d_filter = FilterDatafact(d, PTset);
 

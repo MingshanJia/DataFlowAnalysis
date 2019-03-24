@@ -5,6 +5,7 @@
 
 #include "WPA/IFDS.h"
 #include "Util/ICFGStat.h"
+#include "Util/timequick.h"
 
 using namespace std;
 using namespace SVFUtil;
@@ -15,8 +16,12 @@ IFDS::IFDS(ICFG *i) : icfg(i) {
     icfg->updateCallgraph(pta);
     icfg->getVFG()->updateCallGraph(pta);
     getIFDSStat();
+    // start timing
+    tq_start(NULL);
     initialize();
     forwardTabulate();
+    tq_stop("Sparse IFDS Time:");
+    // end timing
     printRes();
 }
 
