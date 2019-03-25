@@ -202,7 +202,7 @@ void SIFDS::goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNo
     Datafact d_after = transferFun(SEdstNode, d);
     const SVFGEdge::SVFGEdgeSetTy &outEdges = SEdstNode->getOutEdges();
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
-        assert((*it)->isRetDirectVFGEdge() || (*it)->isRetIndirectVFGEdge());
+        //assert((*it)->isRetDirectVFGEdge() || (*it)->isRetIndirectVFGEdge());
         if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)) {
             if (retdir->getCallSiteId() == cs) {
                 const SVFGNode *succ = (*it)->getDstNode();
