@@ -84,7 +84,7 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(30);
+    printPTset(12);
     printPTset(32);
 }
 
@@ -111,14 +111,12 @@ void SIFDS::forwardTabulate() {
                     if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
                         CallSiteID cs = calldir->getCallSiteId();
                         StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
-                        propagate(newSrcPN, succ, d);
 
-                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);
+                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
 
                     }else if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
                         CallSiteID cs = callInd->getCallSiteId();
                         StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
-                        propagate(newSrcPN, succ, d);
 
                         checkAndUseSummaryEdge(cs, newSrcPN, succ, d);
 
@@ -174,22 +172,49 @@ void SIFDS::SEPropagate(PathEdge *e){
 SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
     PathEdgeSet SEset = {};
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
+        const SVFGNode *srcNode = (*it)->getSrcPathNode()->getSVFGNode();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
-        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (d.begin())->second == (srcFact.begin())->second) //TODO:: d could be multiple?
+        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (transferFun(node,d) == transferFun(srcNode, srcFact)))
             SEset.push_back(*it) ;
     }
-    return SEset;
+    return SEset;   // Summary edges should have same csId
 }
 
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
     SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
-    std::cout << "CallSite: " << cs << ", is in Summary: " << !SubSummaryEdgeList.empty() << endl;
+    std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
         if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
             for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
-                PEPropagate(srcPN, (*it)->getDstPathNode()->getSVFGNode(), (*it)->getDstPathNode()->getDataFact());
+                const SVFGNode *SEdstNode = (*it)->getDstPathNode()->getSVFGNode();
+                Datafact d = (*it)->getDstPathNode()->getDataFact();
+                //
+                goViaSummaryEdge(SEdstNode, d, srcPN, cs);
+            }
+        }
+    } else
+        propagate(srcPN, succ, d);
+}
+
+void SIFDS::goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNode* srcPN, CallSiteID cs){
+    Datafact d_after = transferFun(SEdstNode, d);
+    const SVFGEdge::SVFGEdgeSetTy &outEdges = SEdstNode->getOutEdges();
+    for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
+        assert((*it)->isRetDirectVFGEdge() || (*it)->isRetIndirectVFGEdge());
+        if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)) {
+            if (retdir->getCallSiteId() == cs) {
+                const SVFGNode *succ = (*it)->getDstNode();
+                propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
+            }
+        }
+        else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)) {
+            if (retind->getCallSiteId() == cs) {
+                const SVFGNode *succ = (*it)->getDstNode();
+                const PointsTo PTset = retind->getPointsTo();
+                Datafact d_filter = FilterDatafact(d_after, PTset);
+                propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
             }
         }
     }
@@ -448,11 +473,15 @@ void SIFDS::printPathEdgeList() {
     std::cout << "\n*********** PathEdge **************\n";
     for (PathEdgeSet::const_iterator it = PathEdgeList.begin(), eit = PathEdgeList.end(); it != eit; ++it){
         NodeID srcID = (*it)->getSrcPathNode()->getSVFGNode()->getId();
+        NodeID upperlvlSrcID = 0;
+        if ((*it)->getSrcPathNode()->getUpperLvlStartPN())
+            upperlvlSrcID = (*it)->getSrcPathNode()->getUpperLvlStartPN()->getSVFGNode()->getId();
+
         NodeID dstID = (*it)->getDstPathNode()->getSVFGNode()->getId();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
         Datafact dstFact = (*it)->getDstPathNode()->getDataFact();
 
-        cout << "[SVFGNodeID:" << srcID << ",(";
+        cout << "[SVFGNodeID:" << srcID << "|" << upperlvlSrcID << ",(";
         for (Datafact::const_iterator it = srcFact.begin(), eit = srcFact.end(); it != eit; it++){
             std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
         }
@@ -471,11 +500,14 @@ void SIFDS::printSummaryEdgeList() {
     std::cout << "\n*********** SummaryEdge **************\n";
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         NodeID srcID = (*it)->getSrcPathNode()->getSVFGNode()->getId();
+        NodeID upperlvlSrcID = 0;
+        if ((*it)->getSrcPathNode()->getUpperLvlStartPN())
+            upperlvlSrcID = (*it)->getSrcPathNode()->getUpperLvlStartPN()->getSVFGNode()->getId();
         NodeID dstID = (*it)->getDstPathNode()->getSVFGNode()->getId();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
         Datafact dstFact = (*it)->getDstPathNode()->getDataFact();
 
-        cout << "[SVFGNodeID:" << srcID << ",(";
+        cout << "[SVFGNodeID:" << srcID << "|" << upperlvlSrcID << ",(";
         for (Datafact::const_iterator it = srcFact.begin(), eit = srcFact.end(); it != eit; it++){
             std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
         }

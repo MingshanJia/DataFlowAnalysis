@@ -84,6 +84,7 @@ public:
     bool isInitialized(const PAGNode *pagNode, Datafact& datafact);
     bool isUninitialized(const PAGNode *pagNode, Datafact& datafact);
     bool isUnknown(const PAGNode *pagNode, Datafact& datafact);
+    void goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNode* srcPN, CallSiteID cs);
 
     //print ICFGNodes and theirs datafacts
     void getIFDSStat();
