@@ -20,7 +20,7 @@ IFDS::IFDS(ICFG *i) : icfg(i) {
     tq_start(NULL);
     initialize();
     forwardTabulate();
-    tq_stop("Sparse IFDS Time:");
+    tq_stop("IFDS Time:");
     // end timing
     printRes();
 }
