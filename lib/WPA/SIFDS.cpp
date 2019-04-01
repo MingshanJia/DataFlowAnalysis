@@ -113,30 +113,34 @@ void SIFDS::forwardTabulate() {
                         StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
 
                         checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
-
-                    }else if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
-                        CallSiteID cs = callInd->getCallSiteId();
-                        StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
-
-                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);
-
-                    }else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+                    }
+                    else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
                         if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
                             SEPropagate(e);
 
                         if(retdir->getCallSiteId() == srcPN->getCallSiteID())
                             propagate(srcPN->getUpperLvlStartPN(), succ, d);
-
-                    } else if (const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                        if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
-                            SEPropagate(e);
-                        // use filtered datafact at ret of indirect value flow (Write in Paper) (Only need to consider ret with indirVF ?)
-                        const PointsTo PTset = retind->getPointsTo();
+                    }
+                    // indirect edges
+                    else if (const IndirectSVFGEdge *indEdge = dyn_cast<IndirectSVFGEdge>(*it)){
+                        const PointsTo PTset = indEdge->getPointsTo();
                         Datafact d_filter = FilterDatafact(d, PTset);
 
-                        if(retind->getCallSiteId() == srcPN->getCallSiteID())
-                            propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
+                        if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
+                            CallSiteID cs = callInd->getCallSiteId();
+                            StartPathNode *newSrcPN = new StartPathNode(succ, d_filter, srcPN, cs);
+                            checkAndUseSummaryEdge(cs, newSrcPN, succ, d_filter);
+                        }
+                        else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
+                            if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
+                                SEPropagate(e);
+                            if(retind->getCallSiteId() == srcPN->getCallSiteID())
+                                propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
+                        }
+                        else  // other indirect edges
+                            propagate(srcPN, succ, d_filter);
                     }
+
                     else if (succ != n) //excludes the edge going back to itself(for dummy store)
                         propagate(srcPN, succ, d);
                 }
@@ -183,7 +187,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d)
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
     SubSummaryEdgeList = isInSummaryEdgeList(succ, d);
-    std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
+    //std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
         if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
@@ -345,12 +349,10 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         if(isUninitialized(OpOne, fact) || isUninitialized(OpTwo, fact)){
             fact = {};
             fact.insert({resBiOpNode,true});
-            //fact.erase({resBiOpNode,false});
         }
         else if (isInitialized(OpOne, fact) || isInitialized(OpTwo, fact)){
             fact = {};
             fact.insert({resBiOpNode,false});
-            //fact.erase({resBiOpNode,true});
         }
     }
     else if (const InterPHISVFGNode *interPhi = SVFUtil::dyn_cast<InterPHISVFGNode>(svfgNode)) {
@@ -364,12 +366,10 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
         if (sum_ini == 1){
             fact = {};
             fact.insert({dstPagNode,false});
-            //fact.erase({dstPagNode,true});
         }
         else if(sum_unini == 1){
             fact = {};
             fact.insert({dstPagNode,true});
-            //fact.erase({dstPagNode,false});
         }
     }
     return fact;
