@@ -21,11 +21,12 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     icfg->updateCallgraph(pta);
     icfg->getVFG()->updateCallGraph(pta);
     getIFDSStat();
+
+    initialize();
     // start timing
     tq_start(NULL);
-    initialize();
     forwardTabulate();
-    tq_stop("Sparse IFDS Time:");
+    tq_stop("ForwardTabulate Time:");
     // end timing
     printRes();
 }
@@ -57,8 +58,7 @@ void SIFDS::initialize() {
             SVFGNodeToFacts[node] = {};
             SummarySVFGNodeToFacts[node] = {};
         }
-
-        // for validate test purpose
+         //for validate test purpose
         const SVFGEdge::SVFGEdgeSetTy &outEdges = node->getOutEdges();
         for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
             if((*it)->isCallDirectVFGEdge()){
@@ -66,10 +66,10 @@ void SIFDS::initialize() {
             }
         }
     }
-    SummaryEdgeList = {};
-    FinalFacts = {};
 
-    // creat CSID2SVFGEdgesMap
+    SummaryEdgeList = {};
+
+     //creat CSID2SVFGEdgesMap
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
         const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
         CallSiteID cs = calldir->getCallSiteId();
@@ -84,8 +84,7 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(12);
-    printPTset(32);
+    //printPTset(12);
 }
 
 void SIFDS::forwardTabulate() {
@@ -93,8 +92,8 @@ void SIFDS::forwardTabulate() {
         PathEdge *e = WorkList.back();
         WorkList.pop_back();
         StartPathNode *srcPN = e->getSrcPathNode();
-        const SVFGNode *sa = srcPN->getSVFGNode();
-        Datafact& d1 = srcPN->getDataFact();
+        //const SVFGNode *sa = srcPN->getSVFGNode();
+        //Datafact& d1 = srcPN->getDataFact();
         PathNode *dstPN = e->getDstPathNode();
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
@@ -115,8 +114,7 @@ void SIFDS::forwardTabulate() {
                         checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
                     }
                     else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                        if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
-                            SEPropagate(e);
+                        SEPropagate(e);
 
                         if(retdir->getCallSiteId() == srcPN->getCallSiteID())
                             propagate(srcPN->getUpperLvlStartPN(), succ, d);
@@ -129,11 +127,11 @@ void SIFDS::forwardTabulate() {
                         if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
                             CallSiteID cs = callInd->getCallSiteId();
                             StartPathNode *newSrcPN = new StartPathNode(succ, d_filter, srcPN, cs);
+
                             checkAndUseSummaryEdge(cs, newSrcPN, succ, d_filter);
                         }
                         else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                            if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
-                                SEPropagate(e);
+                            SEPropagate(e);
                             if(retind->getCallSiteId() == srcPN->getCallSiteID())
                                 propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
                         }
@@ -170,7 +168,8 @@ void SIFDS:: PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d
 }
 
 void SIFDS::SEPropagate(PathEdge *e){
-    SummaryEdgeList.push_back(e);
+    if(std::find(SummaryEdgeList.begin(), SummaryEdgeList.end(), e) == SummaryEdgeList.end())
+        SummaryEdgeList.push_back(e);
 }
 
 SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d){
@@ -429,7 +428,6 @@ SIFDS::Datafact SIFDS::concernedDatafact() {
 void SIFDS::printRes() {
     std::cout << "\n******* Possibly Uninitialized Variables Problem *******\n\n";
     cout << "Analysis Terminates! Possibly uninitialized variables are: {";
-    printFacts(FinalFacts, true);
     cout << "}\n\n";
 
     for (SVFGNodeToDataFactsMap::iterator it = SVFGNodeToFacts.begin(), eit = SVFGNodeToFacts.end(); it != eit; ++it) {

@@ -15,10 +15,8 @@ class SIFDS {
 
 private:
     SVFG* svfg;  // using svfg in sparsed version
-
     ICFG *icfg;
     PointerAnalysis *pta;
-
 public:
     class PathNode;
     class StartPathNode;
@@ -27,11 +25,9 @@ public:
     typedef std::pair<const PAGNode*, bool> MarkedVar;   // false is initialised, true is uninitialised, ex: <PAGNodeID 1, true>
     typedef std::set<MarkedVar> Datafact; //ex: {<PAGNode 1, true>, <PAGNode 2, false>}
 
-
-    //typedef std::set<const PAGNode *> Datafact;    //set of uninitialized variables at ICFGNode
     typedef std::set<Datafact> Facts;       //different datafacts from different path
     typedef std::set<const SVFGNode *> SVFGNodeSet;
-    typedef std::list<PathEdge *> PathEdgeSet;    //to do : list -> vector (faster)
+    typedef std::list<PathEdge *> PathEdgeSet;
     typedef std::map<const SVFGNode *, Facts> SVFGNodeToDataFactsMap;
     typedef std::map<CallSiteID, SVFG::SVFGEdgeSetTy> CSID2SVFGEdgesMapTy;
 
