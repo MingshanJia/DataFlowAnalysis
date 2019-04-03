@@ -37,7 +37,7 @@ protected:
     PathEdgeSet SummaryEdgeList;  //used to restore all SummaryEdges
     PathEdgeSet SubSummaryEdgeList;
     SVFGNodeSet SVFGDstNodeSet;
-    SVFGNodeSet SummarySVFGDstNodeSet;
+    SVFGNodeSet SummarySVFGNodeSet;
     SVFGNodeToDataFactsMap SVFGNodeToFacts;
     SVFGNodeToDataFactsMap SummarySVFGNodeToFacts;
     Facts FinalFacts;

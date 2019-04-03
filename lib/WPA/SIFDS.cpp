@@ -37,20 +37,7 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     SummaryEdgeList = {}
 */
 void SIFDS::initialize() {
-    Datafact datafact = {};    // datafact = 0;
-    for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
-        const SVFGNode *node = it->second;
-        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
-            if(addrNode->hasOutgoingEdge()) {
-                StartPathNode *srcPN = new StartPathNode(addrNode, datafact);
-                PathNode *dstPN = new PathNode(addrNode, datafact);
-                PathEdge *startPE = new PathEdge(srcPN, dstPN);
-                PathEdgeList.push_back(startPE);
-                WorkList.push_back(startPE);
-                SVFGDstNodeSet.insert(addrNode);
-            }
-        }
-    }
+
     //initialize SVFGNodeToFacts
     for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
         const SVFGNode *node = it->second;
@@ -58,11 +45,29 @@ void SIFDS::initialize() {
             SVFGNodeToFacts[node] = {};
             SummarySVFGNodeToFacts[node] = {};
         }
-         //for validate test purpose
+        //for validate test purpose
         const SVFGEdge::SVFGEdgeSetTy &outEdges = node->getOutEdges();
         for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
             if((*it)->isCallDirectVFGEdge()){
                 SVFGCallEdges.insert(*it);
+            }
+        }
+    }
+
+    Datafact emptyfact = {};    // datafact = 0;
+    for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
+        const SVFGNode *node = it->second;
+        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
+            if(addrNode->hasOutgoingEdge()) {
+
+                Datafact datafact = transferFun(addrNode, emptyfact);
+                StartPathNode *srcPN = new StartPathNode(addrNode, datafact);
+                PathNode *dstPN = new PathNode(addrNode, datafact);
+                PathEdge *startPE = new PathEdge(srcPN, dstPN);
+                PathEdgeList.push_back(startPE);
+                WorkList.push_back(startPE);
+                SVFGDstNodeSet.insert(addrNode);
+                SVFGNodeToFacts[addrNode].insert(datafact);
             }
         }
     }
@@ -84,7 +89,7 @@ void SIFDS::initialize() {
         }
     }
 
-    //printPTset(12);
+    printPTset(12);
 }
 
 void SIFDS::forwardTabulate() {
@@ -98,8 +103,7 @@ void SIFDS::forwardTabulate() {
         const SVFGNode *n = e->getDstPathNode()->getSVFGNode();
         Datafact& d2 = dstPN->getDataFact();
 
-        Datafact d = transferFun(n, d2);     //caculate datafact after execution of n
-        if(!d.empty()){      // empty means unknown
+        if(!d2.empty()){      // empty means unknown
             if (n->hasOutgoingEdge()){
                 const SVFGEdge::SVFGEdgeSetTy &outEdges = n->getOutEdges();
                 for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit =
@@ -107,40 +111,46 @@ void SIFDS::forwardTabulate() {
 
                     const SVFGNode *succ = (*it)->getDstNode();
 
-                    if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
-                        CallSiteID cs = calldir->getCallSiteId();
-                        StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
+                    // direct edges
+                    if(const DirectSVFGEdge *dirEdge = dyn_cast<DirectSVFGEdge>(*it)){
+                        Datafact d = transferFun(succ, d2);
 
-                        checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
-                    }
-                    else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                        SEPropagate(e);
+                        if(const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it)){
+                            CallSiteID cs = calldir->getCallSiteId();
+                            StartPathNode *newSrcPN = new StartPathNode(succ, d, srcPN, cs);
 
-                        if(retdir->getCallSiteId() == srcPN->getCallSiteID())
-                            propagate(srcPN->getUpperLvlStartPN(), succ, d);
+                            checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
+                        }
+                        else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+                            SEPropagate(e);
+                            if(retdir->getCallSiteId() == srcPN->getCallSiteID())
+                                propagate(srcPN->getUpperLvlStartPN(), succ, d);
+
+                        }else if (succ != n) { //excludes the edge going back to itself(for dummy store)
+                            propagate(srcPN, succ, d);
+                        }
                     }
+
                     // indirect edges
                     else if (const IndirectSVFGEdge *indEdge = dyn_cast<IndirectSVFGEdge>(*it)){
                         const PointsTo PTset = indEdge->getPointsTo();
-                        Datafact d_filter = FilterDatafact(d, PTset);
+                        Datafact d_filter = FilterDatafact(d2, PTset);
+                        Datafact d_after = transferFun(succ, d_filter);
 
                         if (const CallIndSVFGEdge *callInd = dyn_cast<CallIndSVFGEdge>(*it)){
                             CallSiteID cs = callInd->getCallSiteId();
-                            StartPathNode *newSrcPN = new StartPathNode(succ, d_filter, srcPN, cs);
+                            StartPathNode *newSrcPN = new StartPathNode(succ, d_after, srcPN, cs);
 
-                            checkAndUseSummaryEdge(cs, newSrcPN, succ, d_filter);
+                            checkAndUseSummaryEdge(cs, newSrcPN, succ, d_after);
                         }
                         else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
                             SEPropagate(e);
                             if(retind->getCallSiteId() == srcPN->getCallSiteID())
-                                propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
+                                propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
                         }
                         else  // other indirect edges
-                            propagate(srcPN, succ, d_filter);
+                            propagate(srcPN, succ, d_after);
                     }
-
-                    else if (succ != n) //excludes the edge going back to itself(for dummy store)
-                        propagate(srcPN, succ, d);
                 }
             }
         }
@@ -177,10 +187,10 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeList(const SVFGNode *node, Datafact& d)
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         const SVFGNode *srcNode = (*it)->getSrcPathNode()->getSVFGNode();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
-        if(node->getId() == (*it)->getSrcPathNode()->getSVFGNode()->getId() && (transferFun(node,d) == transferFun(srcNode, srcFact)))
+        if(node->getId() == srcNode->getId() && d == srcFact)
             SEset.push_back(*it) ;
     }
-    return SEset;   // Summary edges should have same csId
+    return SEset;   // Summary edges in the set should have same csId
 }
 
 // use summaryEdge to speed up
@@ -193,31 +203,33 @@ void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SV
             for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
                 const SVFGNode *SEdstNode = (*it)->getDstPathNode()->getSVFGNode();
                 Datafact d = (*it)->getDstPathNode()->getDataFact();
-                //
+
                 goViaSummaryEdge(SEdstNode, d, srcPN, cs);
             }
         }
     } else
-        propagate(srcPN, succ, d);
+        propagate(srcPN, succ, d);  //subEdge
 }
 
 void SIFDS::goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNode* srcPN, CallSiteID cs){
-    Datafact d_after = transferFun(SEdstNode, d);
+
     const SVFGEdge::SVFGEdgeSetTy &outEdges = SEdstNode->getOutEdges();
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it) {
         //assert((*it)->isRetDirectVFGEdge() || (*it)->isRetIndirectVFGEdge());
+        const SVFGNode *succ = (*it)->getDstNode();
+
         if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)) {
             if (retdir->getCallSiteId() == cs) {
-                const SVFGNode *succ = (*it)->getDstNode();
+                Datafact d_after = transferFun(succ, d);
                 propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
             }
         }
         else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)) {
             if (retind->getCallSiteId() == cs) {
-                const SVFGNode *succ = (*it)->getDstNode();
                 const PointsTo PTset = retind->getPointsTo();
-                Datafact d_filter = FilterDatafact(d_after, PTset);
-                propagate(srcPN->getUpperLvlStartPN(), succ, d_filter);
+                Datafact d_filter = FilterDatafact(d, PTset);
+                Datafact d_after = transferFun(succ, d_filter);
+                propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
             }
         }
     }
