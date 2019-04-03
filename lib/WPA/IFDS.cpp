@@ -365,7 +365,7 @@ IFDS::Datafact IFDS::transferFun(const ICFGNode *icfgNode, Datafact& fact_before
 
 // print ICFGNodes and theirs datafacts
 void IFDS::getIFDSStat() {
-    icfg->getStat()->performStatforIFDS();
+    icfg->getStat()->performStat();
     Datafact fact = concernedDatafact();
     estimatedDatafacts = fact.size();
     cout << "Datafact(D)         " << estimatedDatafacts << endl;

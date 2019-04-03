@@ -40,8 +40,7 @@ protected:
     SVFGNodeSet SummarySVFGNodeSet;
     SVFGNodeToDataFactsMap SVFGNodeToFacts;
     SVFGNodeToDataFactsMap SummarySVFGNodeToFacts;
-    Facts FinalFacts;
-    int32_t estimatedDatafacts;
+    int totalVar;
     SVFG::SVFGEdgeSetTy SVFGCallEdges;
     CSID2SVFGEdgesMapTy CSID2SVFGEdgesMap;
 
@@ -91,7 +90,6 @@ public:
     void printPTset(u32_t id);
 
     void printFacts(Facts facts, bool ObjNodeOnly = false);
-    Datafact concernedDatafact();
 
     //Get points-to set of given PAGNode
     inline PointsTo &getPts(NodeID id) {

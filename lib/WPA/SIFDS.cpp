@@ -20,9 +20,9 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     pta = AndersenWaveDiff::createAndersenWaveDiff(getPAG()->getModule());
     icfg->updateCallgraph(pta);
     icfg->getVFG()->updateCallGraph(pta);
-    getIFDSStat();
 
     initialize();
+    getIFDSStat();
     // start timing
     tq_start(NULL);
     forwardTabulate();
@@ -72,6 +72,7 @@ void SIFDS::initialize() {
         }
     }
 
+    totalVar = PathEdgeList.size();
     SummaryEdgeList = {};
 
      //creat CSID2SVFGEdgesMap
@@ -89,7 +90,7 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(12);
+    //printPTset(12);
 }
 
 void SIFDS::forwardTabulate() {
@@ -405,38 +406,13 @@ SIFDS::Datafact SIFDS::FilterDatafact(Datafact& d, const PointsTo &PTset){
 
 // print ICFGNodes and theirs datafacts
 void SIFDS::getIFDSStat() {
-    icfg->getStat()->performStatforIFDS();
-    Datafact fact = concernedDatafact();
-    estimatedDatafacts = fact.size();
-    cout << "Datafact(D)         " << estimatedDatafacts << endl;
+    icfg->getStat()->performStat();
+    cout << "#######################################################\n\n";
+    cout << "Total Variables     " << totalVar << endl;
     std::cout << "-------------------------------------------------------\n";
   cout << "\n";
 }
 
-SIFDS::Datafact SIFDS::concernedDatafact() {
-    Datafact fact = {};
-    for (PAG::const_iterator it = (icfg->getPAG())->begin(), eit = icfg->getPAG()->end(); it != eit; ++it) {
-        PAGNode *node = it->second;
-        if (node->hasIncomingEdge() || node->hasOutgoingEdge() && node->getFunction()) { // nodes has edges
-            bool excluded = false;    // excluded == false means add into fact
-            if (node->isConstantData())
-                excluded = true;
-            if (ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>(node))
-                if (objNode->getMemObj()->isFunction())
-                    excluded = true;
-            PAGEdge::PAGEdgeSetTy edges = node->getIncomingEdges(PAGEdge::Addr);
-            for (PAGEdge::PAGEdgeSetTy::iterator it = edges.begin(), eit = edges.end(); it != eit; ++it) {
-                PAGEdge *e = *it;
-                if (ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>(e->getSrcNode()))
-                    if (objNode->getMemObj()->isFunction())
-                        excluded = true;
-            }
-            if (!excluded) //add eligible PAGNode into fact
-                fact.insert({node,true});
-        }
-    }
-    return fact;
-}
 void SIFDS::printRes() {
     std::cout << "\n******* Possibly Uninitialized Variables Problem *******\n\n";
     cout << "Analysis Terminates! Possibly uninitialized variables are: {";

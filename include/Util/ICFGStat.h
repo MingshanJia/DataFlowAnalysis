@@ -86,15 +86,6 @@ public:
         printStat("ICFG Stat");
     }
 
-    void performStatforIFDS() {
-
-        countStat();
-        PTNumStatMap["ICFGNode(N)"] = numOfNodes;
-        PTNumStatMap["CallBlockNode(Call)"] = numOfCallNodes;
-        PTNumStatMap["ICFGEdge(E)"] = numOfEdges;
-        printStat("IFDS Stat");
-    }
-
     void countStat(){
         ICFG::ICFGNodeIDToNodeMapTy::iterator it = icfg->begin();
         ICFG::ICFGNodeIDToNodeMapTy::iterator eit = icfg->end();
