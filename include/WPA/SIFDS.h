@@ -69,7 +69,8 @@ public:
     void propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d);
     void SEPropagate(PathEdge *e);
-    PathEdgeSet isInSummaryEdgeList(const SVFGNode *node, Datafact& d);
+    PathEdgeSet isInSummaryEdgeListForDir(const SVFGNode *node, Datafact& d);
+    PathEdgeSet isInSummaryEdgeListForIndir(const SVFGNode *node, Datafact& d);
     void checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d);
     //transfer function of given ICFGNode
     Datafact transferFun(const SVFGNode *svfgNode, Datafact& fact);
