@@ -192,7 +192,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForDir(const SVFGNode *node, Datafa
         const SVFGNode *srcNode = (*it)->getSrcPathNode()->getSVFGNode();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
         if(node->getId() == srcNode->getId() && d == srcFact)
-            SEset.push_back(*it) ;
+            SEset.push_back(*it);
     }
     return SEset;   // Summary edges in the set should have same csId
 }
@@ -400,7 +400,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             fact = {};
             fact.insert({dstPagNode,true});
         }
-        else if (sum_ini == 1){
+        else if (sum_ini >= 1){   //take consideration of constantData
             fact = {};
             fact.insert({dstPagNode,false});
         }
