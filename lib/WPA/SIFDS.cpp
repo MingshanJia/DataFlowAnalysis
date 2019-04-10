@@ -19,7 +19,8 @@ SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
     svfg = icfg->getSVFG();
     pta = AndersenWaveDiff::createAndersenWaveDiff(getPAG()->getModule());
     icfg->updateCallgraph(pta);
-    icfg->getVFG()->updateCallGraph(pta);
+    icfg->getVFG()->updateCallGraph(pta);  //handle function ptr;
+    svfg->updateCallGraph(pta);
 
     initialize();
     getIFDSStat();
@@ -201,7 +202,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         const SVFGNode *srcNode = (*it)->getSrcPathNode()->getSVFGNode();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
-        /*handle call of indirEdge*/
+        /*handle call of indirEdge   ???*/
         u32_t d_sum = 0;
         u32_t srcFact_sum = 0;
         for (Datafact::iterator it = d.begin(), eit = d.end(); it != eit; ++it)
@@ -217,7 +218,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
 
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
-    std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
+    //std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
         if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
@@ -555,11 +556,6 @@ void SIFDS::validateTests(const char *fun) {
                         }
                     }
 
-                    assert(finalFact.size() == 1);
-                    bool initialize = true;
-                    if(finalFact.begin()->second)
-                        initialize = false;
-
                     PAGNode *node;
                     if (const StmtSVFGNode *stmtNode = SVFUtil::dyn_cast<StmtSVFGNode>(targetNode)) {
                         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
@@ -567,22 +563,33 @@ void SIFDS::validateTests(const char *fun) {
                         node = PAG::getPAG()->getPAGNode(*PTset.begin());  //PTset.size() == 1
                     }
 
-                    if (strcmp(fun, "checkInit") == 0) {
-                        if (initialize)
-                            std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                      << " at ("<< getSourceLoc(*i) << ")\n";
-                        else
-                            std::cout << errMsg("FAIL: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                      << " at ("<< getSourceLoc(*i) << ")\n";
-
-                    } else if (strcmp(fun, "checkUninit") == 0) {
-                        if (initialize)
-                            std::cout << errMsg("FAIL: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                      << " at ("<< getSourceLoc(*i) << ")\n";
-                        else
-                            std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                      << " at ("<< getSourceLoc(*i) << ")\n";
+                    if (finalFact.size() == 0){
+                        std::cout << errMsg("Unknown: ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                  << " at ("<< getSourceLoc(*i) << ")\n";
                     }
+                    else if (finalFact.size() == 1){
+                        bool initialize = true;
+                        if(finalFact.begin()->second)
+                            initialize = false;
+                        if (strcmp(fun, "checkInit") == 0) {
+                            if (initialize)
+                                std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                          << " at ("<< getSourceLoc(*i) << ")\n";
+                            else
+                                std::cout << errMsg("FAIL: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                          << " at ("<< getSourceLoc(*i) << ")\n";
+
+                        } else if (strcmp(fun, "checkUninit") == 0) {
+                            if (initialize)
+                                std::cout << errMsg("FAIL: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                          << " at ("<< getSourceLoc(*i) << ")\n";
+                            else
+                                std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                          << " at ("<< getSourceLoc(*i) << ")\n";
+                        }
+                    }else
+                        std::cout << errMsg("Too many facts ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                  << " at ("<< getSourceLoc(*i) << ")\n";
                 }
         }
     }
