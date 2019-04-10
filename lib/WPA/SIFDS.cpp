@@ -218,7 +218,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
 
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
-    //std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
+    std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
         if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
@@ -396,13 +396,13 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             sum_ini += isInitialized(it->second, fact);
             sum_unini += isUninitialized(it->second, fact);
         }
-        if (sum_ini == 1){
-            fact = {};
-            fact.insert({dstPagNode,false});
-        }
-        else if(sum_unini == 1){
+        if(sum_unini == 1){    // need to check uninit first(because constantData will be init without execution)
             fact = {};
             fact.insert({dstPagNode,true});
+        }
+        else if (sum_ini == 1){
+            fact = {};
+            fact.insert({dstPagNode,false});
         }
     }
     return fact;
@@ -563,11 +563,8 @@ void SIFDS::validateTests(const char *fun) {
                         node = PAG::getPAG()->getPAGNode(*PTset.begin());  //PTset.size() == 1
                     }
 
-                    if (finalFact.size() == 0){
-                        std::cout << errMsg("Unknown: ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                  << " at ("<< getSourceLoc(*i) << ")\n";
-                    }
-                    else if (finalFact.size() == 1){
+
+                    if (finalFact.size() == 1){
                         bool initialize = true;
                         if(finalFact.begin()->second)
                             initialize = false;
@@ -587,6 +584,10 @@ void SIFDS::validateTests(const char *fun) {
                                 std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
                                           << " at ("<< getSourceLoc(*i) << ")\n";
                         }
+                    }
+                    else if (finalFact.size() == 0){
+                        std::cout << errMsg("Unknown: ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
+                                  << " at ("<< getSourceLoc(*i) << ")\n";
                     }else
                         std::cout << errMsg("Too many facts ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
                                   << " at ("<< getSourceLoc(*i) << ")\n";
