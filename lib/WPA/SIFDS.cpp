@@ -15,11 +15,9 @@ using namespace std;
 using namespace SVFUtil;
 
 //constructor
-SIFDS::SIFDS(ICFG *i) : icfg(i){  //only need SVFG?
-    svfg = icfg->getSVFG();
-    pta = AndersenWaveDiff::createAndersenWaveDiff(getPAG()->getModule());
-    icfg->updateCallgraph(pta);
-    icfg->getVFG()->updateCallGraph(pta);  //handle function ptr;
+SIFDS::SIFDS(SVFG *s) : svfg(s){
+    pag = getPAG();
+    pta = AndersenWaveDiff::createAndersenWaveDiff(pag->getModule());
     svfg->updateCallGraph(pta);
 
     initialize();
@@ -56,7 +54,7 @@ void SIFDS::initialize() {
     }
 
     Datafact emptyfact = {};    // datafact = 0;
-    for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){
+    for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){   //iterate SVFGNodes
         const SVFGNode *node = it->second;
         if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
             if(addrNode->hasOutgoingEdge()) {
@@ -165,8 +163,8 @@ void SIFDS::forwardTabulate() {
 void SIFDS::propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d) {
     if (SVFGDstNodeSet.find(succ) == SVFGDstNodeSet.end()) {
         PEPropagate(srcPN, succ, d);
-        SVFGDstNodeSet.insert(succ);
-    } else {
+    }
+    else {
         if (SVFGNodeToFacts[succ].find(d) == SVFGNodeToFacts[succ].end()) {
             PEPropagate(srcPN, succ, d);
         }
@@ -178,6 +176,7 @@ void SIFDS:: PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d
     PathEdge *e = new PathEdge(srcPN, newDstPN);
     WorkList.push_back(e);
     PathEdgeList.push_back(e);
+    SVFGDstNodeSet.insert(succ);
     SVFGNodeToFacts[succ].insert(d);
 }
 
@@ -310,7 +309,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             fact = {};
             PointsTo &PTset = SIFDS::getPts(dstPagNode->getId());
             for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                PAGNode *node = getPAG()->getPAGNode(*it);
+                PAGNode *node = pag->getPAGNode(*it);
                 fact.insert({node,true});
             }
         }
@@ -333,13 +332,13 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             if (isInitialized(srcPagNode, fact)) {
                 fact = {};
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                    PAGNode *node = getPAG()->getPAGNode(*it);
+                    PAGNode *node = pag->getPAGNode(*it);
                     fact.insert({node,false});
                 }
             } else if (isUninitialized(srcPagNode, fact)) {
                 fact = {};
                 for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                    PAGNode *node = getPAG()->getPAGNode(*it);
+                    PAGNode *node = pag->getPAGNode(*it);
                     fact.insert({node,true});
                 }
             } else if (isUnknown(srcPagNode, fact))
@@ -354,7 +353,7 @@ SIFDS::Datafact SIFDS::transferFun(const SVFGNode *svfgNode, Datafact& fact_befo
             u32_t sum_unini = 0;
 
             for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-                PAGNode *node = getPAG()->getPAGNode(*it);
+                PAGNode *node = pag->getPAGNode(*it);
                 sum_ini += isInitialized(node, fact);
                 sum_unknown += isUnknown(node, fact);
                 sum_unini += isUninitialized(node, fact);
@@ -427,7 +426,6 @@ SIFDS::Datafact SIFDS::FilterDatafact(Datafact& d, const PointsTo &PTset){
 
 // print ICFGNodes and theirs datafacts
 void SIFDS::getIFDSStat() {
-    icfg->getStat()->performStat();
     cout << "#######################################################\n\n";
     cout << "Total Variables     " << totalVar << endl;
     std::cout << "-------------------------------------------------------\n";
@@ -531,9 +529,9 @@ void SIFDS::printSummaryEdgeList() {
 }
 void SIFDS::validateTests(const char *fun) {
 
-    for (u32_t i = 0; i < icfg->getPAG()->getModule().getModuleNum(); ++i) {
-        Module *module = icfg->getPAG()->getModule().getModule(i);
-        PTACallGraph cg = PTACallGraph(module); // get call graph?
+    for (u32_t i = 0; i < pag->getModule().getModuleNum(); ++i) {
+        Module *module = pag->getModule().getModule(i);
+        PTACallGraph cg = PTACallGraph(module); // get call graph
         if (Function *checkFun = module->getFunction(fun)) {
             for (Value::user_iterator i = checkFun->user_begin(), e =
                     checkFun->user_end(); i != e; ++i)
@@ -560,14 +558,17 @@ void SIFDS::validateTests(const char *fun) {
                     if (const StmtSVFGNode *stmtNode = SVFUtil::dyn_cast<StmtSVFGNode>(targetNode)) {
                         PAGNode *srcPagNode = stmtNode->getPAGSrcNode();
                         PointsTo &PTset = SIFDS::getPts(srcPagNode->getId());
-                        node = PAG::getPAG()->getPAGNode(*PTset.begin());  //PTset.size() == 1
+                        node = pag->getPAGNode(*PTset.begin());  //PTset.size() == 1
                     }
 
-
-                    if (finalFact.size() == 1){
+                    if (finalFact.size()){
                         bool initialize = true;
-                        if(finalFact.begin()->second)
+                        int sum_fact = 0;
+                        for (Datafact::iterator dit = finalFact.begin(), edit = finalFact.end(); dit != edit; ++dit)
+                            sum_fact += (*dit).second;
+                        if(sum_fact)  // {ex: <35, 0>, <35, 1> means unini}
                             initialize = false;
+
                         if (strcmp(fun, "checkInit") == 0) {
                             if (initialize)
                                 std::cout << sucMsg("SUCCESS: ") << fun << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
@@ -585,11 +586,8 @@ void SIFDS::validateTests(const char *fun) {
                                           << " at ("<< getSourceLoc(*i) << ")\n";
                         }
                     }
-                    else if (finalFact.size() == 0){
+                    else
                         std::cout << errMsg("Unknown: ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
-                                  << " at ("<< getSourceLoc(*i) << ")\n";
-                    }else
-                        std::cout << errMsg("Too many facts ") << " check [SVFGId:" << targetNode->getId() << "]  for variable:" << node->getValueName()
                                   << " at ("<< getSourceLoc(*i) << ")\n";
                 }
         }
@@ -600,7 +598,7 @@ void SIFDS::printPTset(u32_t id){
     PointsTo &PTset = SIFDS::getPts(id);
     std::cout << "Pts of " << id << ": ";
     for (PointsTo::iterator it = PTset.begin(), eit = PTset.end(); it != eit; ++it) {
-        PAGNode *node = PAG::getPAG()->getPAGNode(*it);
+        PAGNode *node = pag->getPAGNode(*it);
         std::cout <<node->getId() << ", ";
     }
     std::cout << endl;

@@ -15,7 +15,7 @@ class SIFDS {
 
 private:
     SVFG* svfg;  // using svfg in sparsed version
-    ICFG *icfg;
+    PAG* pag;
     PointerAnalysis *pta;
 public:
     class PathNode;
@@ -45,20 +45,16 @@ protected:
     CSID2SVFGEdgesMapTy CSID2SVFGEdgesMap;
 
 public:
-    inline VFG *getSVFG() const {
-        return icfg->getSVFG();
-    }
-
-    inline ICFG *getICFG() const {
-        return icfg;
+    inline SVFG *getSVFG() const {
+        return svfg;
     }
 
     inline PAG *getPAG() const {
-        return icfg->getPAG();
+        return svfg->getPAG();
     }
 
     //constructor
-    SIFDS(ICFG *i);
+    SIFDS(SVFG *svfg);
 
     //procedures in Tabulation Algorithm
     void initialize();
