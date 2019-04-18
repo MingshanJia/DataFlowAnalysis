@@ -56,7 +56,7 @@ void SIFDS::initialize() {
     Datafact emptyfact = {};    // datafact = 0;
     for(SVFG::const_iterator it = svfg->begin(), eit = svfg->end(); it != eit; ++it ){   //iterate SVFGNodes
         const SVFGNode *node = it->second;
-        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){
+        if(const AddrSVFGNode* addrNode = SVFUtil::dyn_cast<AddrSVFGNode>(node)){    // assert(addrNode has no incoming edges)?
             if(addrNode->hasOutgoingEdge()) {
 
                 Datafact datafact = transferFun(addrNode, emptyfact);
@@ -66,7 +66,9 @@ void SIFDS::initialize() {
                 PathEdgeList.push_back(startPE);
                 WorkList.push_back(startPE);
                 SVFGDstNodeSet.insert(addrNode);
-                SVFGNodeToFacts[addrNode].insert(datafact);
+
+                DFwithCS dc = {datafact, 0};
+                SVFGNodeToFacts[addrNode].insert(dc);
             }
         }
     }
@@ -165,7 +167,8 @@ void SIFDS::propagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d) {
         PEPropagate(srcPN, succ, d);
     }
     else {
-        if (SVFGNodeToFacts[succ].find(d) == SVFGNodeToFacts[succ].end()) {
+        DFwithCS dc = {d, srcPN->getCallSiteID()};
+        if (SVFGNodeToFacts[succ].find(dc) == SVFGNodeToFacts[succ].end()) {
             PEPropagate(srcPN, succ, d);
         }
     }
@@ -177,7 +180,8 @@ void SIFDS:: PEPropagate(StartPathNode *srcPN, const SVFGNode *succ, Datafact& d
     WorkList.push_back(e);
     PathEdgeList.push_back(e);
     SVFGDstNodeSet.insert(succ);
-    SVFGNodeToFacts[succ].insert(d);
+    DFwithCS dc = {d, srcPN->getCallSiteID()};
+    SVFGNodeToFacts[succ].insert(dc);
 }
 
 void SIFDS::SEPropagate(PathEdge *e){
@@ -217,6 +221,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
 
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
+    //test info: summary edge reuse info
     std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
@@ -454,7 +459,7 @@ void SIFDS::printRes() {
 void SIFDS::printFacts(Facts facts, bool ObjNodeOnly) {
     Datafact finalFact = {};
     for (Facts::iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
-        Datafact fact = (*fit);
+        Datafact fact = (*fit).first;
         for (Datafact::iterator dit = fact.begin(), edit = fact.end(); dit != edit; ++dit) {
             if (ObjNodeOnly){
                 if (const ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>((*dit).first))
@@ -548,7 +553,7 @@ void SIFDS::validateTests(const char *fun) {
 
                     Datafact finalFact = {};
                     for (Facts::iterator fit = facts.begin(), efit = facts.end(); fit != efit; ++fit) {
-                        Datafact fact = (*fit);
+                        Datafact fact = (*fit).first;
                         for (Datafact::iterator dit = fact.begin(), edit = fact.end(); dit != edit; ++dit) {
                             finalFact.insert(*dit);
                         }
