@@ -516,8 +516,9 @@ void SIFDS::printSummaryEdgeList() {
         NodeID dstID = (*it)->getDstPathNode()->getSVFGNode()->getId();
         Datafact srcFact = (*it)->getSrcPathNode()->getDataFact();
         Datafact dstFact = (*it)->getDstPathNode()->getDataFact();
+        int cs = (*it)->getSrcPathNode()->getCallSiteID();
 
-        cout << "[SVFGNodeID:" << srcID << "|" << upperlvlSrcID << ",(";
+        cout << "[SVFGNodeID:" << srcID << "|" << upperlvlSrcID << "@" << cs << ",(";
         for (Datafact::const_iterator it = srcFact.begin(), eit = srcFact.end(); it != eit; it++){
             std::cout << "<" << (*it).first->getId() << "," << (*it).second << "> ";
         }

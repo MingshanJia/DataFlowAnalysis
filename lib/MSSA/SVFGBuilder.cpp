@@ -94,7 +94,7 @@ SVFG* SVFGBuilder::build(BVDataPTAImpl* pta, VFG::VFGK kind) {
     }
     else {
         if(OPTSVFG)
-            svfg = new SVFGOPT(mssa, kind);
+            svfg = new SVFGOPT(mssa, kind);     // default setting is with OPT
         else
             svfg = new SVFG(mssa,kind);
         buildSVFG();

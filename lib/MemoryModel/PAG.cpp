@@ -52,8 +52,8 @@ bool PAG::addAddrEdge(NodeID src, NodeID dst) {
     if(hasIntraEdge(srcNode,dstNode, PAGEdge::Addr))
         return false;
     else{
-        if(ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>(srcNode))
-            if (objNode->getMemObj()->isFunction())
+        if(ObjPN *objNode = SVFUtil::dyn_cast<ObjPN>(srcNode))   //cases which don't need dummyStore
+            if (objNode->getMemObj()->isFunction()||objNode->getMemObj()->isGlobalObj())
                 return addEdge(srcNode,dstNode, new AddrPE(srcNode, dstNode));
             if(DummyObjPN *dummyObjNode = SVFUtil::dyn_cast<DummyObjPN>(srcNode))
                 return addEdge(srcNode,dstNode, new AddrPE(srcNode, dstNode));
@@ -63,8 +63,6 @@ bool PAG::addAddrEdge(NodeID src, NodeID dst) {
             addStoreEdge(dummyVal, dst);     //Store uninitialized value
             return addEdge(srcNode,dstNode, new AddrPE(srcNode, dstNode));
         }
-
-
     }
 }
 
