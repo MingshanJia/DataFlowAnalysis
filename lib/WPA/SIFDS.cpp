@@ -127,7 +127,7 @@ void SIFDS::forwardTabulate() {
                         else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
                             SEPropagate(e);
                             if(retdir->getCallSiteId() == srcPN->getCallSiteID())
-                                propagate(srcPN->getUpperLvlStartPN(), succ, d);
+                                PEPropagate(srcPN->getUpperLvlStartPN(), succ, d);
 
                         }else if (succ != n) { //excludes the edge going back to itself(for dummy store)
                             propagate(srcPN, succ, d);
@@ -150,7 +150,7 @@ void SIFDS::forwardTabulate() {
                         else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
                             SEPropagate(e);
                             if(retind->getCallSiteId() == srcPN->getCallSiteID())
-                                propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
+                                PEPropagate(srcPN->getUpperLvlStartPN(), succ, d_after);
                         }
                         else  // other indirect edges
                             propagate(srcPN, succ, d_after);
@@ -222,7 +222,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
     //test info: summary edge reuse info
-    std::cout << "SVFGNode:"<<succ->getId()<<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
+    //std::cout << "SVFGNode:"<<succ->getId()<< "|" << srcPN->getUpperLvlStartPN()->getSVFGNode()->getId() <<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         // use summary when call site is different (Write in paper)
         if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
