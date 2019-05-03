@@ -125,10 +125,10 @@ void SIFDS::forwardTabulate() {
                             checkAndUseSummaryEdge(cs, newSrcPN, succ, d);   //think carefully...
                         }
                         else if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                            SEPropagate(e);
-                            if(retdir->getCallSiteId() == srcPN->getCallSiteID())
+                            if(retdir->getCallSiteId() == srcPN->getCallSiteID()){
+                                SEPropagate(e);
                                 PEPropagate(srcPN->getUpperLvlStartPN(), succ, d);
-
+                            }
                         }else if (succ != n) { //excludes the edge going back to itself(for dummy store)
                             propagate(srcPN, succ, d);
                         }
@@ -148,9 +148,10 @@ void SIFDS::forwardTabulate() {
                             checkAndUseSummaryEdge(cs, newSrcPN, succ, d_after);
                         }
                         else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                            SEPropagate(e);
-                            if(retind->getCallSiteId() == srcPN->getCallSiteID())
-                                PEPropagate(srcPN->getUpperLvlStartPN(), succ, d_after);
+                            if(retind->getCallSiteId() == srcPN->getCallSiteID()){
+                                SEPropagate(e);
+                                PEPropagate(srcPN->getUpperLvlStartPN(), succ, d_after);     //caculate d_after in if?
+                            }
                         }
                         else  // other indirect edges
                             propagate(srcPN, succ, d_after);
