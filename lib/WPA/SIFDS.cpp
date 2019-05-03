@@ -225,14 +225,11 @@ void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SV
     //test info: summary edge reuse info
     //std::cout << "SVFGNode:"<<succ->getId()<< "|" << srcPN->getUpperLvlStartPN()->getSVFGNode()->getId() <<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
-        // use summary when call site is different (Write in paper)
-        if(cs != SubSummaryEdgeList.front()->getSrcPathNode()->getCallSiteID()){
-            for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
-                const SVFGNode *SEdstNode = (*it)->getDstPathNode()->getSVFGNode();
-                Datafact d = (*it)->getDstPathNode()->getDataFact();
+        for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
+            const SVFGNode *SEdstNode = (*it)->getDstPathNode()->getSVFGNode();
+            Datafact d = (*it)->getDstPathNode()->getDataFact();
 
-                goViaSummaryEdge(SEdstNode, d, srcPN, cs);
-            }
+            goViaSummaryEdge(SEdstNode, d, srcPN, cs);
         }
     } else
         propagate(srcPN, succ, d);  //subEdge
