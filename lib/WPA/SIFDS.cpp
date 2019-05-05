@@ -52,16 +52,30 @@ void SIFDS::initialize() {
             }
             // for reuse optimization
             if(const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                double key = node->getId() + double(retdir->getCallSiteId())/100000;
-                SVFGNodeWithCS2SVFGRetEdgeMap[key] = *it;
-                cout.precision(10);
-                cout << key << endl;
+                unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();
+                SVFGEdge::SVFGEdgeSetTy edgeList;
+                if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
+                    edgeList.insert(*it);
+                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+                }else{
+                    edgeList = SVFGNodeWithCS2SVFGRetEdgesMap[key];
+                    edgeList.insert(*it);
+                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+                }
+                //cout << "RetNodeID:" <<node->getId() << " CS:" << retdir->getCallSiteId() << " Key:" << key << " Size:" << edgeList.size() << endl;
             }
             if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                double key = node->getId() + double(retind->getCallSiteId())/100000;
-                SVFGNodeWithCS2SVFGRetEdgeMap[key] = *it;
-                cout.precision(10);
-                cout << key << endl;
+                unsigned long key = node->getId() * 10000 + retind->getCallSiteId();
+                SVFGEdge::SVFGEdgeSetTy edgeList;
+                if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
+                    edgeList.insert(*it);
+                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+                }else{
+                    edgeList = SVFGNodeWithCS2SVFGRetEdgesMap[key];
+                    edgeList.insert(*it);
+                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+                }
+                //cout << "RetNodeID:" <<node->getId() << " CS:" << retind->getCallSiteId() << " Key:" << key << " Size:" << edgeList.size() << endl;
             }
         }
     }
@@ -213,7 +227,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForDir(const SVFGNode *node, Datafa
     return SEset;   // Summary edges in the set should have same csId
 }
 
-SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Datafact& d){
+SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Datafact& d){   //FIXME:see example: easyptr3 callInd
     PathEdgeSet SEset = {};
     for (PathEdgeSet::const_iterator it = SummaryEdgeList.begin(), eit = SummaryEdgeList.end(); it != eit; ++it){
         const SVFGNode *srcNode = (*it)->getSrcPathNode()->getSVFGNode();
@@ -235,7 +249,7 @@ SIFDS::PathEdgeSet SIFDS::isInSummaryEdgeListForIndir(const SVFGNode *node, Data
 // use summaryEdge to speed up
 void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SVFGNode* succ, Datafact &d){
     //test info: summary edge reuse info
-    std::cout << "SVFGNode:"<<succ->getId()<< "|" << srcPN->getUpperLvlStartPN()->getSVFGNode()->getId() <<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
+    //std::cout << "SVFGNode:"<<succ->getId()<< "|" << srcPN->getUpperLvlStartPN()->getSVFGNode()->getId() <<", CallSite: " << cs << ", Use SummaryEdge? " << !SubSummaryEdgeList.empty() << endl;
     if(!SubSummaryEdgeList.empty()){
         for (PathEdgeSet::const_iterator it = SubSummaryEdgeList.begin(), eit = SubSummaryEdgeList.end(); it != eit; ++it){
             const SVFGNode *SEdstNode = (*it)->getDstPathNode()->getSVFGNode();
@@ -248,26 +262,22 @@ void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SV
 }
 
 void SIFDS::goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNode* srcPN, CallSiteID cs){
+    //const SVFGEdge::SVFGEdgeSetTy &outEdges = SEdstNode->getOutEdges();
+    const SVFGEdge::SVFGEdgeSetTy &outEdges = SVFGNodeWithCS2SVFGRetEdgesMap[SEdstNode->getId() * 10000 + cs];
+    for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it){
+        const SVFGNode *succ = (*it)->getDstNode();
 
-    double key = SEdstNode->getId() + double(cs)/100000;
-    SVFGEdge *e = SVFGNodeWithCS2SVFGRetEdgeMap[key];
-    if (e){   //FIXME: e can be null?
-        const SVFGNode *succ = (*e).getDstNode();
-
-        if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(e)) {
+        if (const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)) {
             Datafact d_after = transferFun(succ, d);
             propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
         }
-        else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(e)) {
+        else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)) {
             const PointsTo PTset = retind->getPointsTo();
             Datafact d_filter = FilterDatafact(d, PTset);
             Datafact d_after = transferFun(succ, d_filter);
             propagate(srcPN->getUpperLvlStartPN(), succ, d_after);
         }
     }
-    //assert(e->isRetIndirectVFGEdge() || e->isRetDirectVFGEdge());
-
-
 }
 
 bool SIFDS::isUnknown(const PAGNode *pagNode, Datafact& datafact) {
