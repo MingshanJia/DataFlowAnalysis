@@ -61,6 +61,7 @@ public:
 
     //procedures in Tabulation Algorithm
     void initialize();
+    void putInMap(unsigned long key, SVFGEdge *e);
 
     void forwardTabulate();
 

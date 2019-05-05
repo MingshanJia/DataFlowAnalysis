@@ -51,31 +51,13 @@ void SIFDS::initialize() {
                 SVFGCallEdges.insert(*it);
             }
             // for reuse optimization
-            if(const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();
-                SVFGEdge::SVFGEdgeSetTy edgeList;
-                if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
-                    edgeList.insert(*it);
-                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
-                }else{
-                    edgeList = SVFGNodeWithCS2SVFGRetEdgesMap[key];
-                    edgeList.insert(*it);
-                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
-                }
-                //cout << "RetNodeID:" <<node->getId() << " CS:" << retdir->getCallSiteId() << " Key:" << key << " Size:" << edgeList.size() << endl;
+            else if(const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
+                unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();    //other hash?
+                putInMap(key, *it);
             }
-            if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
+            else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
                 unsigned long key = node->getId() * 10000 + retind->getCallSiteId();
-                SVFGEdge::SVFGEdgeSetTy edgeList;
-                if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
-                    edgeList.insert(*it);
-                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
-                }else{
-                    edgeList = SVFGNodeWithCS2SVFGRetEdgesMap[key];
-                    edgeList.insert(*it);
-                    SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
-                }
-                //cout << "RetNodeID:" <<node->getId() << " CS:" << retind->getCallSiteId() << " Key:" << key << " Size:" << edgeList.size() << endl;
+                putInMap(key, *it);
             }
         }
     }
@@ -107,6 +89,7 @@ void SIFDS::initialize() {
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
         const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
         CallSiteID cs = calldir->getCallSiteId();
+        putInMap(cs, *it);
         SVFGEdge::SVFGEdgeSetTy edgeList;
         if (CSID2SVFGEdgesMap.find(cs) == CSID2SVFGEdgesMap.end()){
             edgeList.insert(*it);
@@ -119,6 +102,18 @@ void SIFDS::initialize() {
     }
 
     printPTset(12);
+}
+
+void SIFDS::putInMap(unsigned long key, SVFGEdge *e){
+    SVFGEdge::SVFGEdgeSetTy edgeList;
+    if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
+        edgeList.insert(e);
+        SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+    }else{
+        edgeList = SVFGNodeWithCS2SVFGRetEdgesMap[key];
+        edgeList.insert(e);
+        SVFGNodeWithCS2SVFGRetEdgesMap[key] = edgeList;
+    }
 }
 
 void SIFDS::forwardTabulate() {
