@@ -31,7 +31,8 @@ public:
     typedef std::list<PathEdge *> PathEdgeSet;
     typedef std::map<const SVFGNode *, Facts> SVFGNodeToDataFactsMap;
     typedef std::map<CallSiteID, SVFG::SVFGEdgeSetTy> CSID2SVFGEdgesMapTy;
-    typedef std::map<double, SVFG::SVFGEdgeSetTy> SVFGNodeWithCS2SVFGRetEdgesMapTy;
+    typedef std::pair<NodeID,CallSiteID> NodeIDWithCS;
+    typedef std::map<NodeIDWithCS, SVFG::SVFGEdgeSetTy> SVFGNodeWithCS2SVFGRetEdgesMapTy;
 
 protected:
     PathEdgeSet WorkList;         //worklist used during the tabulation algorithm
@@ -61,7 +62,7 @@ public:
 
     //procedures in Tabulation Algorithm
     void initialize();
-    void putInMap(unsigned long key, SVFGEdge *e);
+    void putInMap(NodeIDWithCS key, SVFGEdge *e);
 
     void forwardTabulate();
 

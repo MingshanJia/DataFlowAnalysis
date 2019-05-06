@@ -52,11 +52,13 @@ void SIFDS::initialize() {
             }
             // for reuse optimization
             else if(const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();    //other hash?
+                //unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();
+                NodeIDWithCS key = {node->getId(), retdir->getCallSiteId()};
                 putInMap(key, *it);
             }
             else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                unsigned long key = node->getId() * 10000 + retind->getCallSiteId();
+                //unsigned long key = node->getId() * 10000 + retind->getCallSiteId();
+                NodeIDWithCS key = {node->getId(), retind->getCallSiteId()};
                 putInMap(key, *it);
             }
         }
@@ -89,7 +91,6 @@ void SIFDS::initialize() {
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = SVFGCallEdges.begin(), eit = SVFGCallEdges.end(); it != eit; ++it) {
         const CallDirSVFGEdge *calldir = dyn_cast<CallDirSVFGEdge>(*it);
         CallSiteID cs = calldir->getCallSiteId();
-        putInMap(cs, *it);
         SVFGEdge::SVFGEdgeSetTy edgeList;
         if (CSID2SVFGEdgesMap.find(cs) == CSID2SVFGEdgesMap.end()){
             edgeList.insert(*it);
@@ -104,7 +105,7 @@ void SIFDS::initialize() {
     printPTset(12);
 }
 
-void SIFDS::putInMap(unsigned long key, SVFGEdge *e){
+void SIFDS::putInMap(NodeIDWithCS key, SVFGEdge *e){
     SVFGEdge::SVFGEdgeSetTy edgeList;
     if (SVFGNodeWithCS2SVFGRetEdgesMap.find(key) == SVFGNodeWithCS2SVFGRetEdgesMap.end()){
         edgeList.insert(e);
@@ -258,7 +259,8 @@ void SIFDS::checkAndUseSummaryEdge(CallSiteID cs, StartPathNode *srcPN, const SV
 
 void SIFDS::goViaSummaryEdge(const SVFGNode *SEdstNode, Datafact& d, StartPathNode* srcPN, CallSiteID cs){
     //const SVFGEdge::SVFGEdgeSetTy &outEdges = SEdstNode->getOutEdges();
-    const SVFGEdge::SVFGEdgeSetTy &outEdges = SVFGNodeWithCS2SVFGRetEdgesMap[SEdstNode->getId() * 10000 + cs];
+    NodeIDWithCS key = {SEdstNode->getId(), cs};
+    const SVFGEdge::SVFGEdgeSetTy &outEdges = SVFGNodeWithCS2SVFGRetEdgesMap[key];
     for (SVFGEdge::SVFGEdgeSetTy::iterator it = outEdges.begin(), eit = outEdges.end(); it != eit; ++it){
         const SVFGNode *succ = (*it)->getDstNode();
 
