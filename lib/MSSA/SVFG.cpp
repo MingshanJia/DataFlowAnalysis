@@ -636,6 +636,7 @@ struct DOTGraphTraits<SVFG*> : public DOTGraphTraits<PAG*> {
         std::string str;
         raw_string_ostream rawstr(str);
         rawstr << "NodeID: " << node->getId() << "\n";
+
         if(StmtSVFGNode* stmtNode = SVFUtil::dyn_cast<StmtSVFGNode>(node)) {
             NodeID src = stmtNode->getPAGSrcNodeID();
             NodeID dst = stmtNode->getPAGDstNodeID();
@@ -643,6 +644,12 @@ struct DOTGraphTraits<SVFG*> : public DOTGraphTraits<PAG*> {
             std::string srcValueName = stmtNode->getPAGSrcNode()->getValueName();
             std::string dstValueName = stmtNode->getPAGDstNode()->getValueName();
             rawstr << dstValueName << "<--" << srcValueName << "\n";
+
+            if (node->getFun()){
+                std::string fun = node->getFun()->getName();
+                rawstr << fun << "\n";
+            }
+
             if(stmtNode->getInst()) {
                 rawstr << getSourceLoc(stmtNode->getInst());
             }

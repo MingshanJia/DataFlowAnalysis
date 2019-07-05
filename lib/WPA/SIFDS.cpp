@@ -52,12 +52,10 @@ void SIFDS::initialize() {
             }
             // for reuse optimization
             else if(const RetDirSVFGEdge *retdir = dyn_cast<RetDirSVFGEdge>(*it)){
-                //unsigned long key = node->getId() * 10000 + retdir->getCallSiteId();
                 NodeIDWithCS key = {node->getId(), retdir->getCallSiteId()};
                 putInMap(key, *it);
             }
             else if(const RetIndSVFGEdge *retind = dyn_cast<RetIndSVFGEdge>(*it)){
-                //unsigned long key = node->getId() * 10000 + retind->getCallSiteId();
                 NodeIDWithCS key = {node->getId(), retind->getCallSiteId()};
                 putInMap(key, *it);
             }
@@ -102,7 +100,11 @@ void SIFDS::initialize() {
         }
     }
 
-    printPTset(12);
+    printPTset(9);
+    printPTset(11);
+    printPTset(13);
+    printPTset(14);
+    printPTset(22);
 }
 
 void SIFDS::putInMap(NodeIDWithCS key, SVFGEdge *e){
