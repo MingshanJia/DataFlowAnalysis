@@ -20,14 +20,14 @@ SIFDS::SIFDS(SVFG *s) : svfg(s){
     pta = AndersenWaveDiff::createAndersenWaveDiff(pag->getModule());
     svfg->updateCallGraph(pta);
 
-    initialize();
+/*    initialize();
     getIFDSStat();
     // start timing
     tq_start(NULL);
     forwardTabulate();
     tq_stop("ForwardTabulate Time:");
     // end timing
-    printRes();
+    printRes();*/
 }
 
 /*initialization
@@ -102,9 +102,6 @@ void SIFDS::initialize() {
 
     printPTset(9);
     printPTset(11);
-    printPTset(13);
-    printPTset(14);
-    printPTset(22);
 }
 
 void SIFDS::putInMap(NodeIDWithCS key, SVFGEdge *e){

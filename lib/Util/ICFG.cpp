@@ -511,7 +511,6 @@ struct DOTGraphTraits<ICFG*> : public DOTGraphTraits<PAG*> {
         std::string str;
         raw_string_ostream rawstr(str);
         rawstr << "NodeID: " << node->getId() << "\n";
-<<<<<<< HEAD
 		if (IntraBlockNode* bNode = SVFUtil::dyn_cast<IntraBlockNode>(node)) {
 			rawstr << getSourceLoc(bNode->getInst()) << "\n";
 
@@ -527,7 +526,6 @@ struct DOTGraphTraits<ICFG*> : public DOTGraphTraits<PAG*> {
 			        rawstr << dstValueName << "<--" << srcValueName << "\n";
 			    }
 			}
-
 			if(DumpLLVMInst)
 				rawstr << *(bNode->getInst()) << "\n";
 		} else if (FunEntryBlockNode* entry = SVFUtil::dyn_cast<FunEntryBlockNode>(node)) {
