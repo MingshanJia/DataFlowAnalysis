@@ -305,7 +305,7 @@ protected:
             assert(hasVFGNode(node->getId()) && "not in the map!!");
         }
         else {
-            //assert((it->second == node->getId()) && "a PAG node can only have unique definition ");
+            assert((it->second == node->getId()) && "a PAG node can only have unique definition ");
         }
     }
     inline NodeID getDef(const PAGNode* pagNode) const {

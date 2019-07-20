@@ -5,7 +5,7 @@ echo "Setting up environment for PTA"
 # Please change LLVM_OBJ_ROOT before using it
 ########
 
-export LLVM_OBJ_ROOT=/home/ysui/llvm-7.0.0/llvm-7.0.0.obj
+export LLVM_OBJ_ROOT=$LLVM_OBJ
 
 export PATH=$LLVM_OBJ_ROOT/bin:$PATH
 export LLVM_DIR=$LLVM_OBJ_ROOT
@@ -50,6 +50,7 @@ export PATH=$PTABIN:$PATH
 
 export PTATEST=$SVF_HOME/PTABen
 export PTATESTSCRIPTS=$PTATEST/scripts
+export CLONESCRIPTS=$SVF_HOME/CloneBen/scripts
 export RUNSCRIPT=$PTATESTSCRIPTS/run.sh
 
 ### for mac 10.10.1###
