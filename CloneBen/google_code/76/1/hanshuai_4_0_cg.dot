@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55eb30b4d840 [shape=record,shape=circle,label="{_Z2tPi}"];
+	Node0x55eb30bb9110 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55eb30bb8e90 [shape=record,shape=circle,label="{_Z6updateRdd|{<s0>1}}"];
+	Node0x55eb30bb8e90:s0 -> Node0x55eb30bb8f10[color=black];
+	Node0x55eb30bb9210 [shape=record,shape=circle,label="{main|{<s0>19|<s1>20|<s2>21|<s3>22|<s4>23|<s5>24}}"];
+	Node0x55eb30bb9210:s0 -> Node0x55eb30bb9290[color=black];
+	Node0x55eb30bb9210:s1 -> Node0x55eb30bb9290[color=black];
+	Node0x55eb30bb9210:s2 -> Node0x55eb30bb9010[color=black];
+	Node0x55eb30bb9210:s3 -> Node0x55eb30bb9190[color=black];
+	Node0x55eb30bb9210:s4 -> Node0x55eb30bb9310[color=black];
+	Node0x55eb30bb9210:s5 -> Node0x55eb30bb8f90[color=black];
+	Node0x55eb30bb8f90 [shape=record,shape=circle,label="{_Z5solvev|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8|<s7>9|<s8>10|<s9>11|<s10>12|<s11>13|<s12>14|<s13>15|<s14>16|<s15>17|<s16>18}}"];
+	Node0x55eb30bb8f90:s0 -> Node0x55eb30bb9010[color=black];
+	Node0x55eb30bb8f90:s1 -> Node0x55eb30bb9090[color=black];
+	Node0x55eb30bb8f90:s2 -> Node0x55eb30bb9110[color=black];
+	Node0x55eb30bb8f90:s3 -> Node0x55eb30b4d840[color=black];
+	Node0x55eb30bb8f90:s4 -> Node0x55eb30bb8e90[color=black];
+	Node0x55eb30bb8f90:s5 -> Node0x55eb30bb9110[color=black];
+	Node0x55eb30bb8f90:s6 -> Node0x55eb30b4d840[color=black];
+	Node0x55eb30bb8f90:s7 -> Node0x55eb30b4d840[color=black];
+	Node0x55eb30bb8f90:s8 -> Node0x55eb30bb8f10[color=black];
+	Node0x55eb30bb8f90:s9 -> Node0x55eb30bb8e90[color=black];
+	Node0x55eb30bb8f90:s10 -> Node0x55eb30bb9110[color=black];
+	Node0x55eb30bb8f90:s11 -> Node0x55eb30bb9110[color=black];
+	Node0x55eb30bb8f90:s12 -> Node0x55eb30bb9190[color=black];
+	Node0x55eb30bb8f90:s13 -> Node0x55eb30bb9110[color=black];
+	Node0x55eb30bb8f90:s14 -> Node0x55eb30b4d840[color=black];
+	Node0x55eb30bb8f90:s15 -> Node0x55eb30bb8e10[color=black];
+	Node0x55eb30bb8f90:s16 -> Node0x55eb30bb9190[color=black];
+	Node0x55eb30bb9310 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x55eb30bb9090 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55eb30bb8e10 [shape=record,shape=circle,label="{_Z3sgnd}"];
+	Node0x55eb30bb9190 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55eb30bb8f10 [shape=record,shape=circle,label="{_ZSt3maxIdERKT_S2_S2_}"];
+	Node0x55eb30bb9290 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55eb30bb9010 [shape=record,shape=Mrecord,label="{scanf}"];
+}

@@ -1,0 +1,43 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563479858d70 [shape=record,shape=circle,label="{_Z4pushiii|{<s0>1|<s1>2|<s2>3|<s3>4}}"];
+	Node0x563479858d70:s0 -> Node0x563479859200[color=black];
+	Node0x563479858d70:s1 -> Node0x563479859200[color=black];
+	Node0x563479858d70:s2 -> Node0x563479859200[color=black];
+	Node0x563479858d70:s3 -> Node0x563479859200[color=black];
+	Node0x563479859500 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563479859280 [shape=record,shape=circle,label="{_Z5buildiii|{<s0>5|<s1>6}}"];
+	Node0x563479859280:s0 -> Node0x563479859280[color=black];
+	Node0x563479859280:s1 -> Node0x563479859280[color=black];
+	Node0x563479859600 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x563479859380 [shape=record,shape=circle,label="{_Z5queryiiii|{<s0>14|<s1>15|<s2>16}}"];
+	Node0x563479859380:s0 -> Node0x563479858d70[color=black];
+	Node0x563479859380:s1 -> Node0x563479859380[color=black];
+	Node0x563479859380:s2 -> Node0x563479859380[color=black];
+	Node0x563479859480 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563479859200 [shape=record,shape=circle,label="{_ZSt3minIxERKT_S2_S2_}"];
+	Node0x563479859580 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x563479859300 [shape=record,shape=circle,label="{_Z6updateiiiiix|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11|<s5>12|<s6>13}}"];
+	Node0x563479859300:s0 -> Node0x563479858d70[color=black];
+	Node0x563479859300:s1 -> Node0x563479859200[color=black];
+	Node0x563479859300:s2 -> Node0x563479859200[color=black];
+	Node0x563479859300:s3 -> Node0x563479859300[color=black];
+	Node0x563479859300:s4 -> Node0x563479859300[color=black];
+	Node0x563479859300:s5 -> Node0x563479859300[color=black];
+	Node0x563479859300:s6 -> Node0x563479859300[color=black];
+	Node0x563479859400 [shape=record,shape=circle,label="{main|{<s0>17|<s1>18|<s2>19|<s3>20|<s4>21|<s5>22|<s6>23|<s7>24|<s8>25|<s9>26|<s10>27|<s11>28|<s12>29}}"];
+	Node0x563479859400:s0 -> Node0x563479859480[color=black];
+	Node0x563479859400:s1 -> Node0x563479859500[color=black];
+	Node0x563479859400:s2 -> Node0x563479859480[color=black];
+	Node0x563479859400:s3 -> Node0x563479859480[color=black];
+	Node0x563479859400:s4 -> Node0x563479859280[color=black];
+	Node0x563479859400:s5 -> Node0x563479859380[color=black];
+	Node0x563479859400:s6 -> Node0x563479859580[color=black];
+	Node0x563479859400:s7 -> Node0x563479859300[color=black];
+	Node0x563479859400:s8 -> Node0x563479859580[color=black];
+	Node0x563479859400:s9 -> Node0x563479859300[color=black];
+	Node0x563479859400:s10 -> Node0x563479859380[color=black];
+	Node0x563479859400:s11 -> Node0x563479859600[color=black];
+	Node0x563479859400:s12 -> Node0x563479859500[color=black];
+}

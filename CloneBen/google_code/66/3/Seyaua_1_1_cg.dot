@@ -1,0 +1,37 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56434544bca0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x56434544bca0:s0 -> Node0x56434544c130[color=black];
+	Node0x56434544bca0:s1 -> Node0x56434544c230[color=black];
+	Node0x56434544c430 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x56434544c1b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x56434544c530 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x56434544c2b0 [shape=record,shape=circle,label="{_Z5solveiii|{<s0>3|<s1>4}}"];
+	Node0x56434544c2b0:s0 -> Node0x56434544c330[color=black];
+	Node0x56434544c2b0:s1 -> Node0x56434544c3b0[color=black];
+	Node0x56434544c630 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x56434544c3b0 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x56434544c730 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Seyaua_1_1.cpp|{<s0>19}}"];
+	Node0x56434544c730:s0 -> Node0x56434544bca0[color=black];
+	Node0x56434544c130 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x56434544c4b0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15|<s11>16|<s12>17|<s13>18}}"];
+	Node0x56434544c4b0:s0 -> Node0x56434544c530[color=black];
+	Node0x56434544c4b0:s1 -> Node0x56434544c530[color=black];
+	Node0x56434544c4b0:s2 -> Node0x56434544c5b0[color=black];
+	Node0x56434544c4b0:s3 -> Node0x56434544c630[color=black];
+	Node0x56434544c4b0:s4 -> Node0x56434544c330[color=black];
+	Node0x56434544c4b0:s5 -> Node0x56434544c630[color=black];
+	Node0x56434544c4b0:s6 -> Node0x56434544c5b0[color=black];
+	Node0x56434544c4b0:s7 -> Node0x56434544c5b0[color=black];
+	Node0x56434544c4b0:s8 -> Node0x56434544c5b0[color=black];
+	Node0x56434544c4b0:s9 -> Node0x56434544c2b0[color=black];
+	Node0x56434544c4b0:s10 -> Node0x56434544c6b0[color=black];
+	Node0x56434544c4b0:s11 -> Node0x56434544c630[color=black];
+	Node0x56434544c4b0:s12 -> Node0x56434544c330[color=black];
+	Node0x56434544c4b0:s13 -> Node0x56434544c3b0[color=black];
+	Node0x56434544c230 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x56434544c5b0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x56434544c330 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x56434544c6b0 [shape=record,shape=Mrecord,label="{printf}"];
+}

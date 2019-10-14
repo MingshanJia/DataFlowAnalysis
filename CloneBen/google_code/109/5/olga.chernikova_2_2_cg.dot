@@ -1,0 +1,19 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55adf0dcece0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55adf0dcece0:s0 -> Node0x55adf0dcf170[color=black];
+	Node0x55adf0dcece0:s1 -> Node0x55adf0dcf270[color=black];
+	Node0x55adf0dcf470 [shape=record,shape=circle,label="{_GLOBAL__sub_I_olga.chernikova_2_2.cpp|{<s0>7}}"];
+	Node0x55adf0dcf470:s0 -> Node0x55adf0dcece0[color=black];
+	Node0x55adf0dcf1f0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55adf0dcf2f0 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x55adf0dcf2f0:s0 -> Node0x55adf0dcf370[color=black];
+	Node0x55adf0dcf2f0:s1 -> Node0x55adf0dcf370[color=black];
+	Node0x55adf0dcf2f0:s2 -> Node0x55adf0dcf3f0[color=black];
+	Node0x55adf0dcf2f0:s3 -> Node0x55adf0dcf3f0[color=black];
+	Node0x55adf0dcf3f0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55adf0dcf170 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55adf0dcf270 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55adf0dcf370 [shape=record,shape=Mrecord,label="{scanf}"];
+}

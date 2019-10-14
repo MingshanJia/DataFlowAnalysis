@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56116dbc1be0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x56116dbc1be0:s0 -> Node0x56116dbc1c60[color=black];
+	Node0x56116dbc1be0:s1 -> Node0x56116dbf5ca0[color=black];
+	Node0x56116dbf5ea0 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+	Node0x56116dbf6220 [shape=record,shape=Mrecord,label="{__cxa_begin_catch}"];
+	Node0x56116dbf5c20 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x56116dbf5fa0 [shape=record,shape=circle,label="{_ZStltIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_|{<s0>11|<s1>12}}"];
+	Node0x56116dbf5fa0:s0 -> Node0x56116dbf6120[color=black];
+	Node0x56116dbf5fa0:s1 -> Node0x56116dbf61a0[color=black];
+	Node0x56116dbf6320 [shape=record,shape=circle,label="{_GLOBAL__sub_I_uditarora_2_1.cpp|{<s0>15}}"];
+	Node0x56116dbf6320:s0 -> Node0x56116dbc1be0[color=black];
+	Node0x56116dbf5d20 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9|<s7>10}}"];
+	Node0x56116dbf5d20:s0 -> Node0x56116dbf5da0[color=black];
+	Node0x56116dbf5d20:s1 -> Node0x56116dbf5e20[color=black];
+	Node0x56116dbf5d20:s2 -> Node0x56116dbf5e20[color=black];
+	Node0x56116dbf5d20:s3 -> Node0x56116dbf5f20[color=black];
+	Node0x56116dbf5d20:s4 -> Node0x56116dbf5fa0[color=black];
+	Node0x56116dbf5d20:s5 -> Node0x56116dbf6020[color=black];
+	Node0x56116dbf5d20:s6 -> Node0x56116dbf60a0[color=black];
+	Node0x56116dbf5d20:s7 -> Node0x56116dbf60a0[color=black];
+	Node0x56116dbf60a0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev}"];
+	Node0x56116dbf5e20 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x56116dbf61a0 [shape=record,shape=circle,label="{__clang_call_terminate|{<s0>13|<s1>14}}"];
+	Node0x56116dbf61a0:s0 -> Node0x56116dbf6220[color=black];
+	Node0x56116dbf61a0:s1 -> Node0x56116dbf62a0[color=black];
+	Node0x56116dbc1c60 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x56116dbf5f20 [shape=record,shape=Mrecord,label="{_ZSt7getlineIcSt11char_traitsIcESaIcEERSt13basic_istreamIT_T0_ES7_RNSt7__cxx1112basic_stringIS4_S5_T1_EE}"];
+	Node0x56116dbf62a0 [shape=record,shape=Mrecord,label="{_ZSt9terminatev}"];
+	Node0x56116dbf5ca0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x56116dbf6020 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x56116dbf5da0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev}"];
+	Node0x56116dbf6120 [shape=record,shape=Mrecord,label="{_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7compareERKS4_}"];
+}

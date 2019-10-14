@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x555ecbcfadf0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x555ecbcfadf0:s0 -> Node0x555ecbcfb280[color=black];
+	Node0x555ecbcfadf0:s1 -> Node0x555ecbcfb380[color=black];
+	Node0x555ecbcfb580 [shape=record,shape=circle,label="{_Z5writei|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11}}"];
+	Node0x555ecbcfb580:s0 -> Node0x555ecbcfb600[color=black];
+	Node0x555ecbcfb580:s1 -> Node0x555ecbcfb680[color=black];
+	Node0x555ecbcfb580:s2 -> Node0x555ecbcfb600[color=black];
+	Node0x555ecbcfb580:s3 -> Node0x555ecbcfb680[color=black];
+	Node0x555ecbcfb580:s4 -> Node0x555ecbcfb700[color=black];
+	Node0x555ecbcfb900 [shape=record,shape=circle,label="{_GLOBAL__sub_I_srkib0y_1_0.cpp|{<s0>17}}"];
+	Node0x555ecbcfb900:s0 -> Node0x555ecbcfadf0[color=black];
+	Node0x555ecbcfb300 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x555ecbcfb680 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x555ecbcfb400 [shape=record,shape=circle,label="{_Z4initv}"];
+	Node0x555ecbcfb780 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x555ecbcfb500 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x555ecbcfb880 [shape=record,shape=circle,label="{main|{<s0>12|<s1>13|<s2>14|<s3>15|<s4>16}}"];
+	Node0x555ecbcfb880:s0 -> Node0x555ecbcfb500[color=black];
+	Node0x555ecbcfb880:s1 -> Node0x555ecbcfb400[color=black];
+	Node0x555ecbcfb880:s2 -> Node0x555ecbcfb480[color=black];
+	Node0x555ecbcfb880:s3 -> Node0x555ecbcfb800[color=black];
+	Node0x555ecbcfb880:s4 -> Node0x555ecbcfb580[color=black];
+	Node0x555ecbcfb280 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x555ecbcfb600 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x555ecbcfb380 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x555ecbcfb700 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x555ecbcfb480 [shape=record,shape=circle,label="{_Z4readv|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x555ecbcfb480:s0 -> Node0x555ecbcfb500[color=black];
+	Node0x555ecbcfb480:s1 -> Node0x555ecbcfb500[color=black];
+	Node0x555ecbcfb480:s2 -> Node0x555ecbcfb500[color=black];
+	Node0x555ecbcfb480:s3 -> Node0x555ecbcfb500[color=black];
+	Node0x555ecbcfb800 [shape=record,shape=circle,label="{_Z5solvev}"];
+}

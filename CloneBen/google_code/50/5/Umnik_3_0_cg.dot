@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55b024571ea0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55b024571ea0:s0 -> Node0x55b024572330[color=black];
+	Node0x55b024571ea0:s1 -> Node0x55b024572430[color=black];
+	Node0x55b024572630 [shape=record,shape=circle,label="{_Z5solvev|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10}}"];
+	Node0x55b024572630:s0 -> Node0x55b0245726b0[color=black];
+	Node0x55b024572630:s1 -> Node0x55b024572730[color=black];
+	Node0x55b024572630:s2 -> Node0x55b0245725b0[color=black];
+	Node0x55b024572630:s3 -> Node0x55b024572530[color=black];
+	Node0x55b024572630:s4 -> Node0x55b0245724b0[color=black];
+	Node0x55b024572630:s5 -> Node0x55b0245724b0[color=black];
+	Node0x55b024572630:s6 -> Node0x55b0245727b0[color=black];
+	Node0x55b0245723b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55b024572730 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55b0245724b0 [shape=record,shape=circle,label="{_Z3sumxx}"];
+	Node0x55b024572830 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15}}"];
+	Node0x55b024572830:s0 -> Node0x55b0245728b0[color=black];
+	Node0x55b024572830:s1 -> Node0x55b0245728b0[color=black];
+	Node0x55b024572830:s2 -> Node0x55b024572730[color=black];
+	Node0x55b024572830:s3 -> Node0x55b0245727b0[color=black];
+	Node0x55b024572830:s4 -> Node0x55b024572630[color=black];
+	Node0x55b0245725b0 [shape=record,shape=circle,label="{_Z3gcdii|{<s0>3}}"];
+	Node0x55b0245725b0:s0 -> Node0x55b0245725b0[color=black];
+	Node0x55b024572930 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Umnik_3_0.cpp|{<s0>16}}"];
+	Node0x55b024572930:s0 -> Node0x55b024571ea0[color=black];
+	Node0x55b024572330 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55b0245726b0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55b024572430 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55b0245727b0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55b024572530 [shape=record,shape=circle,label="{_Z4multxx}"];
+	Node0x55b0245728b0 [shape=record,shape=Mrecord,label="{freopen}"];
+}

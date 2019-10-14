@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563148a0f2a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563148a0f2a0:s0 -> Node0x563148a0f730[color=black];
+	Node0x563148a0f2a0:s1 -> Node0x563148a0f830[color=black];
+	Node0x563148a0fa30 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12|<s9>13|<s10>14|<s11>15|<s12>16|<s13>17|<s14>18}}"];
+	Node0x563148a0fa30:s0 -> Node0x563148a0fab0[color=black];
+	Node0x563148a0fa30:s1 -> Node0x563148a0fab0[color=black];
+	Node0x563148a0fa30:s2 -> Node0x563148a0fb30[color=black];
+	Node0x563148a0fa30:s3 -> Node0x563148a0fb30[color=black];
+	Node0x563148a0fa30:s4 -> Node0x563148a0fb30[color=black];
+	Node0x563148a0fa30:s5 -> Node0x563148a0f8b0[color=black];
+	Node0x563148a0fa30:s6 -> Node0x563148a0f930[color=black];
+	Node0x563148a0fa30:s7 -> Node0x563148a0f9b0[color=black];
+	Node0x563148a0fa30:s8 -> Node0x563148a0f9b0[color=black];
+	Node0x563148a0fa30:s9 -> Node0x563148a0f9b0[color=black];
+	Node0x563148a0fa30:s10 -> Node0x563148a0f9b0[color=black];
+	Node0x563148a0fa30:s11 -> Node0x563148a0fbb0[color=black];
+	Node0x563148a0fa30:s12 -> Node0x563148a0fbb0[color=black];
+	Node0x563148a0fa30:s13 -> Node0x563148a0fbb0[color=black];
+	Node0x563148a0fa30:s14 -> Node0x563148a0fc30[color=black];
+	Node0x563148a0f7b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563148a0fb30 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563148a0f8b0 [shape=record,shape=circle,label="{_Z3GetiiPx}"];
+	Node0x563148a0fc30 [shape=record,shape=Mrecord,label="{fflush}"];
+	Node0x563148a0f9b0 [shape=record,shape=circle,label="{_Z3SubiiPx|{<s0>3}}"];
+	Node0x563148a0f9b0:s0 -> Node0x563148a0f8b0[color=black];
+	Node0x563148a0f730 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563148a0fab0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x563148a0f830 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563148a0fbb0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563148a0f930 [shape=record,shape=circle,label="{_Z6GetSumiiiiPx}"];
+	Node0x563148a0fcb0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_stgatilov_1_1.cpp|{<s0>19}}"];
+	Node0x563148a0fcb0:s0 -> Node0x563148a0f2a0[color=black];
+}

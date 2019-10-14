@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x558b10af33a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x558b10af33a0:s0 -> Node0x558b10af3830[color=black];
+	Node0x558b10af33a0:s1 -> Node0x558b10af3930[color=black];
+	Node0x558b10af3b30 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x558b10af3eb0 [shape=record,shape=Mrecord,label="{clock}"];
+	Node0x558b10af38b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x558b10af3c30 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x558b10af39b0 [shape=record,shape=circle,label="{_Z4initv|{<s0>3|<s1>4}}"];
+	Node0x558b10af39b0:s0 -> Node0x558b10af3a30[color=black];
+	Node0x558b10af39b0:s1 -> Node0x558b10af3a30[color=black];
+	Node0x558b10af3d30 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12|<s3>13|<s4>14}}"];
+	Node0x558b10af3d30:s0 -> Node0x558b10af3db0[color=black];
+	Node0x558b10af3d30:s1 -> Node0x558b10af3e30[color=black];
+	Node0x558b10af3d30:s2 -> Node0x558b10af3eb0[color=black];
+	Node0x558b10af3d30:s3 -> Node0x558b10af3a30[color=black];
+	Node0x558b10af3d30:s4 -> Node0x558b10af3ab0[color=black];
+	Node0x558b10af3ab0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9}}"];
+	Node0x558b10af3ab0:s0 -> Node0x558b10af39b0[color=black];
+	Node0x558b10af3ab0:s1 -> Node0x558b10af3b30[color=black];
+	Node0x558b10af3ab0:s2 -> Node0x558b10af3bb0[color=black];
+	Node0x558b10af3ab0:s3 -> Node0x558b10af3c30[color=black];
+	Node0x558b10af3ab0:s4 -> Node0x558b10af3cb0[color=black];
+	Node0x558b10af3e30 [shape=record,shape=Mrecord,label="{_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo}"];
+	Node0x558b10af3830 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x558b10af3bb0 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x558b10af3f30 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Taube_0_0.cpp|{<s0>15}}"];
+	Node0x558b10af3f30:s0 -> Node0x558b10af33a0[color=black];
+	Node0x558b10af3930 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x558b10af3cb0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x558b10af3a30 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x558b10af3db0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base15sync_with_stdioEb}"];
+}

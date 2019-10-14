@@ -1,0 +1,18 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561383b44320 [shape=record,shape=circle,label="{_Z3MSBx}"];
+	Node0x561383b44830 [shape=record,shape=circle,label="{_Z4funcx|{<s0>1|<s1>2|<s2>3}}"];
+	Node0x561383b44830:s0 -> Node0x561383b44320[color=black];
+	Node0x561383b44830:s1 -> Node0x561383b448b0[color=black];
+	Node0x561383b44830:s2 -> Node0x561383b447b0[color=black];
+	Node0x561383b44930 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7}}"];
+	Node0x561383b44930:s0 -> Node0x561383b449b0[color=black];
+	Node0x561383b44930:s1 -> Node0x561383b449b0[color=black];
+	Node0x561383b44930:s2 -> Node0x561383b44830[color=black];
+	Node0x561383b44930:s3 -> Node0x561383b44a30[color=black];
+	Node0x561383b44a30 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561383b447b0 [shape=record,shape=circle,label="{_Z9countBitsy}"];
+	Node0x561383b448b0 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+	Node0x561383b449b0 [shape=record,shape=Mrecord,label="{scanf}"];
+}

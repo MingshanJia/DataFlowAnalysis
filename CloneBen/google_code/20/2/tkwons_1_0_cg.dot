@@ -1,0 +1,41 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x555775a57a30 [shape=record,shape=circle,label="{_Z11char_to_numPc|{<s0>1}}"];
+	Node0x555775a57a30:s0 -> Node0x555775a57ec0[color=black];
+	Node0x555775a581c0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x555775a57f40 [shape=record,shape=circle,label="{_Z5checkv|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8|<s7>9|<s8>10}}"];
+	Node0x555775a57f40:s0 -> Node0x555775a57a30[color=black];
+	Node0x555775a57f40:s1 -> Node0x555775a57a30[color=black];
+	Node0x555775a57f40:s2 -> Node0x555775a57a30[color=black];
+	Node0x555775a57f40:s3 -> Node0x555775a57fc0[color=black];
+	Node0x555775a57f40:s4 -> Node0x555775a57fc0[color=black];
+	Node0x555775a57f40:s5 -> Node0x555775a57fc0[color=black];
+	Node0x555775a57f40:s6 -> Node0x555775a57fc0[color=black];
+	Node0x555775a57f40:s7 -> Node0x555775a57fc0[color=black];
+	Node0x555775a57f40:s8 -> Node0x555775a57fc0[color=black];
+	Node0x555775a58040 [shape=record,shape=circle,label="{_Z3dfsii|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15|<s5>16|<s6>17|<s7>18|<s8>19}}"];
+	Node0x555775a58040:s0 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s1 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s2 -> Node0x555775a57f40[color=black];
+	Node0x555775a58040:s3 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s4 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s5 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s6 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s7 -> Node0x555775a58040[color=black];
+	Node0x555775a58040:s8 -> Node0x555775a58040[color=black];
+	Node0x555775a58140 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x555775a57ec0 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x555775a58240 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x555775a57fc0 [shape=record,shape=Mrecord,label="{strcpy}"];
+	Node0x555775a580c0 [shape=record,shape=circle,label="{main|{<s0>20|<s1>21|<s2>22|<s3>23|<s4>24|<s5>25|<s6>26|<s7>27|<s8>28}}"];
+	Node0x555775a580c0:s0 -> Node0x555775a58140[color=black];
+	Node0x555775a580c0:s1 -> Node0x555775a58140[color=black];
+	Node0x555775a580c0:s2 -> Node0x555775a581c0[color=black];
+	Node0x555775a580c0:s3 -> Node0x555775a581c0[color=black];
+	Node0x555775a580c0:s4 -> Node0x555775a57ec0[color=black];
+	Node0x555775a580c0:s5 -> Node0x555775a57ec0[color=black];
+	Node0x555775a580c0:s6 -> Node0x555775a57ec0[color=black];
+	Node0x555775a580c0:s7 -> Node0x555775a58040[color=black];
+	Node0x555775a580c0:s8 -> Node0x555775a58240[color=black];
+}

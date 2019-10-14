@@ -1,0 +1,37 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55fccf932a00 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55fccf932a00:s0 -> Node0x55fccf932e90[color=black];
+	Node0x55fccf932a00:s1 -> Node0x55fccf932f90[color=black];
+	Node0x55fccf933190 [shape=record,shape=circle,label="{_Z3linv|{<s0>5}}"];
+	Node0x55fccf933190:s0 -> Node0x55fccf933090[color=black];
+	Node0x55fccf933510 [shape=record,shape=circle,label="{_GLOBAL__sub_I_JAPLJ_0_1.cpp|{<s0>18}}"];
+	Node0x55fccf933510:s0 -> Node0x55fccf932a00[color=black];
+	Node0x55fccf932f10 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55fccf933290 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55fccf933010 [shape=record,shape=circle,label="{_Z2inv|{<s0>3}}"];
+	Node0x55fccf933010:s0 -> Node0x55fccf933090[color=black];
+	Node0x55fccf933390 [shape=record,shape=circle,label="{_Z3prev|{<s0>11|<s1>12|<s2>13}}"];
+	Node0x55fccf933390:s0 -> Node0x55fccf933410[color=black];
+	Node0x55fccf933390:s1 -> Node0x55fccf933410[color=black];
+	Node0x55fccf933390:s2 -> Node0x55fccf933410[color=black];
+	Node0x55fccf933110 [shape=record,shape=circle,label="{_Z3finv|{<s0>4}}"];
+	Node0x55fccf933110:s0 -> Node0x55fccf933090[color=black];
+	Node0x55fccf933490 [shape=record,shape=circle,label="{main|{<s0>14|<s1>15|<s2>16|<s3>17}}"];
+	Node0x55fccf933490:s0 -> Node0x55fccf933010[color=black];
+	Node0x55fccf933490:s1 -> Node0x55fccf933390[color=black];
+	Node0x55fccf933490:s2 -> Node0x55fccf933310[color=black];
+	Node0x55fccf933490:s3 -> Node0x55fccf933210[color=black];
+	Node0x55fccf932e90 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55fccf933210 [shape=record,shape=circle,label="{_Z5solvev|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10}}"];
+	Node0x55fccf933210:s0 -> Node0x55fccf933010[color=black];
+	Node0x55fccf933210:s1 -> Node0x55fccf933010[color=black];
+	Node0x55fccf933210:s2 -> Node0x55fccf933290[color=black];
+	Node0x55fccf933210:s3 -> Node0x55fccf933010[color=black];
+	Node0x55fccf933210:s4 -> Node0x55fccf933310[color=black];
+	Node0x55fccf932f90 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55fccf933310 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55fccf933090 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55fccf933410 [shape=record,shape=circle,label="{_Z5chmaxIiEvRT_S0_}"];
+}

@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5584ba85f180 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5584ba85f180:s0 -> Node0x5584ba85f610[color=black];
+	Node0x5584ba85f180:s1 -> Node0x5584ba85f710[color=black];
+	Node0x5584ba85f910 [shape=record,shape=circle,label="{_ZSt3maxIxERKT_S2_S2_}"];
+	Node0x5584ba85f690 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5584ba85fa10 [shape=record,shape=circle,label="{main|{<s0>13|<s1>14|<s2>15|<s3>16}}"];
+	Node0x5584ba85fa10:s0 -> Node0x5584ba85fa90[color=black];
+	Node0x5584ba85fa10:s1 -> Node0x5584ba85fb10[color=black];
+	Node0x5584ba85fa10:s2 -> Node0x5584ba85f790[color=black];
+	Node0x5584ba85fa10:s3 -> Node0x5584ba85f890[color=black];
+	Node0x5584ba85f790 [shape=record,shape=circle,label="{_Z4loadv|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x5584ba85f790:s0 -> Node0x5584ba85f810[color=black];
+	Node0x5584ba85f790:s1 -> Node0x5584ba85f810[color=black];
+	Node0x5584ba85f790:s2 -> Node0x5584ba85f810[color=black];
+	Node0x5584ba85f790:s3 -> Node0x5584ba85f810[color=black];
+	Node0x5584ba85f790:s4 -> Node0x5584ba85f810[color=black];
+	Node0x5584ba85fb10 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5584ba85f890 [shape=record,shape=circle,label="{_Z5solvei|{<s0>8|<s1>9|<s2>10|<s3>11|<s4>12}}"];
+	Node0x5584ba85f890:s0 -> Node0x5584ba85f910[color=black];
+	Node0x5584ba85f890:s1 -> Node0x5584ba85f910[color=black];
+	Node0x5584ba85f890:s2 -> Node0x5584ba85f910[color=black];
+	Node0x5584ba85f890:s3 -> Node0x5584ba85f910[color=black];
+	Node0x5584ba85f890:s4 -> Node0x5584ba85f990[color=black];
+	Node0x5584ba85f610 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5584ba85f990 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5584ba85f710 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5584ba85fa90 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x5584ba85f810 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x5584ba85fb90 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Kepnu4_0_0.cpp|{<s0>17}}"];
+	Node0x5584ba85fb90:s0 -> Node0x5584ba85f180[color=black];
+}

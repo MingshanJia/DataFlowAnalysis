@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55eee3c43080 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55eee3c43080:s0 -> Node0x55eee3c43510[color=black];
+	Node0x55eee3c43080:s1 -> Node0x55eee3c43610[color=black];
+	Node0x55eee3c43810 [shape=record,shape=Mrecord,label="{__cxa_throw}"];
+	Node0x55eee3c43590 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55eee3c43910 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15|<s5>16|<s6>17}}"];
+	Node0x55eee3c43910:s0 -> Node0x55eee3c43890[color=black];
+	Node0x55eee3c43910:s1 -> Node0x55eee3c43890[color=black];
+	Node0x55eee3c43910:s2 -> Node0x55eee3c43890[color=black];
+	Node0x55eee3c43910:s3 -> Node0x55eee3c43990[color=black];
+	Node0x55eee3c43910:s4 -> Node0x55eee3c43990[color=black];
+	Node0x55eee3c43910:s5 -> Node0x55eee3c43a10[color=black];
+	Node0x55eee3c43910:s6 -> Node0x55eee3c43a90[color=black];
+	Node0x55eee3c43690 [shape=record,shape=circle,label="{_Z4in_cv|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x55eee3c43690:s0 -> Node0x55eee3c43710[color=black];
+	Node0x55eee3c43690:s1 -> Node0x55eee3c43790[color=black];
+	Node0x55eee3c43690:s2 -> Node0x55eee3c43810[color=black];
+	Node0x55eee3c43a10 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55eee3c43790 [shape=record,shape=Mrecord,label="{__cxa_allocate_exception}"];
+	Node0x55eee3c43b10 [shape=record,shape=circle,label="{_GLOBAL__sub_I_hos.lyric_0_1.cpp|{<s0>18}}"];
+	Node0x55eee3c43b10:s0 -> Node0x55eee3c43080[color=black];
+	Node0x55eee3c43510 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55eee3c43890 [shape=record,shape=circle,label="{_Z2inv|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10}}"];
+	Node0x55eee3c43890:s0 -> Node0x55eee3c43710[color=black];
+	Node0x55eee3c43890:s1 -> Node0x55eee3c43890[color=black];
+	Node0x55eee3c43890:s2 -> Node0x55eee3c43790[color=black];
+	Node0x55eee3c43890:s3 -> Node0x55eee3c43810[color=black];
+	Node0x55eee3c43890:s4 -> Node0x55eee3c43710[color=black];
+	Node0x55eee3c43610 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55eee3c43990 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55eee3c43710 [shape=record,shape=Mrecord,label="{getchar}"];
+	Node0x55eee3c43a90 [shape=record,shape=Mrecord,label="{printf}"];
+}

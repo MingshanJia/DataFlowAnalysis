@@ -1,0 +1,17 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5631e69ec160 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7|<s7>8|<s8>9}}"];
+	Node0x5631e69ec160:s0 -> Node0x5631e69ec5f0[color=black];
+	Node0x5631e69ec160:s1 -> Node0x5631e69ec5f0[color=black];
+	Node0x5631e69ec160:s2 -> Node0x5631e69ec5f0[color=black];
+	Node0x5631e69ec160:s3 -> Node0x5631e69ec5f0[color=black];
+	Node0x5631e69ec160:s4 -> Node0x5631e69ec5f0[color=black];
+	Node0x5631e69ec160:s5 -> Node0x5631e69ec670[color=black];
+	Node0x5631e69ec160:s6 -> Node0x5631e69ec6f0[color=black];
+	Node0x5631e69ec160:s7 -> Node0x5631e69ec6f0[color=black];
+	Node0x5631e69ec160:s8 -> Node0x5631e69ec6f0[color=black];
+	Node0x5631e69ec670 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x5631e69ec5f0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5631e69ec6f0 [shape=record,shape=Mrecord,label="{printf}"];
+}

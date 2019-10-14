@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55fc124bd010 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55fc124bd010:s0 -> Node0x55fc124bd4a0[color=black];
+	Node0x55fc124bd010:s1 -> Node0x55fc124bd5a0[color=black];
+	Node0x55fc124bd7a0 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15|<s7>16}}"];
+	Node0x55fc124bd7a0:s0 -> Node0x55fc124bd820[color=black];
+	Node0x55fc124bd7a0:s1 -> Node0x55fc124bd6a0[color=black];
+	Node0x55fc124bd7a0:s2 -> Node0x55fc124bd920[color=black];
+	Node0x55fc124bd7a0:s3 -> Node0x55fc124bd9a0[color=black];
+	Node0x55fc124bd7a0:s4 -> Node0x55fc124bd920[color=black];
+	Node0x55fc124bd7a0:s5 -> Node0x55fc124bd620[color=black];
+	Node0x55fc124bd7a0:s6 -> Node0x55fc124bd9a0[color=black];
+	Node0x55fc124bd7a0:s7 -> Node0x55fc124bd8a0[color=black];
+	Node0x55fc124bd520 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55fc124bd8a0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c}"];
+	Node0x55fc124bd620 [shape=record,shape=circle,label="{_Z5solvev|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8}}"];
+	Node0x55fc124bd620:s0 -> Node0x55fc124bd6a0[color=black];
+	Node0x55fc124bd620:s1 -> Node0x55fc124bd6a0[color=black];
+	Node0x55fc124bd620:s2 -> Node0x55fc124bd6a0[color=black];
+	Node0x55fc124bd620:s3 -> Node0x55fc124bd6a0[color=black];
+	Node0x55fc124bd620:s4 -> Node0x55fc124bd720[color=black];
+	Node0x55fc124bd620:s5 -> Node0x55fc124bd720[color=black];
+	Node0x55fc124bd9a0 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55fc124bd720 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55fc124bd4a0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55fc124bd820 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base15sync_with_stdioEb}"];
+	Node0x55fc124bd5a0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55fc124bd920 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55fc124bd6a0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55fc124bda20 [shape=record,shape=circle,label="{_GLOBAL__sub_I_krismaz_1_1.cpp|{<s0>17}}"];
+	Node0x55fc124bda20:s0 -> Node0x55fc124bd010[color=black];
+}

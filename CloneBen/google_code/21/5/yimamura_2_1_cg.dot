@@ -1,0 +1,18 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55569988a320 [shape=record,shape=circle,label="{_Z3MSBx}"];
+	Node0x55569988a830 [shape=record,shape=circle,label="{_Z4funcx|{<s0>1|<s1>2|<s2>3}}"];
+	Node0x55569988a830:s0 -> Node0x55569988a320[color=black];
+	Node0x55569988a830:s1 -> Node0x55569988a8b0[color=black];
+	Node0x55569988a830:s2 -> Node0x55569988a7b0[color=black];
+	Node0x55569988a930 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7}}"];
+	Node0x55569988a930:s0 -> Node0x55569988a9b0[color=black];
+	Node0x55569988a930:s1 -> Node0x55569988a9b0[color=black];
+	Node0x55569988a930:s2 -> Node0x55569988a830[color=black];
+	Node0x55569988a930:s3 -> Node0x55569988aa30[color=black];
+	Node0x55569988aa30 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55569988a7b0 [shape=record,shape=circle,label="{_Z9countBitsy}"];
+	Node0x55569988a8b0 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+	Node0x55569988a9b0 [shape=record,shape=Mrecord,label="{scanf}"];
+}

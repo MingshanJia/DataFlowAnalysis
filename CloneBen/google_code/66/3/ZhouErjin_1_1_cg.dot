@@ -1,0 +1,14 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55eace7c6c10 [shape=record,shape=circle,label="{_Z1pv|{<s0>1}}"];
+	Node0x55eace7c6c10:s0 -> Node0x55eace7c70a0[color=black];
+	Node0x55eace7c7120 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5}}"];
+	Node0x55eace7c7120:s0 -> Node0x55eace7c71a0[color=black];
+	Node0x55eace7c7120:s1 -> Node0x55eace7c70a0[color=black];
+	Node0x55eace7c7120:s2 -> Node0x55eace7c6c10[color=black];
+	Node0x55eace7c7120:s3 -> Node0x55eace7c7220[color=black];
+	Node0x55eace7c7220 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55eace7c70a0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55eace7c71a0 [shape=record,shape=Mrecord,label="{freopen}"];
+}

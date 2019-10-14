@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55a4b4544b60 [shape=record,shape=circle,label="{_Z9OpenFilesv|{<s0>1|<s1>2}}"];
+	Node0x55a4b4544b60:s0 -> Node0x55a4b4544ff0[color=black];
+	Node0x55a4b4544b60:s1 -> Node0x55a4b4544ff0[color=black];
+	Node0x55a4b45452f0 [shape=record,shape=circle,label="{_Z7InitLenv}"];
+	Node0x55a4b4545070 [shape=record,shape=circle,label="{_Z3Maxii}"];
+	Node0x55a4b45453f0 [shape=record,shape=circle,label="{_Z4Filliii}"];
+	Node0x55a4b4545170 [shape=record,shape=circle,label="{_Z8ScanTestv|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x55a4b4545170:s0 -> Node0x55a4b45451f0[color=black];
+	Node0x55a4b4545170:s1 -> Node0x55a4b45451f0[color=black];
+	Node0x55a4b4545170:s2 -> Node0x55a4b45450f0[color=black];
+	Node0x55a4b4545170:s3 -> Node0x55a4b45451f0[color=black];
+	Node0x55a4b45454f0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55a4b4545270 [shape=record,shape=circle,label="{_Z7InitResv}"];
+	Node0x55a4b4544ff0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55a4b4545370 [shape=record,shape=circle,label="{_Z6CanCutiii}"];
+	Node0x55a4b45450f0 [shape=record,shape=circle,label="{_Z6Numberc}"];
+	Node0x55a4b4545470 [shape=record,shape=circle,label="{_Z5Solvei|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11|<s5>12|<s6>13|<s7>14}}"];
+	Node0x55a4b4545470:s0 -> Node0x55a4b4545170[color=black];
+	Node0x55a4b4545470:s1 -> Node0x55a4b45452f0[color=black];
+	Node0x55a4b4545470:s2 -> Node0x55a4b4545270[color=black];
+	Node0x55a4b4545470:s3 -> Node0x55a4b4545070[color=black];
+	Node0x55a4b4545470:s4 -> Node0x55a4b4545370[color=black];
+	Node0x55a4b4545470:s5 -> Node0x55a4b45453f0[color=black];
+	Node0x55a4b4545470:s6 -> Node0x55a4b45454f0[color=black];
+	Node0x55a4b4545470:s7 -> Node0x55a4b45454f0[color=black];
+	Node0x55a4b45451f0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55a4b4545570 [shape=record,shape=circle,label="{main|{<s0>15|<s1>16|<s2>17}}"];
+	Node0x55a4b4545570:s0 -> Node0x55a4b4544b60[color=black];
+	Node0x55a4b4545570:s1 -> Node0x55a4b45451f0[color=black];
+	Node0x55a4b4545570:s2 -> Node0x55a4b4545470[color=black];
+}

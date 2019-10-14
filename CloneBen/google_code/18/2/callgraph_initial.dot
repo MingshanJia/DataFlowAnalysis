@@ -1,0 +1,41 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55b37e06b250 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1}}"];
+	Node0x55b37e06b250:s0 -> Node0x55b37e06b6e0[color=black];
+	Node0x55b37e06b9e0 [shape=record,shape=circle,label="{_Z2upii}"];
+	Node0x55b37e06b760 [shape=record,shape=circle,label="{__cxx_global_var_init.2|{<s0>2}}"];
+	Node0x55b37e06b760:s0 -> Node0x55b37e06b6e0[color=black];
+	Node0x55b37e06bae0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_wdyd2004_1_1.cpp|{<s0>26|<s1>27}}"];
+	Node0x55b37e06bae0:s0 -> Node0x55b37e06b250[color=black];
+	Node0x55b37e06bae0:s1 -> Node0x55b37e06b760[color=black];
+	Node0x55b37e06b860 [shape=record,shape=Mrecord,label="{fscanf}"];
+	Node0x55b37e06b960 [shape=record,shape=circle,label="{_Z5matchiiiii}"];
+	Node0x55b37e06b6e0 [shape=record,shape=Mrecord,label="{fopen}"];
+	Node0x55b37e06ba60 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x55b37e06b7e0 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9|<s7>10|<s8>11|<s9>12|<s10>13|<s11>14|<s12>15|<s13>16|<s14>17|<s15>18|<s16>19|<s17>20|<s18>21|<s19>22|<s20>23|<s21>24|<s22>25}}"];
+	Node0x55b37e06b7e0:s0 -> Node0x55b37e06b860[color=black];
+	Node0x55b37e06b7e0:s1 -> Node0x55b37e06b860[color=black];
+	Node0x55b37e06b7e0:s2 -> Node0x55b37e06b8e0[color=black];
+	Node0x55b37e06b7e0:s3 -> Node0x55b37e06b8e0[color=black];
+	Node0x55b37e06b7e0:s4 -> Node0x55b37e06b860[color=black];
+	Node0x55b37e06b7e0:s5 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s6 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s7 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s8 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s9 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s10 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s11 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s12 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s13 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s14 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s15 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s16 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s17 -> Node0x55b37e06b9e0[color=black];
+	Node0x55b37e06b7e0:s18 -> Node0x55b37e06b960[color=black];
+	Node0x55b37e06b7e0:s19 -> Node0x55b37e06b860[color=black];
+	Node0x55b37e06b7e0:s20 -> Node0x55b37e06b860[color=black];
+	Node0x55b37e06b7e0:s21 -> Node0x55b37e06ba60[color=black];
+	Node0x55b37e06b7e0:s22 -> Node0x55b37e06ba60[color=black];
+	Node0x55b37e06b8e0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

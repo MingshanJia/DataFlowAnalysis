@@ -1,0 +1,31 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x556fa8234ef0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x556fa8234ef0:s0 -> Node0x556fa8235380[color=black];
+	Node0x556fa8234ef0:s1 -> Node0x556fa8235480[color=black];
+	Node0x556fa8235680 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x556fa8235400 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x556fa8235780 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x556fa8235500 [shape=record,shape=circle,label="{_Z5solvev|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x556fa8235500:s0 -> Node0x556fa8235580[color=black];
+	Node0x556fa8235500:s1 -> Node0x556fa8235580[color=black];
+	Node0x556fa8235500:s2 -> Node0x556fa8235580[color=black];
+	Node0x556fa8235880 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x556fa8235600 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12}}"];
+	Node0x556fa8235600:s0 -> Node0x556fa8235680[color=black];
+	Node0x556fa8235600:s1 -> Node0x556fa8235700[color=black];
+	Node0x556fa8235600:s2 -> Node0x556fa8235780[color=black];
+	Node0x556fa8235600:s3 -> Node0x556fa8235700[color=black];
+	Node0x556fa8235600:s4 -> Node0x556fa8235500[color=black];
+	Node0x556fa8235600:s5 -> Node0x556fa8235800[color=black];
+	Node0x556fa8235600:s6 -> Node0x556fa8235880[color=black];
+	Node0x556fa8235980 [shape=record,shape=circle,label="{_GLOBAL__sub_I_dyma_2_1.cpp|{<s0>13}}"];
+	Node0x556fa8235980:s0 -> Node0x556fa8234ef0[color=black];
+	Node0x556fa8235380 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x556fa8235700 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x556fa8235480 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x556fa8235800 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+	Node0x556fa8235580 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x556fa8235900 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+}

@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5576969ca880 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5576969ca880:s0 -> Node0x5576969cad10[color=black];
+	Node0x5576969ca880:s1 -> Node0x5576969cae10[color=black];
+	Node0x5576969cb010 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5576969cb390 [shape=record,shape=circle,label="{_GLOBAL__sub_I_blando_1_0.cpp|{<s0>16|<s1>17}}"];
+	Node0x5576969cb390:s0 -> Node0x5576969ca880[color=black];
+	Node0x5576969cb390:s1 -> Node0x5576969cae90[color=black];
+	Node0x5576969cad90 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5576969cb110 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x5576969cae90 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3}}"];
+	Node0x5576969cae90:s0 -> Node0x5576969caf10[color=black];
+	Node0x5576969cb210 [shape=record,shape=circle,label="{_Z6outputv|{<s0>11}}"];
+	Node0x5576969cb210:s0 -> Node0x5576969cb290[color=black];
+	Node0x5576969caf90 [shape=record,shape=circle,label="{_Z5inputv|{<s0>4|<s1>5|<s2>6}}"];
+	Node0x5576969caf90:s0 -> Node0x5576969cb010[color=black];
+	Node0x5576969caf90:s1 -> Node0x5576969cb010[color=black];
+	Node0x5576969caf90:s2 -> Node0x5576969cb010[color=black];
+	Node0x5576969cb310 [shape=record,shape=circle,label="{main|{<s0>12|<s1>13|<s2>14|<s3>15}}"];
+	Node0x5576969cb310:s0 -> Node0x5576969cb010[color=black];
+	Node0x5576969cb310:s1 -> Node0x5576969caf90[color=black];
+	Node0x5576969cb310:s2 -> Node0x5576969cb190[color=black];
+	Node0x5576969cb310:s3 -> Node0x5576969cb210[color=black];
+	Node0x5576969cad10 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5576969cb090 [shape=record,shape=circle,label="{_Z7computei|{<s0>7|<s1>8|<s2>9}}"];
+	Node0x5576969cb090:s0 -> Node0x5576969cb110[color=black];
+	Node0x5576969cb090:s1 -> Node0x5576969cb110[color=black];
+	Node0x5576969cb090:s2 -> Node0x5576969cb110[color=black];
+	Node0x5576969cae10 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5576969cb190 [shape=record,shape=circle,label="{_Z5solvev|{<s0>10}}"];
+	Node0x5576969cb190:s0 -> Node0x5576969cb090[color=black];
+	Node0x5576969caf10 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x5576969cb290 [shape=record,shape=Mrecord,label="{printf}"];
+}

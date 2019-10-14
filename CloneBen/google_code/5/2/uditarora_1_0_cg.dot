@@ -1,0 +1,20 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55fbea00da40 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55fbea00da40:s0 -> Node0x55fbea00ded0[color=black];
+	Node0x55fbea00da40:s1 -> Node0x55fbea00dfd0[color=black];
+	Node0x55fbea00e1d0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55fbea00df50 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55fbea00e050 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x55fbea00e050:s0 -> Node0x55fbea00e0d0[color=black];
+	Node0x55fbea00e050:s1 -> Node0x55fbea00e0d0[color=black];
+	Node0x55fbea00e050:s2 -> Node0x55fbea00e150[color=black];
+	Node0x55fbea00e050:s3 -> Node0x55fbea00e1d0[color=black];
+	Node0x55fbea00e150 [shape=record,shape=Mrecord,label="{asin}"];
+	Node0x55fbea00ded0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55fbea00e250 [shape=record,shape=circle,label="{_GLOBAL__sub_I_uditarora_1_0.cpp|{<s0>7}}"];
+	Node0x55fbea00e250:s0 -> Node0x55fbea00da40[color=black];
+	Node0x55fbea00dfd0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55fbea00e0d0 [shape=record,shape=Mrecord,label="{scanf}"];
+}

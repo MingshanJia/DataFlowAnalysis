@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563f48671870 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563f48671870:s0 -> Node0x563f48671d00[color=black];
+	Node0x563f48671870:s1 -> Node0x563f48671e00[color=black];
+	Node0x563f48672000 [shape=record,shape=circle,label="{_Z5func2iii|{<s0>5|<s1>6|<s2>7}}"];
+	Node0x563f48672000:s0 -> Node0x563f48672080[color=black];
+	Node0x563f48672000:s1 -> Node0x563f48671f80[color=black];
+	Node0x563f48672000:s2 -> Node0x563f48671f80[color=black];
+	Node0x563f48672380 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x563f48671d80 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563f48672100 [shape=record,shape=circle,label="{_Z4funciii|{<s0>8}}"];
+	Node0x563f48672100:s0 -> Node0x563f48672000[color=black];
+	Node0x563f48672480 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563f48671e80 [shape=record,shape=circle,label="{_Z5bruteiii|{<s0>3|<s1>4}}"];
+	Node0x563f48671e80:s0 -> Node0x563f48671f00[color=black];
+	Node0x563f48671e80:s1 -> Node0x563f48671f80[color=black];
+	Node0x563f48672200 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x563f48671f80 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x563f48672300 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x563f48671d00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563f48672080 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x563f48672400 [shape=record,shape=circle,label="{main|{<s0>15|<s1>16|<s2>17}}"];
+	Node0x563f48672400:s0 -> Node0x563f48672200[color=black];
+	Node0x563f48672400:s1 -> Node0x563f48672480[color=black];
+	Node0x563f48672400:s2 -> Node0x563f48672180[color=black];
+	Node0x563f48671e00 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563f48672180 [shape=record,shape=circle,label="{_Z5main2v|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14}}"];
+	Node0x563f48672180:s0 -> Node0x563f48672200[color=black];
+	Node0x563f48672180:s1 -> Node0x563f48672200[color=black];
+	Node0x563f48672180:s2 -> Node0x563f48672200[color=black];
+	Node0x563f48672180:s3 -> Node0x563f48672100[color=black];
+	Node0x563f48672180:s4 -> Node0x563f48672280[color=black];
+	Node0x563f48672180:s5 -> Node0x563f48672300[color=black];
+	Node0x563f48672500 [shape=record,shape=circle,label="{_GLOBAL__sub_I_rng..58_1_1.cpp|{<s0>18}}"];
+	Node0x563f48672500:s0 -> Node0x563f48671870[color=black];
+	Node0x563f48671f00 [shape=record,shape=Mrecord,label="{llvm.ctpop.i32}"];
+	Node0x563f48672280 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+}

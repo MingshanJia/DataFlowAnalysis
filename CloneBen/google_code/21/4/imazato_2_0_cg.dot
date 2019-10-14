@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x562b404d24c0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x562b404d24c0:s0 -> Node0x562b404d2950[color=black];
+	Node0x562b404d24c0:s1 -> Node0x562b404d2a50[color=black];
+	Node0x562b404d2c50 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x562b404d2fd0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_imazato_2_0.cpp|{<s0>14}}"];
+	Node0x562b404d2fd0:s0 -> Node0x562b404d24c0[color=black];
+	Node0x562b404d29d0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x562b404d2d50 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x562b404d2ad0 [shape=record,shape=circle,label="{_Z10countBitLLx}"];
+	Node0x562b404d2e50 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x562b404d2bd0 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x562b404d2f50 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x562b404d2950 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x562b404d2cd0 [shape=record,shape=circle,label="{main|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11|<s5>12|<s6>13}}"];
+	Node0x562b404d2cd0:s0 -> Node0x562b404d2d50[color=black];
+	Node0x562b404d2cd0:s1 -> Node0x562b404d2dd0[color=black];
+	Node0x562b404d2cd0:s2 -> Node0x562b404d2e50[color=black];
+	Node0x562b404d2cd0:s3 -> Node0x562b404d2dd0[color=black];
+	Node0x562b404d2cd0:s4 -> Node0x562b404d2b50[color=black];
+	Node0x562b404d2cd0:s5 -> Node0x562b404d2e50[color=black];
+	Node0x562b404d2cd0:s6 -> Node0x562b404d2ed0[color=black];
+	Node0x562b404d2a50 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x562b404d2dd0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x562b404d2b50 [shape=record,shape=circle,label="{_Z5solvev|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x562b404d2b50:s0 -> Node0x562b404d2bd0[color=black];
+	Node0x562b404d2b50:s1 -> Node0x562b404d2ad0[color=black];
+	Node0x562b404d2b50:s2 -> Node0x562b404d2ad0[color=black];
+	Node0x562b404d2b50:s3 -> Node0x562b404d2c50[color=black];
+	Node0x562b404d2ed0 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+}

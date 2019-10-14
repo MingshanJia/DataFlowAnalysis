@@ -1,0 +1,21 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55d999776d40 [shape=record,shape=circle,label="{_Z4sortii|{<s0>1|<s1>2|<s2>3|<s3>4}}"];
+	Node0x55d999776d40:s0 -> Node0x55d9997771d0[color=black];
+	Node0x55d999776d40:s1 -> Node0x55d9997771d0[color=black];
+	Node0x55d999776d40:s2 -> Node0x55d999776d40[color=black];
+	Node0x55d999776d40:s3 -> Node0x55d999776d40[color=black];
+	Node0x55d999777250 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11}}"];
+	Node0x55d999777250:s0 -> Node0x55d9997772d0[color=black];
+	Node0x55d999777250:s1 -> Node0x55d9997772d0[color=black];
+	Node0x55d999777250:s2 -> Node0x55d999777350[color=black];
+	Node0x55d999777250:s3 -> Node0x55d999777350[color=black];
+	Node0x55d999777250:s4 -> Node0x55d999777350[color=black];
+	Node0x55d999777250:s5 -> Node0x55d999776d40[color=black];
+	Node0x55d999777250:s6 -> Node0x55d9997773d0[color=black];
+	Node0x55d999777350 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55d9997771d0 [shape=record,shape=circle,label="{_Z4swapRiS_}"];
+	Node0x55d9997772d0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55d9997773d0 [shape=record,shape=Mrecord,label="{printf}"];
+}

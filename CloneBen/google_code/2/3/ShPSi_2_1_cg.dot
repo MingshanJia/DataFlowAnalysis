@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55cdfa85da90 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55cdfa85da90:s0 -> Node0x55cdfa85df20[color=black];
+	Node0x55cdfa85da90:s1 -> Node0x55cdfa85e020[color=black];
+	Node0x55cdfa85e220 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55cdfa85dfa0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55cdfa85e320 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55cdfa85e0a0 [shape=record,shape=circle,label="{_Zml6matrixS_|{<s0>3}}"];
+	Node0x55cdfa85e0a0:s0 -> Node0x55cdfa85e120[color=black];
+	Node0x55cdfa85e420 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55cdfa85e1a0 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12|<s9>13|<s10>14|<s11>15|<s12>16|<s13>17|<s14>18|<s15>19|<s16>20|<s17>21|<s18>22}}"];
+	Node0x55cdfa85e1a0:s0 -> Node0x55cdfa85e220[color=black];
+	Node0x55cdfa85e1a0:s1 -> Node0x55cdfa85e220[color=black];
+	Node0x55cdfa85e1a0:s2 -> Node0x55cdfa85e2a0[color=black];
+	Node0x55cdfa85e1a0:s3 -> Node0x55cdfa85e2a0[color=black];
+	Node0x55cdfa85e1a0:s4 -> Node0x55cdfa85e2a0[color=black];
+	Node0x55cdfa85e1a0:s5 -> Node0x55cdfa85e320[color=black];
+	Node0x55cdfa85e1a0:s6 -> Node0x55cdfa85e320[color=black];
+	Node0x55cdfa85e1a0:s7 -> Node0x55cdfa85e320[color=black];
+	Node0x55cdfa85e1a0:s8 -> Node0x55cdfa85e120[color=black];
+	Node0x55cdfa85e1a0:s9 -> Node0x55cdfa85e120[color=black];
+	Node0x55cdfa85e1a0:s10 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s11 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s12 -> Node0x55cdfa85e0a0[color=black];
+	Node0x55cdfa85e1a0:s13 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s14 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s15 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s16 -> Node0x55cdfa85e0a0[color=black];
+	Node0x55cdfa85e1a0:s17 -> Node0x55cdfa85e3a0[color=black];
+	Node0x55cdfa85e1a0:s18 -> Node0x55cdfa85e420[color=black];
+	Node0x55cdfa85df20 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55cdfa85e2a0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55cdfa85e020 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55cdfa85e3a0 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x55cdfa85e120 [shape=record,shape=circle,label="{_ZN6matrixC2Ev}"];
+	Node0x55cdfa85e4a0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_ShPSi_2_1.cpp|{<s0>23}}"];
+	Node0x55cdfa85e4a0:s0 -> Node0x55cdfa85da90[color=black];
+}

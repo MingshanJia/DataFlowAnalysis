@@ -1,0 +1,19 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55de94505690 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1}}"];
+	Node0x55de94505690:s0 -> Node0x55de94505b20[color=black];
+	Node0x55de94505e20 [shape=record,shape=circle,label="{_GLOBAL__sub_I_AlphardWang_1_0.cpp|{<s0>7}}"];
+	Node0x55de94505e20:s0 -> Node0x55de94505690[color=black];
+	Node0x55de94505ba0 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x55de94505ba0:s0 -> Node0x55de94505c20[color=black];
+	Node0x55de94505ba0:s1 -> Node0x55de94505c20[color=black];
+	Node0x55de94505ba0:s2 -> Node0x55de94505ca0[color=black];
+	Node0x55de94505ba0:s3 -> Node0x55de94505d20[color=black];
+	Node0x55de94505ca0 [shape=record,shape=Mrecord,label="{asin}"];
+	Node0x55de94505da0 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x55de94505b20 [shape=record,shape=circle,label="{_ZSt4acosIiEN9__gnu_cxx11__enable_ifIXsr12__is_integerIT_EE7__valueEdE6__typeES2_|{<s0>2}}"];
+	Node0x55de94505b20:s0 -> Node0x55de94505da0[color=black];
+	Node0x55de94505c20 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55de94505d20 [shape=record,shape=Mrecord,label="{printf}"];
+}

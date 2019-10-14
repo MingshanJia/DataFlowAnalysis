@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x564a63092ca0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x564a63092ca0:s0 -> Node0x564a63093130[color=black];
+	Node0x564a63092ca0:s1 -> Node0x564a63093230[color=black];
+	Node0x564a63093430 [shape=record,shape=circle,label="{_Z2goi|{<s0>6|<s1>7}}"];
+	Node0x564a63093430:s0 -> Node0x564a63093430[color=black];
+	Node0x564a63093430:s1 -> Node0x564a630934b0[color=black];
+	Node0x564a630931b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x564a63093530 [shape=record,shape=circle,label="{_Z5solvev|{<s0>8|<s1>9|<s2>10|<s3>11}}"];
+	Node0x564a63093530:s0 -> Node0x564a630935b0[color=black];
+	Node0x564a63093530:s1 -> Node0x564a63093430[color=black];
+	Node0x564a63093530:s2 -> Node0x564a63093630[color=black];
+	Node0x564a63093530:s3 -> Node0x564a63093630[color=black];
+	Node0x564a630932b0 [shape=record,shape=circle,label="{_Z4readv|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x564a630932b0:s0 -> Node0x564a63093330[color=black];
+	Node0x564a630932b0:s1 -> Node0x564a630933b0[color=black];
+	Node0x564a630932b0:s2 -> Node0x564a63093330[color=black];
+	Node0x564a63093630 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x564a630933b0 [shape=record,shape=Mrecord,label="{_ZStrsIcSt11char_traitsIcEERSt13basic_istreamIT_T0_ES6_RS3_}"];
+	Node0x564a63093730 [shape=record,shape=circle,label="{_GLOBAL__sub_I_exod40_2_0.cpp|{<s0>16}}"];
+	Node0x564a63093730:s0 -> Node0x564a63092ca0[color=black];
+	Node0x564a63093130 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x564a630934b0 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x564a63093230 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x564a630935b0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x564a63093330 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x564a630936b0 [shape=record,shape=circle,label="{main|{<s0>12|<s1>13|<s2>14|<s3>15}}"];
+	Node0x564a630936b0:s0 -> Node0x564a63093330[color=black];
+	Node0x564a630936b0:s1 -> Node0x564a630932b0[color=black];
+	Node0x564a630936b0:s2 -> Node0x564a63093630[color=black];
+	Node0x564a630936b0:s3 -> Node0x564a63093530[color=black];
+}

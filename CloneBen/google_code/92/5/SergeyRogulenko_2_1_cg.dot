@@ -1,0 +1,39 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55b1c0904130 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55b1c0904130:s0 -> Node0x55b1c09045c0[color=black];
+	Node0x55b1c0904130:s1 -> Node0x55b1c09046c0[color=black];
+	Node0x55b1c09048c0 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+	Node0x55b1c0904c40 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55b1c0904640 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55b1c09049c0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev}"];
+	Node0x55b1c0904740 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x55b1c0904740:s0 -> Node0x55b1c09047c0[color=black];
+	Node0x55b1c0904740:s1 -> Node0x55b1c0904840[color=black];
+	Node0x55b1c0904740:s2 -> Node0x55b1c0904940[color=black];
+	Node0x55b1c0904740:s3 -> Node0x55b1c09046c0[color=black];
+	Node0x55b1c0904740:s4 -> Node0x55b1c0904940[color=black];
+	Node0x55b1c0904ac0 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15|<s7>16|<s8>17}}"];
+	Node0x55b1c0904ac0:s0 -> Node0x55b1c0904b40[color=black];
+	Node0x55b1c0904ac0:s1 -> Node0x55b1c0904bc0[color=black];
+	Node0x55b1c0904ac0:s2 -> Node0x55b1c0904b40[color=black];
+	Node0x55b1c0904ac0:s3 -> Node0x55b1c0904b40[color=black];
+	Node0x55b1c0904ac0:s4 -> Node0x55b1c0904c40[color=black];
+	Node0x55b1c0904ac0:s5 -> Node0x55b1c0904c40[color=black];
+	Node0x55b1c0904ac0:s6 -> Node0x55b1c0904c40[color=black];
+	Node0x55b1c0904ac0:s7 -> Node0x55b1c0904a40[color=black];
+	Node0x55b1c0904ac0:s8 -> Node0x55b1c0904bc0[color=black];
+	Node0x55b1c0904840 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_}"];
+	Node0x55b1c0904bc0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55b1c09045c0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55b1c0904940 [shape=record,shape=Mrecord,label="{_ZNSaIcED1Ev}"];
+	Node0x55b1c0904cc0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_SergeyRogulenko_2_1.cpp|{<s0>18|<s1>19}}"];
+	Node0x55b1c0904cc0:s0 -> Node0x55b1c0904130[color=black];
+	Node0x55b1c0904cc0:s1 -> Node0x55b1c0904740[color=black];
+	Node0x55b1c09046c0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55b1c0904a40 [shape=record,shape=circle,label="{_Z2goi|{<s0>8}}"];
+	Node0x55b1c0904a40:s0 -> Node0x55b1c0904a40[color=black];
+	Node0x55b1c09047c0 [shape=record,shape=Mrecord,label="{_ZNSaIcEC1Ev}"];
+	Node0x55b1c0904b40 [shape=record,shape=Mrecord,label="{scanf}"];
+}

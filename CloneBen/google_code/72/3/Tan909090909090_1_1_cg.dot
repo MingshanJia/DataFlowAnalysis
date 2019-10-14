@@ -1,0 +1,22 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5646ff14ddb0 [shape=record,shape=circle,label="{_Z4MaxTPKdS0_id}"];
+	Node0x5646ff14e2c0 [shape=record,shape=Mrecord,label="{sqrt}"];
+	Node0x5646ff14e3c0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11}}"];
+	Node0x5646ff14e3c0:s0 -> Node0x5646ff14e440[color=black];
+	Node0x5646ff14e3c0:s1 -> Node0x5646ff14e440[color=black];
+	Node0x5646ff14e3c0:s2 -> Node0x5646ff14e440[color=black];
+	Node0x5646ff14e3c0:s3 -> Node0x5646ff14e440[color=black];
+	Node0x5646ff14e3c0:s4 -> Node0x5646ff14e4c0[color=black];
+	Node0x5646ff14e3c0:s5 -> Node0x5646ff14e340[color=black];
+	Node0x5646ff14e3c0:s6 -> Node0x5646ff14e4c0[color=black];
+	Node0x5646ff14e4c0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5646ff14e240 [shape=record,shape=circle,label="{_Z1FPKdS0_idddd|{<s0>1}}"];
+	Node0x5646ff14e240:s0 -> Node0x5646ff14e2c0[color=black];
+	Node0x5646ff14e340 [shape=record,shape=circle,label="{_Z5SolvePKdS0_idd|{<s0>2|<s1>3|<s2>4}}"];
+	Node0x5646ff14e340:s0 -> Node0x5646ff14ddb0[color=black];
+	Node0x5646ff14e340:s1 -> Node0x5646ff14e240[color=black];
+	Node0x5646ff14e340:s2 -> Node0x5646ff14e2c0[color=black];
+	Node0x5646ff14e440 [shape=record,shape=Mrecord,label="{scanf}"];
+}

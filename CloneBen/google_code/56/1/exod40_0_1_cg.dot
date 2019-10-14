@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5595ea5e7430 [shape=record,shape=circle,label="{_Z4readv|{<s0>1}}"];
+	Node0x5595ea5e7430:s0 -> Node0x5595ea5e78c0[color=black];
+	Node0x5595ea5e7bc0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5595ea5e7940 [shape=record,shape=circle,label="{_Z4getsii}"];
+	Node0x5595ea5e7a40 [shape=record,shape=circle,label="{_ZSt3maxIxERKT_S2_S2_}"];
+	Node0x5595ea5e7b40 [shape=record,shape=circle,label="{_Z5solvev|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15|<s7>16|<s8>17|<s9>18}}"];
+	Node0x5595ea5e7b40:s0 -> Node0x5595ea5e7a40[color=black];
+	Node0x5595ea5e7b40:s1 -> Node0x5595ea5e7ac0[color=black];
+	Node0x5595ea5e7b40:s2 -> Node0x5595ea5e7940[color=black];
+	Node0x5595ea5e7b40:s3 -> Node0x5595ea5e7940[color=black];
+	Node0x5595ea5e7b40:s4 -> Node0x5595ea5e79c0[color=black];
+	Node0x5595ea5e7b40:s5 -> Node0x5595ea5e79c0[color=black];
+	Node0x5595ea5e7b40:s6 -> Node0x5595ea5e79c0[color=black];
+	Node0x5595ea5e7b40:s7 -> Node0x5595ea5e79c0[color=black];
+	Node0x5595ea5e7b40:s8 -> Node0x5595ea5e79c0[color=black];
+	Node0x5595ea5e7b40:s9 -> Node0x5595ea5e7bc0[color=black];
+	Node0x5595ea5e78c0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5595ea5e7c40 [shape=record,shape=circle,label="{main|{<s0>19|<s1>20|<s2>21|<s3>22}}"];
+	Node0x5595ea5e7c40:s0 -> Node0x5595ea5e78c0[color=black];
+	Node0x5595ea5e7c40:s1 -> Node0x5595ea5e7430[color=black];
+	Node0x5595ea5e7c40:s2 -> Node0x5595ea5e7bc0[color=black];
+	Node0x5595ea5e7c40:s3 -> Node0x5595ea5e7b40[color=black];
+	Node0x5595ea5e79c0 [shape=record,shape=circle,label="{_Z2chRxii|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8}}"];
+	Node0x5595ea5e79c0:s0 -> Node0x5595ea5e7940[color=black];
+	Node0x5595ea5e79c0:s1 -> Node0x5595ea5e7a40[color=black];
+	Node0x5595ea5e79c0:s2 -> Node0x5595ea5e7940[color=black];
+	Node0x5595ea5e79c0:s3 -> Node0x5595ea5e7a40[color=black];
+	Node0x5595ea5e79c0:s4 -> Node0x5595ea5e7940[color=black];
+	Node0x5595ea5e79c0:s5 -> Node0x5595ea5e7a40[color=black];
+	Node0x5595ea5e79c0:s6 -> Node0x5595ea5e7ac0[color=black];
+	Node0x5595ea5e7ac0 [shape=record,shape=circle,label="{_ZSt3minIxERKT_S2_S2_}"];
+}

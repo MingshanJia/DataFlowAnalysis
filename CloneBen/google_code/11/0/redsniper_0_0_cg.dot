@@ -1,0 +1,19 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55f0860e8070 [shape=record,shape=circle,label="{_Z4initi}"];
+	Node0x55f0860e8580 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55f0860e8680 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55f0860e8500 [shape=record,shape=circle,label="{_Z5judgei|{<s0>1|<s1>2}}"];
+	Node0x55f0860e8500:s0 -> Node0x55f0860e8070[color=black];
+	Node0x55f0860e8500:s1 -> Node0x55f0860e8580[color=black];
+	Node0x55f0860e8600 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9}}"];
+	Node0x55f0860e8600:s0 -> Node0x55f0860e8680[color=black];
+	Node0x55f0860e8600:s1 -> Node0x55f0860e8680[color=black];
+	Node0x55f0860e8600:s2 -> Node0x55f0860e8580[color=black];
+	Node0x55f0860e8600:s3 -> Node0x55f0860e8580[color=black];
+	Node0x55f0860e8600:s4 -> Node0x55f0860e8500[color=black];
+	Node0x55f0860e8600:s5 -> Node0x55f0860e8700[color=black];
+	Node0x55f0860e8600:s6 -> Node0x55f0860e8700[color=black];
+	Node0x55f0860e8700 [shape=record,shape=Mrecord,label="{printf}"];
+}

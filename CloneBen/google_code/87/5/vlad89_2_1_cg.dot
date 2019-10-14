@@ -1,0 +1,19 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5625bb542430 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5625bb542430:s0 -> Node0x5625bb5428c0[color=black];
+	Node0x5625bb542430:s1 -> Node0x5625bb5429c0[color=black];
+	Node0x5625bb542bc0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5625bb542940 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5625bb542a40 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x5625bb542a40:s0 -> Node0x5625bb542ac0[color=black];
+	Node0x5625bb542a40:s1 -> Node0x5625bb542b40[color=black];
+	Node0x5625bb542a40:s2 -> Node0x5625bb542bc0[color=black];
+	Node0x5625bb542b40 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x5625bb5428c0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5625bb542c40 [shape=record,shape=circle,label="{_GLOBAL__sub_I_vlad89_2_1.cpp|{<s0>6}}"];
+	Node0x5625bb542c40:s0 -> Node0x5625bb542430[color=black];
+	Node0x5625bb5429c0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5625bb542ac0 [shape=record,shape=Mrecord,label="{scanf}"];
+}

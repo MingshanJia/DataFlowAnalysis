@@ -1,0 +1,32 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561f6af1f450 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x561f6af1f450:s0 -> Node0x561f6af1f8e0[color=black];
+	Node0x561f6af1f450:s1 -> Node0x561f6af1f9e0[color=black];
+	Node0x561f6af1fbe0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x561f6af1f960 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x561f6af1fce0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x561f6af1fa60 [shape=record,shape=circle,label="{_Z1fii}"];
+	Node0x561f6af1fde0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561f6af1fb60 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14}}"];
+	Node0x561f6af1fb60:s0 -> Node0x561f6af1fbe0[color=black];
+	Node0x561f6af1fb60:s1 -> Node0x561f6af1fbe0[color=black];
+	Node0x561f6af1fb60:s2 -> Node0x561f6af1fc60[color=black];
+	Node0x561f6af1fb60:s3 -> Node0x561f6af1fc60[color=black];
+	Node0x561f6af1fb60:s4 -> Node0x561f6af1fce0[color=black];
+	Node0x561f6af1fb60:s5 -> Node0x561f6af1fce0[color=black];
+	Node0x561f6af1fb60:s6 -> Node0x561f6af1fd60[color=black];
+	Node0x561f6af1fb60:s7 -> Node0x561f6af1fa60[color=black];
+	Node0x561f6af1fb60:s8 -> Node0x561f6af1fae0[color=black];
+	Node0x561f6af1fb60:s9 -> Node0x561f6af1fde0[color=black];
+	Node0x561f6af1f8e0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x561f6af1fc60 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x561f6af1f9e0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x561f6af1fd60 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x561f6af1fae0 [shape=record,shape=circle,label="{_Z3dfsii|{<s0>3|<s1>4}}"];
+	Node0x561f6af1fae0:s0 -> Node0x561f6af1fa60[color=black];
+	Node0x561f6af1fae0:s1 -> Node0x561f6af1fae0[color=black];
+	Node0x561f6af1fe60 [shape=record,shape=circle,label="{_GLOBAL__sub_I_kaysar.abdullah_0_1.cpp|{<s0>15}}"];
+	Node0x561f6af1fe60:s0 -> Node0x561f6af1f450[color=black];
+}

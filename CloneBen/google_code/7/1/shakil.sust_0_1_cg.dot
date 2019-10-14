@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55a3fa783670 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55a3fa783670:s0 -> Node0x55a3fa783b00[color=black];
+	Node0x55a3fa783670:s1 -> Node0x55a3fa783c00[color=black];
+	Node0x55a3fa783e00 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x55a3fa783b80 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55a3fa783f00 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55a3fa783c80 [shape=record,shape=circle,label="{_Z3Powxx}"];
+	Node0x55a3fa784000 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55a3fa783d80 [shape=record,shape=circle,label="{_Z3recii|{<s0>3|<s1>4}}"];
+	Node0x55a3fa783d80:s0 -> Node0x55a3fa783d80[color=black];
+	Node0x55a3fa783d80:s1 -> Node0x55a3fa783e00[color=black];
+	Node0x55a3fa784100 [shape=record,shape=circle,label="{_GLOBAL__sub_I_shakil.sust_0_1.cpp|{<s0>16}}"];
+	Node0x55a3fa784100:s0 -> Node0x55a3fa783670[color=black];
+	Node0x55a3fa783b00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55a3fa783e80 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15}}"];
+	Node0x55a3fa783e80:s0 -> Node0x55a3fa783f00[color=black];
+	Node0x55a3fa783e80:s1 -> Node0x55a3fa783f00[color=black];
+	Node0x55a3fa783e80:s2 -> Node0x55a3fa783f80[color=black];
+	Node0x55a3fa783e80:s3 -> Node0x55a3fa783f80[color=black];
+	Node0x55a3fa783e80:s4 -> Node0x55a3fa783f80[color=black];
+	Node0x55a3fa783e80:s5 -> Node0x55a3fa784000[color=black];
+	Node0x55a3fa783e80:s6 -> Node0x55a3fa783d80[color=black];
+	Node0x55a3fa783e80:s7 -> Node0x55a3fa783d80[color=black];
+	Node0x55a3fa783e80:s8 -> Node0x55a3fa783d80[color=black];
+	Node0x55a3fa783e80:s9 -> Node0x55a3fa783d80[color=black];
+	Node0x55a3fa783e80:s10 -> Node0x55a3fa784080[color=black];
+	Node0x55a3fa783c00 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55a3fa783f80 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55a3fa783d00 [shape=record,shape=circle,label="{_Z6BigModxxx}"];
+	Node0x55a3fa784080 [shape=record,shape=Mrecord,label="{printf}"];
+}

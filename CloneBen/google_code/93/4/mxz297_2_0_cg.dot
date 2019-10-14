@@ -1,0 +1,16 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563e8a033c30 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7}}"];
+	Node0x563e8a033c30:s0 -> Node0x563e8a0340c0[color=black];
+	Node0x563e8a033c30:s1 -> Node0x563e8a0340c0[color=black];
+	Node0x563e8a033c30:s2 -> Node0x563e8a034140[color=black];
+	Node0x563e8a033c30:s3 -> Node0x563e8a034140[color=black];
+	Node0x563e8a033c30:s4 -> Node0x563e8a034140[color=black];
+	Node0x563e8a033c30:s5 -> Node0x563e8a0341c0[color=black];
+	Node0x563e8a033c30:s6 -> Node0x563e8a034240[color=black];
+	Node0x563e8a034140 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563e8a034240 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563e8a0340c0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x563e8a0341c0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

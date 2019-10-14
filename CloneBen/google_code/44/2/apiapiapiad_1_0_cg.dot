@@ -1,0 +1,18 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56074d3191b0 [shape=record,shape=circle,label="{_Z6powmodxx|{<s0>1}}"];
+	Node0x56074d3191b0:s0 -> Node0x56074d319640[color=black];
+	Node0x56074d3196c0 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7}}"];
+	Node0x56074d3196c0:s0 -> Node0x56074d319740[color=black];
+	Node0x56074d3196c0:s1 -> Node0x56074d319740[color=black];
+	Node0x56074d3196c0:s2 -> Node0x56074d319740[color=black];
+	Node0x56074d3196c0:s3 -> Node0x56074d3197c0[color=black];
+	Node0x56074d3196c0:s4 -> Node0x56074d319840[color=black];
+	Node0x56074d3196c0:s5 -> Node0x56074d3198c0[color=black];
+	Node0x56074d3197c0 [shape=record,shape=Mrecord,label="{llvm.ctpop.i32}"];
+	Node0x56074d3198c0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x56074d319640 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+	Node0x56074d319740 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x56074d319840 [shape=record,shape=circle,label="{_ZSt3maxIdERKT_S2_S2_}"];
+}

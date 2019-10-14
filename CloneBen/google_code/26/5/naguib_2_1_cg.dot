@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x556a91d9c700 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x556a91d9c700:s0 -> Node0x556a91d9cb90[color=black];
+	Node0x556a91d9c700:s1 -> Node0x556a91d9cc90[color=black];
+	Node0x556a91d9ce90 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12|<s9>13}}"];
+	Node0x556a91d9ce90:s0 -> Node0x556a91d9cf10[color=black];
+	Node0x556a91d9ce90:s1 -> Node0x556a91d9cf10[color=black];
+	Node0x556a91d9ce90:s2 -> Node0x556a91d9cf90[color=black];
+	Node0x556a91d9ce90:s3 -> Node0x556a91d9d010[color=black];
+	Node0x556a91d9ce90:s4 -> Node0x556a91d9cf90[color=black];
+	Node0x556a91d9ce90:s5 -> Node0x556a91d9cf90[color=black];
+	Node0x556a91d9ce90:s6 -> Node0x556a91d9d090[color=black];
+	Node0x556a91d9ce90:s7 -> Node0x556a91d9ce10[color=black];
+	Node0x556a91d9ce90:s8 -> Node0x556a91d9d110[color=black];
+	Node0x556a91d9ce90:s9 -> Node0x556a91d9d010[color=black];
+	Node0x556a91d9cc10 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x556a91d9cf90 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x556a91d9cd10 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3}}"];
+	Node0x556a91d9cd10:s0 -> Node0x556a91d9cd90[color=black];
+	Node0x556a91d9d090 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x556a91d9ce10 [shape=record,shape=circle,label="{_Z7iscleariii}"];
+	Node0x556a91d9d190 [shape=record,shape=circle,label="{_GLOBAL__sub_I_naguib_2_1.cpp|{<s0>14|<s1>15}}"];
+	Node0x556a91d9d190:s0 -> Node0x556a91d9c700[color=black];
+	Node0x556a91d9d190:s1 -> Node0x556a91d9cd10[color=black];
+	Node0x556a91d9cb90 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x556a91d9cf10 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x556a91d9cc90 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x556a91d9d010 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x556a91d9cd90 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x556a91d9d110 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+}

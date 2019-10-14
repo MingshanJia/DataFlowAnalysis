@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55f4ee6ef240 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7|<s7>8|<s8>9|<s9>10|<s10>11|<s11>12|<s12>13|<s13>14|<s14>15|<s15>16|<s16>17|<s17>18|<s18>19}}"];
+	Node0x55f4ee6ef240:s0 -> Node0x55f4ee6ef6d0[color=black];
+	Node0x55f4ee6ef240:s1 -> Node0x55f4ee6ef750[color=black];
+	Node0x55f4ee6ef240:s2 -> Node0x55f4ee6ef7d0[color=black];
+	Node0x55f4ee6ef240:s3 -> Node0x55f4ee6ef750[color=black];
+	Node0x55f4ee6ef240:s4 -> Node0x55f4ee6ef850[color=black];
+	Node0x55f4ee6ef240:s5 -> Node0x55f4ee6ef7d0[color=black];
+	Node0x55f4ee6ef240:s6 -> Node0x55f4ee6ef8d0[color=black];
+	Node0x55f4ee6ef240:s7 -> Node0x55f4ee6ef8d0[color=black];
+	Node0x55f4ee6ef240:s8 -> Node0x55f4ee6ef850[color=black];
+	Node0x55f4ee6ef240:s9 -> Node0x55f4ee6ef950[color=black];
+	Node0x55f4ee6ef240:s10 -> Node0x55f4ee6ef7d0[color=black];
+	Node0x55f4ee6ef240:s11 -> Node0x55f4ee6ef9d0[color=black];
+	Node0x55f4ee6ef240:s12 -> Node0x55f4ee6efa50[color=black];
+	Node0x55f4ee6ef240:s13 -> Node0x55f4ee6efa50[color=black];
+	Node0x55f4ee6ef240:s14 -> Node0x55f4ee6efa50[color=black];
+	Node0x55f4ee6ef240:s15 -> Node0x55f4ee6efa50[color=black];
+	Node0x55f4ee6ef240:s16 -> Node0x55f4ee6efa50[color=black];
+	Node0x55f4ee6ef240:s17 -> Node0x55f4ee6efad0[color=black];
+	Node0x55f4ee6ef240:s18 -> Node0x55f4ee6efb50[color=black];
+	Node0x55f4ee6ef9d0 [shape=record,shape=Mrecord,label="{fflush}"];
+	Node0x55f4ee6ef750 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55f4ee6efad0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55f4ee6ef850 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x55f4ee6efbd0 [shape=record,shape=Mrecord,label="{strstr}"];
+	Node0x55f4ee6ef950 [shape=record,shape=circle,label="{_ZSt6strstrPcPKc|{<s0>20}}"];
+	Node0x55f4ee6ef950:s0 -> Node0x55f4ee6efbd0[color=black];
+	Node0x55f4ee6ef6d0 [shape=record,shape=Mrecord,label="{fopen}"];
+	Node0x55f4ee6efa50 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55f4ee6ef7d0 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x55f4ee6efb50 [shape=record,shape=Mrecord,label="{fclose}"];
+	Node0x55f4ee6ef8d0 [shape=record,shape=Mrecord,label="{strncpy}"];
+}

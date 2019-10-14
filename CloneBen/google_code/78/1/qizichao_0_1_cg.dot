@@ -1,0 +1,23 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5630f337d300 [shape=record,shape=circle,label="{_Z4dealdii|{<s0>1}}"];
+	Node0x5630f337d300:s0 -> Node0x5630f337d790[color=black];
+	Node0x5630f337d810 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8|<s7>9}}"];
+	Node0x5630f337d810:s0 -> Node0x5630f337d890[color=black];
+	Node0x5630f337d810:s1 -> Node0x5630f337d910[color=black];
+	Node0x5630f337d810:s2 -> Node0x5630f337d890[color=black];
+	Node0x5630f337d810:s3 -> Node0x5630f337d890[color=black];
+	Node0x5630f337d810:s4 -> Node0x5630f337d990[color=black];
+	Node0x5630f337d810:s5 -> Node0x5630f337d990[color=black];
+	Node0x5630f337d810:s6 -> Node0x5630f337d300[color=black];
+	Node0x5630f337d810:s7 -> Node0x5630f337d910[color=black];
+	Node0x5630f337d910 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5630f337da10 [shape=record,shape=circle,label="{_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_}"];
+	Node0x5630f337d790 [shape=record,shape=circle,label="{_ZSt3minIdERKT_S2_S2_}"];
+	Node0x5630f337d890 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5630f337d990 [shape=record,shape=circle,label="{_ZSt4swapIiENSt9enable_ifIXsr6__and_ISt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS3_ESt18is_move_assignableIS3_EEE5valueEvE4typeERS3_SC_|{<s0>10|<s1>11|<s2>12}}"];
+	Node0x5630f337d990:s0 -> Node0x5630f337da10[color=black];
+	Node0x5630f337d990:s1 -> Node0x5630f337da10[color=black];
+	Node0x5630f337d990:s2 -> Node0x5630f337da10[color=black];
+}

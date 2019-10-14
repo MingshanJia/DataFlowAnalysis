@@ -1,0 +1,42 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55ef9f747010 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55ef9f747010:s0 -> Node0x55ef9f7474a0[color=black];
+	Node0x55ef9f747010:s1 -> Node0x55ef9f7475a0[color=black];
+	Node0x55ef9f7477a0 [shape=record,shape=circle,label="{_Z5solvei|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8}}"];
+	Node0x55ef9f7477a0:s0 -> Node0x55ef9f747820[color=black];
+	Node0x55ef9f7477a0:s1 -> Node0x55ef9f747820[color=black];
+	Node0x55ef9f7477a0:s2 -> Node0x55ef9f747820[color=black];
+	Node0x55ef9f7477a0:s3 -> Node0x55ef9f7478a0[color=black];
+	Node0x55ef9f7477a0:s4 -> Node0x55ef9f747920[color=black];
+	Node0x55ef9f747b20 [shape=record,shape=Mrecord,label="{gettimeofday}"];
+	Node0x55ef9f747520 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55ef9f7478a0 [shape=record,shape=circle,label="{_ZSt3minIdERKT_S2_S2_}"];
+	Node0x55ef9f747c20 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x55ef9f747620 [shape=record,shape=circle,label="{_Z9_fill_intPiii}"];
+	Node0x55ef9f7479a0 [shape=record,shape=circle,label="{_Z4initv}"];
+	Node0x55ef9f747d20 [shape=record,shape=circle,label="{_GLOBAL__sub_I_kmjp_1_1.cpp|{<s0>19}}"];
+	Node0x55ef9f747d20:s0 -> Node0x55ef9f747010[color=black];
+	Node0x55ef9f747720 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55ef9f747aa0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55ef9f7474a0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55ef9f747820 [shape=record,shape=Mrecord,label="{_ZNSirsERd}"];
+	Node0x55ef9f747ba0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55ef9f7475a0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55ef9f747920 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55ef9f747ca0 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x55ef9f7476a0 [shape=record,shape=circle,label="{_Z4GETiv|{<s0>3}}"];
+	Node0x55ef9f7476a0:s0 -> Node0x55ef9f747720[color=black];
+	Node0x55ef9f747a20 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15|<s7>16|<s8>17|<s9>18}}"];
+	Node0x55ef9f747a20:s0 -> Node0x55ef9f747aa0[color=black];
+	Node0x55ef9f747a20:s1 -> Node0x55ef9f747b20[color=black];
+	Node0x55ef9f747a20:s2 -> Node0x55ef9f747ba0[color=black];
+	Node0x55ef9f747a20:s3 -> Node0x55ef9f7479a0[color=black];
+	Node0x55ef9f747a20:s4 -> Node0x55ef9f747b20[color=black];
+	Node0x55ef9f747a20:s5 -> Node0x55ef9f7477a0[color=black];
+	Node0x55ef9f747a20:s6 -> Node0x55ef9f747b20[color=black];
+	Node0x55ef9f747a20:s7 -> Node0x55ef9f747c20[color=black];
+	Node0x55ef9f747a20:s8 -> Node0x55ef9f747ca0[color=black];
+	Node0x55ef9f747a20:s9 -> Node0x55ef9f747c20[color=black];
+}

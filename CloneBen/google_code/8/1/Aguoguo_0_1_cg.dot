@@ -1,0 +1,23 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x560f7cedb520 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x560f7cedb520:s0 -> Node0x560f7cedb9b0[color=black];
+	Node0x560f7cedb520:s1 -> Node0x560f7cedbab0[color=black];
+	Node0x560f7cedbcb0 [shape=record,shape=Mrecord,label="{_ZStrsIcSt11char_traitsIcEERSt13basic_istreamIT_T0_ES6_RS3_}"];
+	Node0x560f7cedba30 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x560f7cedbdb0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Aguoguo_0_1.cpp|{<s0>9}}"];
+	Node0x560f7cedbdb0:s0 -> Node0x560f7cedb520[color=black];
+	Node0x560f7cedbb30 [shape=record,shape=circle,label="{_Z2goii|{<s0>3}}"];
+	Node0x560f7cedbb30:s0 -> Node0x560f7cedbb30[color=black];
+	Node0x560f7cedbc30 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x560f7cedb9b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x560f7cedbd30 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x560f7cedbab0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x560f7cedbbb0 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8}}"];
+	Node0x560f7cedbbb0:s0 -> Node0x560f7cedbc30[color=black];
+	Node0x560f7cedbbb0:s1 -> Node0x560f7cedbc30[color=black];
+	Node0x560f7cedbbb0:s2 -> Node0x560f7cedbcb0[color=black];
+	Node0x560f7cedbbb0:s3 -> Node0x560f7cedbb30[color=black];
+	Node0x560f7cedbbb0:s4 -> Node0x560f7cedbd30[color=black];
+}

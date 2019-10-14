@@ -1,0 +1,15 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55b2da580810 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6}}"];
+	Node0x55b2da580810:s0 -> Node0x55b2da580ca0[color=black];
+	Node0x55b2da580810:s1 -> Node0x55b2da580ca0[color=black];
+	Node0x55b2da580810:s2 -> Node0x55b2da580d20[color=black];
+	Node0x55b2da580810:s3 -> Node0x55b2da580d20[color=black];
+	Node0x55b2da580810:s4 -> Node0x55b2da580da0[color=black];
+	Node0x55b2da580810:s5 -> Node0x55b2da580e20[color=black];
+	Node0x55b2da580d20 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55b2da580e20 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55b2da580ca0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55b2da580da0 [shape=record,shape=circle,label="{_ZSt3minIdERKT_S2_S2_}"];
+}

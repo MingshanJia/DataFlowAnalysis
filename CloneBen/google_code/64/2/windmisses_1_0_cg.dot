@@ -1,0 +1,21 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561de4c14450 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x561de4c14450:s0 -> Node0x561de4c148e0[color=black];
+	Node0x561de4c14450:s1 -> Node0x561de4c149e0[color=black];
+	Node0x561de4c14be0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7}}"];
+	Node0x561de4c14be0:s0 -> Node0x561de4c14ae0[color=black];
+	Node0x561de4c14be0:s1 -> Node0x561de4c14b60[color=black];
+	Node0x561de4c14be0:s2 -> Node0x561de4c14a60[color=black];
+	Node0x561de4c14960 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x561de4c14a60 [shape=record,shape=circle,label="{_Z3runv|{<s0>3|<s1>4}}"];
+	Node0x561de4c14a60:s0 -> Node0x561de4c14ae0[color=black];
+	Node0x561de4c14a60:s1 -> Node0x561de4c14b60[color=black];
+	Node0x561de4c14b60 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561de4c148e0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x561de4c14c60 [shape=record,shape=circle,label="{_GLOBAL__sub_I_windmisses_1_0.cpp|{<s0>8}}"];
+	Node0x561de4c14c60:s0 -> Node0x561de4c14450[color=black];
+	Node0x561de4c149e0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x561de4c14ae0 [shape=record,shape=Mrecord,label="{scanf}"];
+}

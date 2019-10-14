@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563e67f38470 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563e67f38470:s0 -> Node0x563e67f38900[color=black];
+	Node0x563e67f38470:s1 -> Node0x563e67f38a00[color=black];
+	Node0x563e67f38c00 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15|<s11>16}}"];
+	Node0x563e67f38c00:s0 -> Node0x563e67f38c80[color=black];
+	Node0x563e67f38c00:s1 -> Node0x563e67f38d00[color=black];
+	Node0x563e67f38c00:s2 -> Node0x563e67f38d80[color=black];
+	Node0x563e67f38c00:s3 -> Node0x563e67f38c80[color=black];
+	Node0x563e67f38c00:s4 -> Node0x563e67f38c80[color=black];
+	Node0x563e67f38c00:s5 -> Node0x563e67f38b80[color=black];
+	Node0x563e67f38c00:s6 -> Node0x563e67f38b80[color=black];
+	Node0x563e67f38c00:s7 -> Node0x563e67f38c80[color=black];
+	Node0x563e67f38c00:s8 -> Node0x563e67f38c80[color=black];
+	Node0x563e67f38c00:s9 -> Node0x563e67f38a80[color=black];
+	Node0x563e67f38c00:s10 -> Node0x563e67f38d80[color=black];
+	Node0x563e67f38c00:s11 -> Node0x563e67f38d80[color=black];
+	Node0x563e67f38980 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563e67f38d00 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x563e67f38a80 [shape=record,shape=circle,label="{_Z4readi|{<s0>3}}"];
+	Node0x563e67f38a80:s0 -> Node0x563e67f38b00[color=black];
+	Node0x563e67f38e00 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Balajiganapathi_1_1.cpp|{<s0>17}}"];
+	Node0x563e67f38e00:s0 -> Node0x563e67f38470[color=black];
+	Node0x563e67f38b80 [shape=record,shape=circle,label="{_Z6updateii|{<s0>4}}"];
+	Node0x563e67f38b80:s0 -> Node0x563e67f38b00[color=black];
+	Node0x563e67f38900 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563e67f38c80 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563e67f38a00 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563e67f38d80 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563e67f38b00 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+}

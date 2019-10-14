@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56306afaaef0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x56306afaaef0:s0 -> Node0x56306afab380[color=black];
+	Node0x56306afaaef0:s1 -> Node0x56306afab480[color=black];
+	Node0x56306afab680 [shape=record,shape=circle,label="{_Z3cani|{<s0>6}}"];
+	Node0x56306afab680:s0 -> Node0x56306afab600[color=black];
+	Node0x56306afab400 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x56306afab780 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x56306afab500 [shape=record,shape=circle,label="{_Z3dfsi|{<s0>3|<s1>4}}"];
+	Node0x56306afab500:s0 -> Node0x56306afab580[color=black];
+	Node0x56306afab500:s1 -> Node0x56306afab500[color=black];
+	Node0x56306afab880 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x56306afab600 [shape=record,shape=circle,label="{_Z4goodiii|{<s0>5}}"];
+	Node0x56306afab600:s0 -> Node0x56306afab500[color=black];
+	Node0x56306afab980 [shape=record,shape=circle,label="{_GLOBAL__sub_I_kevinsogo_0_0.cpp|{<s0>15}}"];
+	Node0x56306afab980:s0 -> Node0x56306afaaef0[color=black];
+	Node0x56306afab380 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x56306afab700 [shape=record,shape=circle,label="{_Z5solvei|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11|<s5>12}}"];
+	Node0x56306afab700:s0 -> Node0x56306afab780[color=black];
+	Node0x56306afab700:s1 -> Node0x56306afab800[color=black];
+	Node0x56306afab700:s2 -> Node0x56306afab800[color=black];
+	Node0x56306afab700:s3 -> Node0x56306afab680[color=black];
+	Node0x56306afab700:s4 -> Node0x56306afab780[color=black];
+	Node0x56306afab700:s5 -> Node0x56306afab880[color=black];
+	Node0x56306afab480 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x56306afab800 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x56306afab580 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+	Node0x56306afab900 [shape=record,shape=circle,label="{main|{<s0>13|<s1>14}}"];
+	Node0x56306afab900:s0 -> Node0x56306afab800[color=black];
+	Node0x56306afab900:s1 -> Node0x56306afab700[color=black];
+}

@@ -1,0 +1,38 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x565254f2f500 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x565254f2f500:s0 -> Node0x565254faee20[color=black];
+	Node0x565254f2f500:s1 -> Node0x565254faef20[color=black];
+	Node0x565254faf120 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x565254faeea0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x565254faf220 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x565254faefa0 [shape=record,shape=circle,label="{_Z8find_seti|{<s0>3}}"];
+	Node0x565254faefa0:s0 -> Node0x565254faefa0[color=black];
+	Node0x565254faf320 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x565254faf0a0 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12|<s7>13|<s8>14|<s9>15|<s10>16|<s11>17|<s12>18|<s13>19|<s14>20}}"];
+	Node0x565254faf0a0:s0 -> Node0x565254faf120[color=black];
+	Node0x565254faf0a0:s1 -> Node0x565254faf120[color=black];
+	Node0x565254faf0a0:s2 -> Node0x565254faf1a0[color=black];
+	Node0x565254faf0a0:s3 -> Node0x565254faf220[color=black];
+	Node0x565254faf0a0:s4 -> Node0x565254faf1a0[color=black];
+	Node0x565254faf0a0:s5 -> Node0x565254faf1a0[color=black];
+	Node0x565254faf0a0:s6 -> Node0x565254faf020[color=black];
+	Node0x565254faf0a0:s7 -> Node0x565254faf020[color=black];
+	Node0x565254faf0a0:s8 -> Node0x565254faf020[color=black];
+	Node0x565254faf0a0:s9 -> Node0x565254faf020[color=black];
+	Node0x565254faf0a0:s10 -> Node0x565254faefa0[color=black];
+	Node0x565254faf0a0:s11 -> Node0x565254faefa0[color=black];
+	Node0x565254faf0a0:s12 -> Node0x565254faf2a0[color=black];
+	Node0x565254faf0a0:s13 -> Node0x565254faf2a0[color=black];
+	Node0x565254faf0a0:s14 -> Node0x565254faf320[color=black];
+	Node0x565254faee20 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x565254faf1a0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x565254faef20 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x565254faf2a0 [shape=record,shape=Mrecord,label="{putchar}"];
+	Node0x565254faf020 [shape=record,shape=circle,label="{_Z5uniteii|{<s0>4|<s1>5}}"];
+	Node0x565254faf020:s0 -> Node0x565254faefa0[color=black];
+	Node0x565254faf020:s1 -> Node0x565254faefa0[color=black];
+	Node0x565254faf3a0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Gennady.Korotkevich_2_0.cpp|{<s0>21}}"];
+	Node0x565254faf3a0:s0 -> Node0x565254f2f500[color=black];
+}

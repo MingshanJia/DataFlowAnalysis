@@ -1,0 +1,24 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55d65d7897a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55d65d7897a0:s0 -> Node0x55d65d789c30[color=black];
+	Node0x55d65d7897a0:s1 -> Node0x55d65d789d30[color=black];
+	Node0x55d65d789f30 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7}}"];
+	Node0x55d65d789f30:s0 -> Node0x55d65d789fb0[color=black];
+	Node0x55d65d789f30:s1 -> Node0x55d65d789fb0[color=black];
+	Node0x55d65d789f30:s2 -> Node0x55d65d78a030[color=black];
+	Node0x55d65d789f30:s3 -> Node0x55d65d78a0b0[color=black];
+	Node0x55d65d789cb0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55d65d78a030 [shape=record,shape=circle,label="{_ZSt3minIdERKT_S2_S2_}"];
+	Node0x55d65d789db0 [shape=record,shape=circle,label="{_Z6powmodxx}"];
+	Node0x55d65d78a130 [shape=record,shape=circle,label="{_GLOBAL__sub_I_apiapiapiad_1_0.cpp|{<s0>8}}"];
+	Node0x55d65d78a130:s0 -> Node0x55d65d7897a0[color=black];
+	Node0x55d65d789eb0 [shape=record,shape=circle,label="{_Z3gcdxx|{<s0>3}}"];
+	Node0x55d65d789eb0:s0 -> Node0x55d65d789eb0[color=black];
+	Node0x55d65d789c30 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55d65d789fb0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55d65d789d30 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55d65d78a0b0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55d65d789e30 [shape=record,shape=circle,label="{_Z6powmodxxx}"];
+}

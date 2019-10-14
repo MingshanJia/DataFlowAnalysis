@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561f0f907d90 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x561f0f907d90:s0 -> Node0x561f0f908220[color=black];
+	Node0x561f0f907d90:s1 -> Node0x561f0f908320[color=black];
+	Node0x561f0f908520 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x561f0f9088a0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561f0f9082a0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x561f0f908620 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x561f0f9083a0 [shape=record,shape=circle,label="{_Z3dfsiiii|{<s0>3}}"];
+	Node0x561f0f9083a0:s0 -> Node0x561f0f9083a0[color=black];
+	Node0x561f0f908720 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15}}"];
+	Node0x561f0f908720:s0 -> Node0x561f0f9087a0[color=black];
+	Node0x561f0f908720:s1 -> Node0x561f0f9087a0[color=black];
+	Node0x561f0f908720:s2 -> Node0x561f0f908820[color=black];
+	Node0x561f0f908720:s3 -> Node0x561f0f9088a0[color=black];
+	Node0x561f0f908720:s4 -> Node0x561f0f908420[color=black];
+	Node0x561f0f9084a0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x561f0f908820 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x561f0f908220 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x561f0f9085a0 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+	Node0x561f0f908920 [shape=record,shape=circle,label="{_GLOBAL__sub_I_francis1_1_0.cpp|{<s0>16}}"];
+	Node0x561f0f908920:s0 -> Node0x561f0f907d90[color=black];
+	Node0x561f0f908320 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x561f0f9086a0 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x561f0f908420 [shape=record,shape=circle,label="{_Z5solvev|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10}}"];
+	Node0x561f0f908420:s0 -> Node0x561f0f9084a0[color=black];
+	Node0x561f0f908420:s1 -> Node0x561f0f9084a0[color=black];
+	Node0x561f0f908420:s2 -> Node0x561f0f9084a0[color=black];
+	Node0x561f0f908420:s3 -> Node0x561f0f908520[color=black];
+	Node0x561f0f908420:s4 -> Node0x561f0f9083a0[color=black];
+	Node0x561f0f908420:s5 -> Node0x561f0f9085a0[color=black];
+	Node0x561f0f908420:s6 -> Node0x561f0f908620[color=black];
+	Node0x561f0f9087a0 [shape=record,shape=Mrecord,label="{freopen}"];
+}

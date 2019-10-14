@@ -1,0 +1,20 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5608761bc960 [shape=record,shape=circle,label="{_Z3recii|{<s0>1|<s1>2}}"];
+	Node0x5608761bc960:s0 -> Node0x5608761bc960[color=black];
+	Node0x5608761bc960:s1 -> Node0x5608761bc960[color=black];
+	Node0x5608761bce70 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5608761bcf70 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x5608761bd070 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5608761bcdf0 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9}}"];
+	Node0x5608761bcdf0:s0 -> Node0x5608761bce70[color=black];
+	Node0x5608761bcdf0:s1 -> Node0x5608761bcef0[color=black];
+	Node0x5608761bcdf0:s2 -> Node0x5608761bcef0[color=black];
+	Node0x5608761bcdf0:s3 -> Node0x5608761bcf70[color=black];
+	Node0x5608761bcdf0:s4 -> Node0x5608761bcff0[color=black];
+	Node0x5608761bcdf0:s5 -> Node0x5608761bc960[color=black];
+	Node0x5608761bcdf0:s6 -> Node0x5608761bd070[color=black];
+	Node0x5608761bcef0 [shape=record,shape=Mrecord,label="{fgets}"];
+	Node0x5608761bcff0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

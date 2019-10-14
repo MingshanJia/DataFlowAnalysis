@@ -1,0 +1,32 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55bd310d0a10 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55bd310d0a10:s0 -> Node0x55bd310d0ea0[color=black];
+	Node0x55bd310d0a10:s1 -> Node0x55bd310d0fa0[color=black];
+	Node0x55bd310d11a0 [shape=record,shape=circle,label="{_Z2qpix}"];
+	Node0x55bd310d0f20 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55bd310d12a0 [shape=record,shape=circle,label="{_Z2gnRi|{<s0>7}}"];
+	Node0x55bd310d12a0:s0 -> Node0x55bd310d13a0[color=black];
+	Node0x55bd310d1020 [shape=record,shape=circle,label="{_Z5getrev|{<s0>3}}"];
+	Node0x55bd310d1020:s0 -> Node0x55bd310d10a0[color=black];
+	Node0x55bd310d13a0 [shape=record,shape=circle,label="{_Z2gnRx|{<s0>12|<s1>13}}"];
+	Node0x55bd310d13a0:s0 -> Node0x55bd310d1420[color=black];
+	Node0x55bd310d13a0:s1 -> Node0x55bd310d1420[color=black];
+	Node0x55bd310d1120 [shape=record,shape=circle,label="{_Z6gettlev}"];
+	Node0x55bd310d14a0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_jcvb_1_0.cpp|{<s0>14}}"];
+	Node0x55bd310d14a0:s0 -> Node0x55bd310d0a10[color=black];
+	Node0x55bd310d0ea0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55bd310d1220 [shape=record,shape=circle,label="{_Z9main_workv|{<s0>4|<s1>5|<s2>6}}"];
+	Node0x55bd310d1220:s0 -> Node0x55bd310d12a0[color=black];
+	Node0x55bd310d1220:s1 -> Node0x55bd310d12a0[color=black];
+	Node0x55bd310d1220:s2 -> Node0x55bd310d10a0[color=black];
+	Node0x55bd310d0fa0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55bd310d1320 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9|<s2>10|<s3>11}}"];
+	Node0x55bd310d1320:s0 -> Node0x55bd310d11a0[color=black];
+	Node0x55bd310d1320:s1 -> Node0x55bd310d12a0[color=black];
+	Node0x55bd310d1320:s2 -> Node0x55bd310d10a0[color=black];
+	Node0x55bd310d1320:s3 -> Node0x55bd310d1220[color=black];
+	Node0x55bd310d10a0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55bd310d1420 [shape=record,shape=Mrecord,label="{getchar}"];
+}

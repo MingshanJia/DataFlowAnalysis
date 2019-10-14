@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55e8d1b4b7c0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55e8d1b4b7c0:s0 -> Node0x55e8d1b4bc50[color=black];
+	Node0x55e8d1b4b7c0:s1 -> Node0x55e8d1b4bd50[color=black];
+	Node0x55e8d1b4bf50 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x55e8d1b4bcd0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55e8d1b4c050 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55e8d1b4bdd0 [shape=record,shape=circle,label="{_Z3dis1SS_}"];
+	Node0x55e8d1b4c150 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55e8d1b4bed0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55e8d1b4bc50 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55e8d1b4bfd0 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x55e8d1b4bd50 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55e8d1b4c0d0 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55e8d1b4be50 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9|<s7>10|<s8>11|<s9>12|<s10>13|<s11>14|<s12>15|<s13>16}}"];
+	Node0x55e8d1b4be50:s0 -> Node0x55e8d1b4bed0[color=black];
+	Node0x55e8d1b4be50:s1 -> Node0x55e8d1b4bed0[color=black];
+	Node0x55e8d1b4be50:s2 -> Node0x55e8d1b4bed0[color=black];
+	Node0x55e8d1b4be50:s3 -> Node0x55e8d1b4bfd0[color=black];
+	Node0x55e8d1b4be50:s4 -> Node0x55e8d1b4bfd0[color=black];
+	Node0x55e8d1b4be50:s5 -> Node0x55e8d1b4bdd0[color=black];
+	Node0x55e8d1b4be50:s6 -> Node0x55e8d1b4bfd0[color=black];
+	Node0x55e8d1b4be50:s7 -> Node0x55e8d1b4bfd0[color=black];
+	Node0x55e8d1b4be50:s8 -> Node0x55e8d1b4bdd0[color=black];
+	Node0x55e8d1b4be50:s9 -> Node0x55e8d1b4bf50[color=black];
+	Node0x55e8d1b4be50:s10 -> Node0x55e8d1b4c050[color=black];
+	Node0x55e8d1b4be50:s11 -> Node0x55e8d1b4c0d0[color=black];
+	Node0x55e8d1b4be50:s12 -> Node0x55e8d1b4c0d0[color=black];
+	Node0x55e8d1b4be50:s13 -> Node0x55e8d1b4c150[color=black];
+	Node0x55e8d1b4c1d0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_squark_2_1.cpp|{<s0>17}}"];
+	Node0x55e8d1b4c1d0:s0 -> Node0x55e8d1b4b7c0[color=black];
+}

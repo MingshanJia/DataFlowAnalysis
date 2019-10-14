@@ -1,0 +1,32 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55e777f20e80 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55e777f20e80:s0 -> Node0x55e777f21310[color=black];
+	Node0x55e777f20e80:s1 -> Node0x55e777f21410[color=black];
+	Node0x55e777f21610 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55e777f21390 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55e777f21710 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x55e777f21490 [shape=record,shape=circle,label="{_Z5clearv}"];
+	Node0x55e777f21810 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13}}"];
+	Node0x55e777f21810:s0 -> Node0x55e777f21890[color=black];
+	Node0x55e777f21810:s1 -> Node0x55e777f21490[color=black];
+	Node0x55e777f21810:s2 -> Node0x55e777f21510[color=black];
+	Node0x55e777f21590 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x55e777f21910 [shape=record,shape=circle,label="{_GLOBAL__sub_I_CaptainAhmadi_1_1.cpp|{<s0>14}}"];
+	Node0x55e777f21910:s0 -> Node0x55e777f20e80[color=black];
+	Node0x55e777f21310 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55e777f21690 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55e777f21410 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55e777f21790 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x55e777f21510 [shape=record,shape=circle,label="{_Z5solvei|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9|<s7>10}}"];
+	Node0x55e777f21510:s0 -> Node0x55e777f21590[color=black];
+	Node0x55e777f21510:s1 -> Node0x55e777f21590[color=black];
+	Node0x55e777f21510:s2 -> Node0x55e777f21590[color=black];
+	Node0x55e777f21510:s3 -> Node0x55e777f21610[color=black];
+	Node0x55e777f21510:s4 -> Node0x55e777f21690[color=black];
+	Node0x55e777f21510:s5 -> Node0x55e777f21610[color=black];
+	Node0x55e777f21510:s6 -> Node0x55e777f21690[color=black];
+	Node0x55e777f21510:s7 -> Node0x55e777f21710[color=black];
+	Node0x55e777f21890 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+}

@@ -1,0 +1,286 @@
+package AlwaysTurnLeft;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
+
+abstract class GenericProblem {
+	protected String statement;
+	protected String solution;
+	protected String presolution;
+	protected String postsolution;
+	protected int problemIndex;
+	
+	public String getSolution(){
+		return presolution.concat(solution).concat(postsolution);
+	}
+	
+	abstract void solve();
+}
+
+abstract class GenericReaderSolverWriter {
+	protected static String inFileName = "dummy.in";
+	protected static String outFileName = "dummy.out";
+	protected static Vector<GenericProblem> problems;
+	protected static Vector<String> instrings;
+	private static Vector<String> outstrings;
+	/**
+	 * @param args
+	 */
+	
+	public GenericReaderSolverWriter(){
+		
+	}
+	
+	public GenericReaderSolverWriter(String iFN, String oFN){
+		inFileName = iFN; outFileName = oFN;
+	}
+	
+	abstract void parse();
+	
+	public void solveProblems() {
+		for (GenericProblem gp : problems){
+			gp.solve();
+			outstrings.add(gp.getSolution());
+			System.out.println("Solution: ".concat(gp.getSolution()));
+		}
+	}
+	
+	public void work() throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		BufferedReader in = new BufferedReader(new FileReader(inFileName));
+		instrings = new Vector<String>();
+		outstrings = new Vector<String>();
+		String str;
+		while ((str = in.readLine()) != null){
+			instrings.add(str);
+		}
+		in.close();
+		problems = new Vector<GenericProblem>();
+		parse();
+		solveProblems();
+		BufferedWriter out = new BufferedWriter(new FileWriter(outFileName));
+		out.flush();
+		for (String outstr : outstrings){
+			out.write(outstr);
+			out.newLine();
+		}
+		out.close();
+	}
+}
+
+class SetOfPoints {
+	Map<Integer, Set<Integer>> data;
+
+	SetOfPoints(){
+		data = new HashMap<Integer, Set<Integer>>();
+	}
+	
+	void addPoint(int x, int y){
+		if (!data.containsKey(x)){
+			Set<Integer> S = new HashSet<Integer>();
+			data.put(x, S);
+		}
+		data.get(x).add(y);
+	}
+	
+	boolean contains(int x, int y){
+		return data.containsKey(x) && data.get(x).contains(y);
+	}
+}
+
+class Walls {
+	SetOfPoints WallToWest;
+	SetOfPoints WallToNorth;
+	
+	Walls(){
+		WallToWest = new SetOfPoints();
+		WallToNorth = new SetOfPoints();
+	}
+	
+	boolean CanGoNorth(int x, int y){
+		return !(WallToNorth.contains(x, y));
+	}
+	
+	boolean CanGoEast(int x, int y){
+		return !(WallToWest.contains(x, y+1));
+	}
+	
+	boolean CanGoSouth(int x, int y){
+		return !(WallToNorth.contains(x+1, y));
+	}
+	
+	boolean CanGoWest(int x, int y){
+		return !(WallToWest.contains(x,y));
+	}
+	
+	void AddWall(int x1, int y1, int x2, int y2){
+		if (x1 == x2){
+			if (y1 + 1 == y2){
+				WallToWest.addPoint(x2, y2);
+			} else {
+				WallToWest.addPoint(x1, y1);
+			}
+		} else {
+			if (x1 + 1 == x2){
+				WallToNorth.addPoint(x2, y2);
+			} else {
+				WallToNorth.addPoint(x1, y1);
+			}
+		}
+	}
+}
+
+class AlwaysTurnLeftProblem extends GenericProblem {
+	String inPath;
+	String backPath;
+	Walls w;
+	
+	AlwaysTurnLeftProblem(String s, int pI){
+		problemIndex = pI;
+		presolution = "Case #".concat(String.valueOf(problemIndex)).concat(":\n");
+		postsolution = "";
+		statement = s;
+		String[] parse = s.split(" ");
+		inPath = parse[0];
+		backPath = parse[1];
+		w = new Walls();
+	}
+	
+	void solve(){
+		int px = 0; int py = 0;
+		int dx = 1; int dy = 0;
+		int lx = 0; int ly = 1;
+		int xn = 1; int xx = 1;
+		int yn = 0; int yx = 0;
+		int j = 0;
+		while (j < inPath.length()){
+			if (j != 0){
+				if (px < xn) xn=px;
+				if (px > xx) xx=px;
+				if (py < yn) yn=py;
+				if (py > yx) yx=py;
+			}
+			char c = inPath.charAt(j);
+			if (c == 'L'){
+				px = lx; py = ly;
+				lx = lx - dx; ly = ly - dy;
+				int d = dx; dx = -dy; dy = d;
+				++j;
+			} else {
+				if (j != 0){
+					w.AddWall(px, py, lx, ly);
+					if (problemIndex == 2){
+						System.out.println(String.format("%d %d %d %d",px, py, lx, ly));
+					}
+				}
+				if (c == 'W'){
+					px = px + dx; py = py + dy;
+					lx = lx + dx; ly = ly + dy;
+				} else {
+					lx = px + dx; ly = py + dy;
+					int d = dx; dx = dy; dy = -d;
+					w.AddWall(px, py, lx, ly);
+					if (problemIndex == 2){
+						System.out.println(String.format("%d %d %d %d",px, py, lx, ly));
+					}
+				}
+			}			
+			++j;
+		}
+		dx = - dx; dy = - dy;
+		lx = 2*px - lx; ly = 2*py - ly;
+		j = 0;
+		while (j < backPath.length()){
+			if (j != 0){
+				if (px < xn) xn=px;
+				if (px > xx) xx=px;
+				if (py < yn) yn=py;
+				if (py > yx) yx=py;
+			}
+			char c = backPath.charAt(j);
+			if (c == 'L'){
+				px = lx; py = ly;
+				lx = lx - dx; ly = ly - dy;
+				int d = dx; dx = -dy; dy = d;
+				++j;
+			} else {
+				if (j != 0){
+					w.AddWall(px, py, lx, ly);
+					if (problemIndex == 2){
+						System.out.println(String.format("%d %d %d %d",px, py, lx, ly));
+					}
+				}
+				if (c == 'W'){
+					px = px + dx; py = py + dy;
+					lx = lx + dx; ly = ly + dy;
+				} else {
+					lx = px + dx; ly = py + dy;
+					int d = dx; dx = dy; dy = -d;
+					w.AddWall(px, py, lx, ly);
+					if (problemIndex == 2){
+						System.out.println(String.format("%d %d %d %d",px, py, lx, ly));
+					}
+				}
+			}	
+			++j;
+		}
+		solution = "";
+//		for (int x = xn; x <= xx+1; ++x){
+//			for (int y = yn; y <= yx+1; ++y){
+//				System.out.print((y <= yx && w.CanGoNorth(x, y)) ? " |" : "  ");
+//			}
+//			System.out.println("");
+//			for (int y = yn; y <= yx+1; ++y){
+//				System.out.print((x <= xx && w.CanGoWest(x, y)) ? "-" : " ");
+//				System.out.print(y <= yx && x <= xx ? "*" : " ");
+//			}
+//			System.out.println("");
+//		}
+		for (int x = xn; x <= xx; ++x){
+			for (int y = yn; y <= yx; ++y){
+				int z = 0;
+				z = (w.CanGoNorth(x,y) ? 1 : 0) +
+					(w.CanGoSouth(x,y) ? 2 : 0) +
+					(w.CanGoWest(x,y) ? 4 : 0) +
+					(w.CanGoEast(x,y) ? 8 : 0);
+				solution = solution.concat(String.valueOf("0123456789abcdef".charAt(z)));
+			}
+			if (x < xx) solution = solution.concat("\n");
+		}
+	}
+}
+
+final class AlwaysTurnLeftReaderSolverWriter extends GenericReaderSolverWriter {
+	AlwaysTurnLeftReaderSolverWriter(String iFN, String oFN){
+		super(iFN, oFN);
+	}
+	
+	void parse(){
+		int N = Integer.valueOf(instrings.get(0));
+		for (int i = 0; i < N; ++i){
+			AlwaysTurnLeftProblem rp = new AlwaysTurnLeftProblem(instrings.get(i+1), i+1);
+			problems.add(rp);
+		}
+	}
+}
+
+public class AlwaysTurnLeft {
+	public static void main(String[] args) {
+		AlwaysTurnLeftReaderSolverWriter rs = new AlwaysTurnLeftReaderSolverWriter("d:\\B-small-attempt2.out","d:\\B-small-attempt2.outt");
+		try {
+			rs.work();
+		}
+		catch (Exception e){
+			System.err.println(e.getMessage());
+		}
+	}
+}

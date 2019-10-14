@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55cca67c1b30 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1}}"];
+	Node0x55cca67c1b30:s0 -> Node0x55cca67c1fc0[color=black];
+	Node0x55cca67c22c0 [shape=record,shape=circle,label="{_Z4doItv|{<s0>10|<s1>11|<s2>12|<s3>13|<s4>14|<s5>15|<s6>16}}"];
+	Node0x55cca67c22c0:s0 -> Node0x55cca67c2340[color=black];
+	Node0x55cca67c22c0:s1 -> Node0x55cca67c2340[color=black];
+	Node0x55cca67c22c0:s2 -> Node0x55cca67c2140[color=black];
+	Node0x55cca67c22c0:s3 -> Node0x55cca67c21c0[color=black];
+	Node0x55cca67c22c0:s4 -> Node0x55cca67c2240[color=black];
+	Node0x55cca67c22c0:s5 -> Node0x55cca67c21c0[color=black];
+	Node0x55cca67c22c0:s6 -> Node0x55cca67c20c0[color=black];
+	Node0x55cca67c2040 [shape=record,shape=circle,label="{_Z7addNodev|{<s0>2}}"];
+	Node0x55cca67c2040:s0 -> Node0x55cca67c20c0[color=black];
+	Node0x55cca67c23c0 [shape=record,shape=circle,label="{main|{<s0>17|<s1>18|<s2>19}}"];
+	Node0x55cca67c23c0:s0 -> Node0x55cca67c2340[color=black];
+	Node0x55cca67c23c0:s1 -> Node0x55cca67c20c0[color=black];
+	Node0x55cca67c23c0:s2 -> Node0x55cca67c22c0[color=black];
+	Node0x55cca67c2140 [shape=record,shape=circle,label="{_Z10createTreev|{<s0>3}}"];
+	Node0x55cca67c2140:s0 -> Node0x55cca67c2040[color=black];
+	Node0x55cca67c2240 [shape=record,shape=circle,label="{_Z3addiiiiP4Node|{<s0>6|<s1>7|<s2>8|<s3>9}}"];
+	Node0x55cca67c2240:s0 -> Node0x55cca67c2040[color=black];
+	Node0x55cca67c2240:s1 -> Node0x55cca67c2240[color=black];
+	Node0x55cca67c2240:s2 -> Node0x55cca67c2040[color=black];
+	Node0x55cca67c2240:s3 -> Node0x55cca67c2240[color=black];
+	Node0x55cca67c1fc0 [shape=record,shape=circle,label="{_ZN4NodeC2Ev}"];
+	Node0x55cca67c2340 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55cca67c20c0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55cca67c2440 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Jakozaur_2_1.cpp|{<s0>20}}"];
+	Node0x55cca67c2440:s0 -> Node0x55cca67c1b30[color=black];
+	Node0x55cca67c21c0 [shape=record,shape=circle,label="{_Z5quoteiiiP4Node|{<s0>4|<s1>5}}"];
+	Node0x55cca67c21c0:s0 -> Node0x55cca67c21c0[color=black];
+	Node0x55cca67c21c0:s1 -> Node0x55cca67c21c0[color=black];
+}

@@ -1,0 +1,39 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x565483eebaa0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x565483eebaa0:s0 -> Node0x565483eebf30[color=black];
+	Node0x565483eebaa0:s1 -> Node0x565483eec030[color=black];
+	Node0x565483eec230 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+	Node0x565483eec5b0 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x565483eebfb0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x565483eec330 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev}"];
+	Node0x565483eec6b0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_EmK_0_1.cpp|{<s0>16|<s1>17|<s2>18}}"];
+	Node0x565483eec6b0:s0 -> Node0x565483eebaa0[color=black];
+	Node0x565483eec6b0:s1 -> Node0x565483eec0b0[color=black];
+	Node0x565483eec6b0:s2 -> Node0x565483eec3b0[color=black];
+	Node0x565483eec0b0 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x565483eec0b0:s0 -> Node0x565483eec130[color=black];
+	Node0x565483eec0b0:s1 -> Node0x565483eec1b0[color=black];
+	Node0x565483eec0b0:s2 -> Node0x565483eec2b0[color=black];
+	Node0x565483eec0b0:s3 -> Node0x565483eec030[color=black];
+	Node0x565483eec0b0:s4 -> Node0x565483eec2b0[color=black];
+	Node0x565483eec430 [shape=record,shape=Mrecord,label="{atan}"];
+	Node0x565483eec1b0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_}"];
+	Node0x565483eec530 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x565483eebf30 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x565483eec2b0 [shape=record,shape=Mrecord,label="{_ZNSaIcED1Ev}"];
+	Node0x565483eec630 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x565483eec030 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x565483eec3b0 [shape=record,shape=circle,label="{__cxx_global_var_init.2|{<s0>8}}"];
+	Node0x565483eec3b0:s0 -> Node0x565483eec430[color=black];
+	Node0x565483eec130 [shape=record,shape=Mrecord,label="{_ZNSaIcEC1Ev}"];
+	Node0x565483eec4b0 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15}}"];
+	Node0x565483eec4b0:s0 -> Node0x565483eec530[color=black];
+	Node0x565483eec4b0:s1 -> Node0x565483eec5b0[color=black];
+	Node0x565483eec4b0:s2 -> Node0x565483eec5b0[color=black];
+	Node0x565483eec4b0:s3 -> Node0x565483eec5b0[color=black];
+	Node0x565483eec4b0:s4 -> Node0x565483eec530[color=black];
+	Node0x565483eec4b0:s5 -> Node0x565483eec530[color=black];
+	Node0x565483eec4b0:s6 -> Node0x565483eec630[color=black];
+}

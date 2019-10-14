@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x558c8f3064b0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x558c8f3064b0:s0 -> Node0x558c8f306940[color=black];
+	Node0x558c8f3064b0:s1 -> Node0x558c8f306a40[color=black];
+	Node0x558c8f306c40 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x558c8f3069c0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x558c8f306d40 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12|<s3>13|<s4>14|<s5>15}}"];
+	Node0x558c8f306d40:s0 -> Node0x558c8f306dc0[color=black];
+	Node0x558c8f306d40:s1 -> Node0x558c8f306e40[color=black];
+	Node0x558c8f306d40:s2 -> Node0x558c8f306e40[color=black];
+	Node0x558c8f306d40:s3 -> Node0x558c8f306e40[color=black];
+	Node0x558c8f306d40:s4 -> Node0x558c8f306bc0[color=black];
+	Node0x558c8f306d40:s5 -> Node0x558c8f306ec0[color=black];
+	Node0x558c8f306ac0 [shape=record,shape=circle,label="{_Z3sgnd}"];
+	Node0x558c8f306e40 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x558c8f306bc0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9}}"];
+	Node0x558c8f306bc0:s0 -> Node0x558c8f306c40[color=black];
+	Node0x558c8f306bc0:s1 -> Node0x558c8f306cc0[color=black];
+	Node0x558c8f306bc0:s2 -> Node0x558c8f306cc0[color=black];
+	Node0x558c8f306bc0:s3 -> Node0x558c8f306cc0[color=black];
+	Node0x558c8f306bc0:s4 -> Node0x558c8f306cc0[color=black];
+	Node0x558c8f306bc0:s5 -> Node0x558c8f306cc0[color=black];
+	Node0x558c8f306f40 [shape=record,shape=circle,label="{_GLOBAL__sub_I_isea_1_0.cpp|{<s0>16}}"];
+	Node0x558c8f306f40:s0 -> Node0x558c8f3064b0[color=black];
+	Node0x558c8f306940 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x558c8f306cc0 [shape=record,shape=circle,label="{_Z5ckmaxIiEvRT_S0_}"];
+	Node0x558c8f306a40 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x558c8f306dc0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x558c8f306b40 [shape=record,shape=circle,label="{_Z9count_biti|{<s0>3}}"];
+	Node0x558c8f306b40:s0 -> Node0x558c8f306b40[color=black];
+	Node0x558c8f306ec0 [shape=record,shape=Mrecord,label="{printf}"];
+}

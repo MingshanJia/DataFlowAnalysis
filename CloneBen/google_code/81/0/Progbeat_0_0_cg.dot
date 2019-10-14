@@ -1,0 +1,38 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56108f2253d0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x56108f2253d0:s0 -> Node0x56108f225860[color=black];
+	Node0x56108f2253d0:s1 -> Node0x56108f225960[color=black];
+	Node0x56108f225b60 [shape=record,shape=circle,label="{_ZSt5__gcdIxET_S0_S0_}"];
+	Node0x56108f225ee0 [shape=record,shape=circle,label="{_ZStoRRSt13_Ios_FmtflagsS_|{<s0>16}}"];
+	Node0x56108f225ee0:s0 -> Node0x56108f225f60[color=black];
+	Node0x56108f2258e0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x56108f225c60 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9|<s2>10|<s3>11|<s4>12|<s5>13|<s6>14}}"];
+	Node0x56108f225c60:s0 -> Node0x56108f225ce0[color=black];
+	Node0x56108f225c60:s1 -> Node0x56108f225ce0[color=black];
+	Node0x56108f225c60:s2 -> Node0x56108f225d60[color=black];
+	Node0x56108f225c60:s3 -> Node0x56108f225de0[color=black];
+	Node0x56108f225c60:s4 -> Node0x56108f225ae0[color=black];
+	Node0x56108f225c60:s5 -> Node0x56108f225e60[color=black];
+	Node0x56108f225c60:s6 -> Node0x56108f2259e0[color=black];
+	Node0x56108f225fe0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Progbeat_0_0.cpp|{<s0>17}}"];
+	Node0x56108f225fe0:s0 -> Node0x56108f2253d0[color=black];
+	Node0x56108f2259e0 [shape=record,shape=circle,label="{_Z3runv|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x56108f2259e0:s0 -> Node0x56108f225a60[color=black];
+	Node0x56108f2259e0:s1 -> Node0x56108f225ae0[color=black];
+	Node0x56108f2259e0:s2 -> Node0x56108f225ae0[color=black];
+	Node0x56108f2259e0:s3 -> Node0x56108f225b60[color=black];
+	Node0x56108f2259e0:s4 -> Node0x56108f225be0[color=black];
+	Node0x56108f225d60 [shape=record,shape=circle,label="{_ZNSt8ios_base9precisionEl}"];
+	Node0x56108f225ae0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x56108f225e60 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x56108f225860 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x56108f225be0 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x56108f225f60 [shape=record,shape=circle,label="{_ZStorSt13_Ios_FmtflagsS_}"];
+	Node0x56108f225960 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x56108f225ce0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x56108f225a60 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x56108f225de0 [shape=record,shape=circle,label="{_ZNSt8ios_base4setfESt13_Ios_Fmtflags|{<s0>15}}"];
+	Node0x56108f225de0:s0 -> Node0x56108f225ee0[color=black];
+}

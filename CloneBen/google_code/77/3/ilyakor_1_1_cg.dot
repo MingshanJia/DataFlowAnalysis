@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55a95d309360 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55a95d309360:s0 -> Node0x55a95d3097f0[color=black];
+	Node0x55a95d309360:s1 -> Node0x55a95d3098f0[color=black];
+	Node0x55a95d309af0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11}}"];
+	Node0x55a95d309af0:s0 -> Node0x55a95d309a70[color=black];
+	Node0x55a95d309af0:s1 -> Node0x55a95d309b70[color=black];
+	Node0x55a95d309af0:s2 -> Node0x55a95d309b70[color=black];
+	Node0x55a95d309af0:s3 -> Node0x55a95d309970[color=black];
+	Node0x55a95d309af0:s4 -> Node0x55a95d309970[color=black];
+	Node0x55a95d309af0:s5 -> Node0x55a95d309c70[color=black];
+	Node0x55a95d309af0:s6 -> Node0x55a95d309bf0[color=black];
+	Node0x55a95d309870 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55a95d309bf0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55a95d309970 [shape=record,shape=circle,label="{_Z5checki|{<s0>3|<s1>4}}"];
+	Node0x55a95d309970:s0 -> Node0x55a95d3099f0[color=black];
+	Node0x55a95d309970:s1 -> Node0x55a95d309a70[color=black];
+	Node0x55a95d309cf0 [shape=record,shape=circle,label="{main|{<s0>12|<s1>13|<s2>14}}"];
+	Node0x55a95d309cf0:s0 -> Node0x55a95d309b70[color=black];
+	Node0x55a95d309cf0:s1 -> Node0x55a95d309d70[color=black];
+	Node0x55a95d309cf0:s2 -> Node0x55a95d309af0[color=black];
+	Node0x55a95d309a70 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55a95d309df0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_ilyakor_1_1.cpp|{<s0>15}}"];
+	Node0x55a95d309df0:s0 -> Node0x55a95d309360[color=black];
+	Node0x55a95d3097f0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55a95d309b70 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55a95d3098f0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55a95d309c70 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55a95d3099f0 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x55a95d309d70 [shape=record,shape=Mrecord,label="{printf}"];
+}

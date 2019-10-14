@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55e9c236e330 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55e9c236e330:s0 -> Node0x55e9c236e7c0[color=black];
+	Node0x55e9c236e330:s1 -> Node0x55e9c236e8c0[color=black];
+	Node0x55e9c236eac0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15|<s11>16}}"];
+	Node0x55e9c236eac0:s0 -> Node0x55e9c236eb40[color=black];
+	Node0x55e9c236eac0:s1 -> Node0x55e9c236eb40[color=black];
+	Node0x55e9c236eac0:s2 -> Node0x55e9c236ebc0[color=black];
+	Node0x55e9c236eac0:s3 -> Node0x55e9c236ebc0[color=black];
+	Node0x55e9c236eac0:s4 -> Node0x55e9c236ebc0[color=black];
+	Node0x55e9c236eac0:s5 -> Node0x55e9c236ebc0[color=black];
+	Node0x55e9c236eac0:s6 -> Node0x55e9c236ec40[color=black];
+	Node0x55e9c236eac0:s7 -> Node0x55e9c236ecc0[color=black];
+	Node0x55e9c236eac0:s8 -> Node0x55e9c236ec40[color=black];
+	Node0x55e9c236eac0:s9 -> Node0x55e9c236ea40[color=black];
+	Node0x55e9c236eac0:s10 -> Node0x55e9c236ecc0[color=black];
+	Node0x55e9c236eac0:s11 -> Node0x55e9c236ec40[color=black];
+	Node0x55e9c236e840 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55e9c236ebc0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55e9c236e940 [shape=record,shape=circle,label="{_Z7solve_1v}"];
+	Node0x55e9c236ecc0 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55e9c236ea40 [shape=record,shape=circle,label="{_Z5solvev|{<s0>3|<s1>4}}"];
+	Node0x55e9c236ea40:s0 -> Node0x55e9c236e940[color=black];
+	Node0x55e9c236ea40:s1 -> Node0x55e9c236e9c0[color=black];
+	Node0x55e9c236e7c0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55e9c236eb40 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55e9c236e8c0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55e9c236ec40 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55e9c236e9c0 [shape=record,shape=circle,label="{_Z7solve_2v}"];
+	Node0x55e9c236ed40 [shape=record,shape=circle,label="{_GLOBAL__sub_I_decltypeNULL_0_1.cpp|{<s0>17}}"];
+	Node0x55e9c236ed40:s0 -> Node0x55e9c236e330[color=black];
+}

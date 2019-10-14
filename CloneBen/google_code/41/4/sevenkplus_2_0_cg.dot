@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563a3022fc40 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563a3022fc40:s0 -> Node0x563a302300d0[color=black];
+	Node0x563a3022fc40:s1 -> Node0x563a302301d0[color=black];
+	Node0x563a302303d0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x563a30230150 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563a302304d0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563a30230250 [shape=record,shape=circle,label="{_Z2ffii|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x563a30230250:s0 -> Node0x563a302302d0[color=black];
+	Node0x563a30230250:s1 -> Node0x563a302302d0[color=black];
+	Node0x563a30230250:s2 -> Node0x563a302302d0[color=black];
+	Node0x563a302305d0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_sevenkplus_2_0.cpp|{<s0>18}}"];
+	Node0x563a302305d0:s0 -> Node0x563a3022fc40[color=black];
+	Node0x563a30230350 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12|<s7>13|<s8>14|<s9>15|<s10>16|<s11>17}}"];
+	Node0x563a30230350:s0 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s1 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s2 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s3 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s4 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s5 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s6 -> Node0x563a302303d0[color=black];
+	Node0x563a30230350:s7 -> Node0x563a30230250[color=black];
+	Node0x563a30230350:s8 -> Node0x563a30230450[color=black];
+	Node0x563a30230350:s9 -> Node0x563a302304d0[color=black];
+	Node0x563a30230350:s10 -> Node0x563a30230550[color=black];
+	Node0x563a30230350:s11 -> Node0x563a302304d0[color=black];
+	Node0x563a302300d0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563a30230450 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x563a302301d0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563a30230550 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x563a302302d0 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+}

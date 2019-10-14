@@ -1,0 +1,190 @@
+
+*********CallGraph Stats***************
+################ (program : )###############
+-------------------------------------------------------
+TotalNode           486
+TotalEdge           1224
+TotalCycle          7
+MaxNodeInCycle      1
+NodeInCycle         7
+CalRetPairInCycle   9
+#######################################################
+
+*********General Stats***************
+################ (program : )###############
+BBWith2Succ         353
+BBWith3Succ         0
+BitCastNumber       759
+TotalPTAPAGEdges    9404
+TotalCallSite       1224
+LocalVarInRecur     53
+IndCallSites        0
+ReturnsNum          607
+CallsNum            1695
+GepsNum             1669
+CopysNum            1516
+StoresNum           1598
+LoadsNum            2149
+AddrsNum            1901
+NonPtrObj           779
+ConstArrayObj       1
+ConstStructObj      0
+VarArrayObj         19
+VarStructObj        354
+FSObjNum            1838
+FIObjNum            4
+StackObjs           1323
+HeapObjs            6
+GlobalObjs          27
+FunctionObjs        486
+TotalPAGEdges       23704
+MaxStructSize       10
+TotalFieldObjects   424
+TotalObjects        1843
+TotalPointers       11931
+-------------------------------------------------------
+#######################################################
+
+*********Constraint Graph Stats***************
+################ (program : )###############
+-------------------------------------------------------
+AvgIn/OutCopyEdge   0.7441
+AvgIn/OutLoadEdge   0.175561
+AvgIn/OutAddrEdge   0.204511
+AvgIn/OutEdge       1.26602
+NumOfCGNode         13888
+TotalValidNode      8601
+TotalValidObjNode   1902
+NumOfCGEdge         9130
+NumOfAddrs          1759
+NumOfCopys          4771
+NumOfGeps           1629
+NumOfLoads          1510
+NumOfStores         1220
+MaxInCopyEdge       38
+MaxOutCopyEdge      117
+MaxInLoadEdge       116
+MaxOutLoadEdge      9
+MaxInStoreEdge      3
+MaxOutStoreEdge     118
+AvgIn/OutStoreEdge  0
+MaxInAddrEdge       1
+MaxOutAddrEdge      26
+#######################################################
+
+*********Andersen Pointer Analysis Stats***************
+################ (program : )###############
+-------------------------------------------------------
+TotalTime           0.154
+CollapseTime        0
+CopyGepTime         0.011
+UpdateCGTime        0
+AvgTopLvlPtsSize    1.9523
+AvgPtsSetSize       1.14047
+LoadStoreTime       0.012
+SCCMergeTime        0.016
+SCCDetectTime       0.063
+PointsToConstPtr    2
+PointsToBlkPtr      0
+NullPointer         9
+MaxNodesInSCC       313
+NodesInCycles       983
+TotalPWCCycleNum    2
+TotalCycleNum       42
+NumOfSCCDetect      4
+IndEdgeSolved       0
+IndCallSites        0
+Iterations          4
+MaxPtsSetSize       32
+DYFieldObjs         424
+MemObjects          1843
+DYFieldPtrs         286
+GepProcessed        1696
+CopyProcessed       4644
+StoreProcessed      1336
+LoadProcessed       2219
+AddrProcessed       1867
+TotalObjects        2267
+TotalPointers       11931
+Pointers            11645
+#######################################################
+
+****Memory SSA Statistics****
+
+************************
+################ (program : )###############
+-------------------------------------------------------
+AverageRegSize      1.89304
+SSARenameTime       0.003
+InsertPHITime       0.002
+GenMUCHITime        0.012
+GenRegionTime       0.036
+TotalMSSATime       0.056
+BBHasMSSAPhi        184
+MSSAPhi             1344
+StoreHasChi         1587
+LoadHasMu           2149
+CSHasMu             534
+CSHasChi            298
+FunHasRetMu         463
+FunHasEntryChi      459
+StoreChiNode        1619
+LoadMuNode          2233
+CSMuNode            1429
+CSChiNode           689
+FunRetMu            2096
+FunEntryChi         2096
+MemRegions          1580
+MaxRegSize          55
+#######################################################
+
+****SVFG Statistics****
+
+************************
+################ (program : )###############
+-------------------------------------------------------
+TotalTime           0.087
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0.013
+TLNodeTime          0
+ATNodeTime          0.005
+OptTime             0.016
+AvgWeight           2.19985
+TotalNode           12432
+FormalIn            709
+FormalOut           13
+FormalParam         0
+FormalRet           0
+ActualIn            0
+ActualOut           308
+ActualParam         0
+ActualRet           0
+TotalEdge           18028
+DirectEdge          11248
+IndirectEdge        6780
+IndCallEdge         1840
+IndRetEdge          1084
+DirectCallEdge      1695
+DirectRetEdge       607
+AvgInDegree         1
+AvgOutDegree        1
+MaxInDegree         60
+MaxOutDegree        326
+AvgIndInDeg         1
+AvgIndOutDeg        2
+MaxIndInDeg         60
+MaxIndOutDeg        144
+MSSAPhi             758
+PHI                 1507
+Addr                1901
+Copy                1468
+Gep                 1669
+Load                2149
+Store               1426
+#######################################################
+Writing 'callgraph_initial.dot'...
+Writing 'callgraph_initial.dot'...
+Writing 'callgraph_final.dot'...
+Writing 'SVFG_before_opt.dot'...
+Writing 'svfg_final.dot'...
+Writing 'svfg_initial.dot'...

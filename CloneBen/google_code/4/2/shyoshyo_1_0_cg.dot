@@ -1,0 +1,20 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x560c4f8e9da0 [shape=record,shape=circle,label="{_Z4worki|{<s0>1|<s1>2|<s2>3|<s3>4}}"];
+	Node0x560c4f8e9da0:s0 -> Node0x560c4f8ea230[color=black];
+	Node0x560c4f8e9da0:s1 -> Node0x560c4f8ea2b0[color=black];
+	Node0x560c4f8e9da0:s2 -> Node0x560c4f8ea330[color=black];
+	Node0x560c4f8e9da0:s3 -> Node0x560c4f8ea3b0[color=black];
+	Node0x560c4f8ea2b0 [shape=record,shape=circle,label="{_ZSt4swapIiENSt9enable_ifIXsr6__and_ISt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS3_ESt18is_move_assignableIS3_EEE5valueEvE4typeERS3_SC_|{<s0>5|<s1>6|<s2>7}}"];
+	Node0x560c4f8ea2b0:s0 -> Node0x560c4f8ea4b0[color=black];
+	Node0x560c4f8ea2b0:s1 -> Node0x560c4f8ea4b0[color=black];
+	Node0x560c4f8ea2b0:s2 -> Node0x560c4f8ea4b0[color=black];
+	Node0x560c4f8ea3b0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x560c4f8ea4b0 [shape=record,shape=circle,label="{_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_}"];
+	Node0x560c4f8ea230 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x560c4f8ea330 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x560c4f8ea430 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9}}"];
+	Node0x560c4f8ea430:s0 -> Node0x560c4f8ea230[color=black];
+	Node0x560c4f8ea430:s1 -> Node0x560c4f8e9da0[color=black];
+}

@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561fabecd6b0 [shape=record,shape=circle,label="{_Z4rootRiS_|{<s0>1}}"];
+	Node0x561fabecd6b0:s0 -> Node0x561fabecd6b0[color=black];
+	Node0x561fabecde40 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x561fabecdbc0 [shape=record,shape=circle,label="{_Z2goiiiiiib|{<s0>4}}"];
+	Node0x561fabecdbc0:s0 -> Node0x561fabecdbc0[color=black];
+	Node0x561fabecdf40 [shape=record,shape=Mrecord,label="{abs}"];
+	Node0x561fabecdcc0 [shape=record,shape=Mrecord,label="{__assert_fail}"];
+	Node0x561fabecddc0 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12|<s3>13|<s4>14|<s5>15|<s6>16|<s7>17|<s8>18|<s9>19|<s10>20|<s11>21}}"];
+	Node0x561fabecddc0:s0 -> Node0x561fabecde40[color=black];
+	Node0x561fabecddc0:s1 -> Node0x561fabecde40[color=black];
+	Node0x561fabecddc0:s2 -> Node0x561fabecdec0[color=black];
+	Node0x561fabecddc0:s3 -> Node0x561fabecdec0[color=black];
+	Node0x561fabecddc0:s4 -> Node0x561fabecdec0[color=black];
+	Node0x561fabecddc0:s5 -> Node0x561fabecdf40[color=black];
+	Node0x561fabecddc0:s6 -> Node0x561fabecde40[color=black];
+	Node0x561fabecddc0:s7 -> Node0x561fabecdc40[color=black];
+	Node0x561fabecddc0:s8 -> Node0x561fabecdfc0[color=black];
+	Node0x561fabecddc0:s9 -> Node0x561fabecdfc0[color=black];
+	Node0x561fabecddc0:s10 -> Node0x561fabecdfc0[color=black];
+	Node0x561fabecddc0:s11 -> Node0x561fabecdfc0[color=black];
+	Node0x561fabecdb40 [shape=record,shape=circle,label="{_Z5uniteiiii|{<s0>2|<s1>3}}"];
+	Node0x561fabecdb40:s0 -> Node0x561fabecd6b0[color=black];
+	Node0x561fabecdb40:s1 -> Node0x561fabecd6b0[color=black];
+	Node0x561fabecdec0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x561fabecdc40 [shape=record,shape=circle,label="{_Z3putii|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9}}"];
+	Node0x561fabecdc40:s0 -> Node0x561fabecdcc0[color=black];
+	Node0x561fabecdc40:s1 -> Node0x561fabecdbc0[color=black];
+	Node0x561fabecdc40:s2 -> Node0x561fabecdb40[color=black];
+	Node0x561fabecdc40:s3 -> Node0x561fabecdd40[color=black];
+	Node0x561fabecdc40:s4 -> Node0x561fabecdd40[color=black];
+	Node0x561fabecdfc0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561fabecdd40 [shape=record,shape=Mrecord,label="{llvm.ctpop.i32}"];
+}

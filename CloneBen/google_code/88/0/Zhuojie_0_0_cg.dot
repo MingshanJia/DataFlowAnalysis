@@ -1,0 +1,24 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5582dbf6dea0 [shape=record,shape=circle,label="{_Z3colii}"];
+	Node0x5582dbf6e3b0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5582dbf6e4b0 [shape=record,shape=circle,label="{_ZSt4swapIcENSt9enable_ifIXsr6__and_ISt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS3_ESt18is_move_assignableIS3_EEE5valueEvE4typeERS3_SC_|{<s0>11|<s1>12|<s2>13}}"];
+	Node0x5582dbf6e4b0:s0 -> Node0x5582dbf6e5b0[color=black];
+	Node0x5582dbf6e4b0:s1 -> Node0x5582dbf6e5b0[color=black];
+	Node0x5582dbf6e4b0:s2 -> Node0x5582dbf6e5b0[color=black];
+	Node0x5582dbf6e5b0 [shape=record,shape=circle,label="{_ZSt4moveIRcEONSt16remove_referenceIT_E4typeEOS2_}"];
+	Node0x5582dbf6e330 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7|<s7>8|<s8>9|<s9>10}}"];
+	Node0x5582dbf6e330:s0 -> Node0x5582dbf6e3b0[color=black];
+	Node0x5582dbf6e330:s1 -> Node0x5582dbf6e430[color=black];
+	Node0x5582dbf6e330:s2 -> Node0x5582dbf6e3b0[color=black];
+	Node0x5582dbf6e330:s3 -> Node0x5582dbf6e3b0[color=black];
+	Node0x5582dbf6e330:s4 -> Node0x5582dbf6e4b0[color=black];
+	Node0x5582dbf6e330:s5 -> Node0x5582dbf6dea0[color=black];
+	Node0x5582dbf6e330:s6 -> Node0x5582dbf6e530[color=black];
+	Node0x5582dbf6e330:s7 -> Node0x5582dbf6e530[color=black];
+	Node0x5582dbf6e330:s8 -> Node0x5582dbf6e530[color=black];
+	Node0x5582dbf6e330:s9 -> Node0x5582dbf6e530[color=black];
+	Node0x5582dbf6e430 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5582dbf6e530 [shape=record,shape=Mrecord,label="{puts}"];
+}

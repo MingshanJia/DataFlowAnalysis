@@ -1,0 +1,26 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55ccf0616290 [shape=record,shape=circle,label="{_Z2goii}"];
+	Node0x55ccf0616a20 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x55ccf06167a0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55ccf06168a0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55ccf06169a0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55ccf0616720 [shape=record,shape=circle,label="{_Z4helpi|{<s0>1|<s1>2}}"];
+	Node0x55ccf0616720:s0 -> Node0x55ccf06167a0[color=black];
+	Node0x55ccf0616720:s1 -> Node0x55ccf0616290[color=black];
+	Node0x55ccf0616820 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8|<s6>9|<s7>10|<s8>11|<s9>12|<s10>13|<s11>14}}"];
+	Node0x55ccf0616820:s0 -> Node0x55ccf06168a0[color=black];
+	Node0x55ccf0616820:s1 -> Node0x55ccf06168a0[color=black];
+	Node0x55ccf0616820:s2 -> Node0x55ccf0616920[color=black];
+	Node0x55ccf0616820:s3 -> Node0x55ccf06169a0[color=black];
+	Node0x55ccf0616820:s4 -> Node0x55ccf0616920[color=black];
+	Node0x55ccf0616820:s5 -> Node0x55ccf06167a0[color=black];
+	Node0x55ccf0616820:s6 -> Node0x55ccf0616920[color=black];
+	Node0x55ccf0616820:s7 -> Node0x55ccf06169a0[color=black];
+	Node0x55ccf0616820:s8 -> Node0x55ccf0616a20[color=black];
+	Node0x55ccf0616820:s9 -> Node0x55ccf0616720[color=black];
+	Node0x55ccf0616820:s10 -> Node0x55ccf0616a20[color=black];
+	Node0x55ccf0616820:s11 -> Node0x55ccf06169a0[color=black];
+	Node0x55ccf0616920 [shape=record,shape=Mrecord,label="{scanf}"];
+}

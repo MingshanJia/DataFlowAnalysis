@@ -1,0 +1,28 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x564bdccd6570 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x564bdccd6570:s0 -> Node0x564bdccd6a00[color=black];
+	Node0x564bdccd6570:s1 -> Node0x564bdccd6b00[color=black];
+	Node0x564bdccd6d00 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x564bdccd6a80 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x564bdccd6e00 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12}}"];
+	Node0x564bdccd6e00:s0 -> Node0x564bdccd6d00[color=black];
+	Node0x564bdccd6e00:s1 -> Node0x564bdccd6d80[color=black];
+	Node0x564bdccd6e00:s2 -> Node0x564bdccd6c80[color=black];
+	Node0x564bdccd6b80 [shape=record,shape=circle,label="{_Z3recix|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x564bdccd6b80:s0 -> Node0x564bdccd6b80[color=black];
+	Node0x564bdccd6b80:s1 -> Node0x564bdccd6b80[color=black];
+	Node0x564bdccd6b80:s2 -> Node0x564bdccd6c00[color=black];
+	Node0x564bdccd6c80 [shape=record,shape=circle,label="{_Z4testv|{<s0>6|<s1>7|<s2>8|<s3>9}}"];
+	Node0x564bdccd6c80:s0 -> Node0x564bdccd6d00[color=black];
+	Node0x564bdccd6c80:s1 -> Node0x564bdccd6b80[color=black];
+	Node0x564bdccd6c80:s2 -> Node0x564bdccd6b80[color=black];
+	Node0x564bdccd6c80:s3 -> Node0x564bdccd6d80[color=black];
+	Node0x564bdccd6a00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x564bdccd6d80 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x564bdccd6b00 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x564bdccd6e80 [shape=record,shape=circle,label="{_GLOBAL__sub_I_ania7_1_1.cpp|{<s0>13}}"];
+	Node0x564bdccd6e80:s0 -> Node0x564bdccd6570[color=black];
+	Node0x564bdccd6c00 [shape=record,shape=circle,label="{_ZSt3maxIxERKT_S2_S2_}"];
+}

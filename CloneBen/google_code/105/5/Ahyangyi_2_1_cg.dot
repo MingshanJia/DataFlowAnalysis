@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x557cdfd7a200 [shape=record,shape=circle,label="{_Z3powi|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7|<s7>8}}"];
+	Node0x557cdfd7a200:s0 -> Node0x557cdfd7a690[color=black];
+	Node0x557cdfd7a200:s1 -> Node0x557cdfd7a690[color=black];
+	Node0x557cdfd7a200:s2 -> Node0x557cdfd7a710[color=black];
+	Node0x557cdfd7a200:s3 -> Node0x557cdfd7a710[color=black];
+	Node0x557cdfd7a200:s4 -> Node0x557cdfd7a200[color=black];
+	Node0x557cdfd7a200:s5 -> Node0x557cdfd7a790[color=black];
+	Node0x557cdfd7a200:s6 -> Node0x557cdfd7a810[color=black];
+	Node0x557cdfd7a200:s7 -> Node0x557cdfd7a890[color=black];
+	Node0x557cdfd7a990 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x557cdfd7a710 [shape=record,shape=circle,label="{_ZNSt4pairIiiEC2IiiLb1EEEv}"];
+	Node0x557cdfd7aa90 [shape=record,shape=circle,label="{_ZSt7forwardIiEOT_RNSt16remove_referenceIS0_E4typeE}"];
+	Node0x557cdfd7a810 [shape=record,shape=circle,label="{_ZNSt4pairIiiEaSERKS0_}"];
+	Node0x557cdfd7a910 [shape=record,shape=circle,label="{main|{<s0>14|<s1>15|<s2>16|<s3>17}}"];
+	Node0x557cdfd7a910:s0 -> Node0x557cdfd7a990[color=black];
+	Node0x557cdfd7a910:s1 -> Node0x557cdfd7a990[color=black];
+	Node0x557cdfd7a910:s2 -> Node0x557cdfd7a200[color=black];
+	Node0x557cdfd7a910:s3 -> Node0x557cdfd7aa10[color=black];
+	Node0x557cdfd7a690 [shape=record,shape=circle,label="{_ZSt9make_pairIiiESt4pairINSt17__decay_and_stripIT_E6__typeENS1_IT0_E6__typeEEOS2_OS5_|{<s0>9|<s1>10|<s2>11}}"];
+	Node0x557cdfd7a690:s0 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7a690:s1 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7a690:s2 -> Node0x557cdfd7ab10[color=black];
+	Node0x557cdfd7aa10 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x557cdfd7a790 [shape=record,shape=circle,label="{_ZNSt4pairIiiEaSEOS0_|{<s0>12|<s1>13}}"];
+	Node0x557cdfd7a790:s0 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7a790:s1 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7ab10 [shape=record,shape=circle,label="{_ZNSt4pairIiiEC2IiiLb1EEEOT_OT0_|{<s0>18|<s1>19}}"];
+	Node0x557cdfd7ab10:s0 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7ab10:s1 -> Node0x557cdfd7aa90[color=black];
+	Node0x557cdfd7a890 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+}

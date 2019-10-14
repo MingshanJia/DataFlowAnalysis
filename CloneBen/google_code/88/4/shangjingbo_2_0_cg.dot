@@ -1,0 +1,19 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55a5f0941990 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6|<s6>7|<s7>8|<s8>9}}"];
+	Node0x55a5f0941990:s0 -> Node0x55a5f0941e20[color=black];
+	Node0x55a5f0941990:s1 -> Node0x55a5f0941e20[color=black];
+	Node0x55a5f0941990:s2 -> Node0x55a5f0941ea0[color=black];
+	Node0x55a5f0941990:s3 -> Node0x55a5f0941ea0[color=black];
+	Node0x55a5f0941990:s4 -> Node0x55a5f0941f20[color=black];
+	Node0x55a5f0941990:s5 -> Node0x55a5f0941f20[color=black];
+	Node0x55a5f0941990:s6 -> Node0x55a5f0941fa0[color=black];
+	Node0x55a5f0941990:s7 -> Node0x55a5f0941fa0[color=black];
+	Node0x55a5f0941990:s8 -> Node0x55a5f0942020[color=black];
+	Node0x55a5f0941ea0 [shape=record,shape=Mrecord,label="{sqrt}"];
+	Node0x55a5f0941fa0 [shape=record,shape=Mrecord,label="{llvm.floor.f64}"];
+	Node0x55a5f0941e20 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55a5f0941f20 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55a5f0942020 [shape=record,shape=Mrecord,label="{printf}"];
+}

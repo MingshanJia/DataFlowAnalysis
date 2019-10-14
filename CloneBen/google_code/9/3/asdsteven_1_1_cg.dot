@@ -1,0 +1,14 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x565051e175e0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>1|<s1>2}}"];
+	Node0x565051e175e0:s0 -> Node0x565051e17a70[color=black];
+	Node0x565051e175e0:s1 -> Node0x565051e17af0[color=black];
+	Node0x565051e17af0 [shape=record,shape=Mrecord,label="{llvm.trap}"];
+	Node0x565051e17bf0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x565051e17a70 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x565051e17b70 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5}}"];
+	Node0x565051e17b70:s0 -> Node0x565051e17a70[color=black];
+	Node0x565051e17b70:s1 -> Node0x565051e175e0[color=black];
+	Node0x565051e17b70:s2 -> Node0x565051e17bf0[color=black];
+}

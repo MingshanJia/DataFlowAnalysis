@@ -1,0 +1,21 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x560b6aa87910 [shape=record,shape=circle,label="{_Z2wtiiRi|{<s0>1|<s1>2}}"];
+	Node0x560b6aa87910:s0 -> Node0x560b6aa87910[color=black];
+	Node0x560b6aa87910:s1 -> Node0x560b6aa87910[color=black];
+	Node0x560b6aa87e20 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10}}"];
+	Node0x560b6aa87e20:s0 -> Node0x560b6aa87ea0[color=black];
+	Node0x560b6aa87e20:s1 -> Node0x560b6aa87ea0[color=black];
+	Node0x560b6aa87e20:s2 -> Node0x560b6aa87f20[color=black];
+	Node0x560b6aa87e20:s3 -> Node0x560b6aa87fa0[color=black];
+	Node0x560b6aa87e20:s4 -> Node0x560b6aa87da0[color=black];
+	Node0x560b6aa87e20:s5 -> Node0x560b6aa88020[color=black];
+	Node0x560b6aa87f20 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x560b6aa88020 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x560b6aa87da0 [shape=record,shape=circle,label="{_Z5getDPi|{<s0>3|<s1>4}}"];
+	Node0x560b6aa87da0:s0 -> Node0x560b6aa87910[color=black];
+	Node0x560b6aa87da0:s1 -> Node0x560b6aa87da0[color=black];
+	Node0x560b6aa87ea0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x560b6aa87fa0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

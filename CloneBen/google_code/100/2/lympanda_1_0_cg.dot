@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5595c200b6e0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5595c200b6e0:s0 -> Node0x5595c200bb70[color=black];
+	Node0x5595c200b6e0:s1 -> Node0x5595c200bc70[color=black];
+	Node0x5595c200be70 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9|<s2>10|<s3>11|<s4>12|<s5>13|<s6>14|<s7>15|<s8>16}}"];
+	Node0x5595c200be70:s0 -> Node0x5595c200bef0[color=black];
+	Node0x5595c200be70:s1 -> Node0x5595c200bef0[color=black];
+	Node0x5595c200be70:s2 -> Node0x5595c200bf70[color=black];
+	Node0x5595c200be70:s3 -> Node0x5595c200bf70[color=black];
+	Node0x5595c200be70:s4 -> Node0x5595c200bf70[color=black];
+	Node0x5595c200be70:s5 -> Node0x5595c200bdf0[color=black];
+	Node0x5595c200be70:s6 -> Node0x5595c200bff0[color=black];
+	Node0x5595c200be70:s7 -> Node0x5595c200bff0[color=black];
+	Node0x5595c200be70:s8 -> Node0x5595c200bff0[color=black];
+	Node0x5595c200bbf0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5595c200bf70 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5595c200bcf0 [shape=record,shape=circle,label="{_Z4combv|{<s0>3}}"];
+	Node0x5595c200bcf0:s0 -> Node0x5595c200bd70[color=black];
+	Node0x5595c200c070 [shape=record,shape=circle,label="{_GLOBAL__sub_I_lympanda_1_0.cpp|{<s0>17}}"];
+	Node0x5595c200c070:s0 -> Node0x5595c200b6e0[color=black];
+	Node0x5595c200bdf0 [shape=record,shape=circle,label="{_Z6searchi|{<s0>4|<s1>5|<s2>6|<s3>7}}"];
+	Node0x5595c200bdf0:s0 -> Node0x5595c200bcf0[color=black];
+	Node0x5595c200bdf0:s1 -> Node0x5595c200bdf0[color=black];
+	Node0x5595c200bdf0:s2 -> Node0x5595c200bcf0[color=black];
+	Node0x5595c200bdf0:s3 -> Node0x5595c200bdf0[color=black];
+	Node0x5595c200bb70 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5595c200bef0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x5595c200bc70 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5595c200bff0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5595c200bd70 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

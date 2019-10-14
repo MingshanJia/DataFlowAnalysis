@@ -1,0 +1,31 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55671a9ec5d0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55671a9ec5d0:s0 -> Node0x55671a9eca60[color=black];
+	Node0x55671a9ec5d0:s1 -> Node0x55671a9ecb60[color=black];
+	Node0x55671a9ecd60 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11}}"];
+	Node0x55671a9ecd60:s0 -> Node0x55671a9ecde0[color=black];
+	Node0x55671a9ecd60:s1 -> Node0x55671a9ece60[color=black];
+	Node0x55671a9ecd60:s2 -> Node0x55671a9ece60[color=black];
+	Node0x55671a9ecd60:s3 -> Node0x55671a9ecee0[color=black];
+	Node0x55671a9ecd60:s4 -> Node0x55671a9ecce0[color=black];
+	Node0x55671a9ecd60:s5 -> Node0x55671a9ecf60[color=black];
+	Node0x55671a9ecae0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55671a9ece60 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55671a9ecbe0 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3}}"];
+	Node0x55671a9ecbe0:s0 -> Node0x55671a9ecc60[color=black];
+	Node0x55671a9ecf60 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55671a9ecce0 [shape=record,shape=circle,label="{_Z2goxx|{<s0>5}}"];
+	Node0x55671a9ecce0:s0 -> Node0x55671a9ecce0[color=black];
+	Node0x55671a9ed060 [shape=record,shape=circle,label="{_GLOBAL__sub_I_orenguy_0_1.cpp|{<s0>12|<s1>13}}"];
+	Node0x55671a9ed060:s0 -> Node0x55671a9ec5d0[color=black];
+	Node0x55671a9ed060:s1 -> Node0x55671a9ecbe0[color=black];
+	Node0x55671a9eca60 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55671a9ecde0 [shape=record,shape=circle,label="{_Z4ipowxx}"];
+	Node0x55671a9ecb60 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55671a9ecee0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55671a9ecc60 [shape=record,shape=circle,label="{_ZSt4acosIiEN9__gnu_cxx11__enable_ifIXsr12__is_integerIT_EE7__valueEdE6__typeES2_|{<s0>4}}"];
+	Node0x55671a9ecc60:s0 -> Node0x55671a9ecfe0[color=black];
+	Node0x55671a9ecfe0 [shape=record,shape=Mrecord,label="{acos}"];
+}

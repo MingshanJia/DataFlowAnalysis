@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5628cc3cfc90 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5628cc3cfc90:s0 -> Node0x5628cc3d0120[color=black];
+	Node0x5628cc3cfc90:s1 -> Node0x5628cc3d0220[color=black];
+	Node0x5628cc3d0420 [shape=record,shape=circle,label="{_ZSt4fabse|{<s0>5}}"];
+	Node0x5628cc3d0420:s0 -> Node0x5628cc3d08a0[color=black];
+	Node0x5628cc3d07a0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x5628cc3d01a0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5628cc3d0520 [shape=record,shape=Mrecord,label="{sqrt}"];
+	Node0x5628cc3d08a0 [shape=record,shape=Mrecord,label="{llvm.fabs.f80}"];
+	Node0x5628cc3d02a0 [shape=record,shape=circle,label="{_Z4Loadv|{<s0>3}}"];
+	Node0x5628cc3d02a0:s0 -> Node0x5628cc3d0320[color=black];
+	Node0x5628cc3d0620 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x5628cc3d03a0 [shape=record,shape=circle,label="{_Z3RUPe|{<s0>4}}"];
+	Node0x5628cc3d03a0:s0 -> Node0x5628cc3d0420[color=black];
+	Node0x5628cc3d0720 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15|<s5>16|<s6>17}}"];
+	Node0x5628cc3d0720:s0 -> Node0x5628cc3d07a0[color=black];
+	Node0x5628cc3d0720:s1 -> Node0x5628cc3d07a0[color=black];
+	Node0x5628cc3d0720:s2 -> Node0x5628cc3d0320[color=black];
+	Node0x5628cc3d0720:s3 -> Node0x5628cc3d0820[color=black];
+	Node0x5628cc3d0720:s4 -> Node0x5628cc3d02a0[color=black];
+	Node0x5628cc3d0720:s5 -> Node0x5628cc3d04a0[color=black];
+	Node0x5628cc3d0720:s6 -> Node0x5628cc3d0820[color=black];
+	Node0x5628cc3d0120 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5628cc3d04a0 [shape=record,shape=circle,label="{_Z5Solvev|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10}}"];
+	Node0x5628cc3d04a0:s0 -> Node0x5628cc3d0520[color=black];
+	Node0x5628cc3d04a0:s1 -> Node0x5628cc3d03a0[color=black];
+	Node0x5628cc3d04a0:s2 -> Node0x5628cc3d05a0[color=black];
+	Node0x5628cc3d04a0:s3 -> Node0x5628cc3d0620[color=black];
+	Node0x5628cc3d04a0:s4 -> Node0x5628cc3d06a0[color=black];
+	Node0x5628cc3d0820 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5628cc3d0220 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5628cc3d05a0 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x5628cc3d0920 [shape=record,shape=circle,label="{_GLOBAL__sub_I_ftc_2_0.cpp|{<s0>18}}"];
+	Node0x5628cc3d0920:s0 -> Node0x5628cc3cfc90[color=black];
+	Node0x5628cc3d0320 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5628cc3d06a0 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+}

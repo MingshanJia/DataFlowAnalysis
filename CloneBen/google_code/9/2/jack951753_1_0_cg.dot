@@ -1,0 +1,15 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5559c8899620 [shape=record,shape=circle,label="{_Z4doitv|{<s0>1|<s1>2|<s2>3}}"];
+	Node0x5559c8899620:s0 -> Node0x5559c8899ab0[color=black];
+	Node0x5559c8899620:s1 -> Node0x5559c8899b30[color=black];
+	Node0x5559c8899620:s2 -> Node0x5559c8899bb0[color=black];
+	Node0x5559c8899b30 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x5559c8899c30 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6}}"];
+	Node0x5559c8899c30:s0 -> Node0x5559c8899ab0[color=black];
+	Node0x5559c8899c30:s1 -> Node0x5559c8899bb0[color=black];
+	Node0x5559c8899c30:s2 -> Node0x5559c8899620[color=black];
+	Node0x5559c8899ab0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5559c8899bb0 [shape=record,shape=Mrecord,label="{printf}"];
+}

@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55f4d1f85940 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55f4d1f85940:s0 -> Node0x55f4d1f85dd0[color=black];
+	Node0x55f4d1f85940:s1 -> Node0x55f4d1f85ed0[color=black];
+	Node0x55f4d1f860d0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_}"];
+	Node0x55f4d1f86450 [shape=record,shape=Mrecord,label="{puts}"];
+	Node0x55f4d1f85e50 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55f4d1f861d0 [shape=record,shape=Mrecord,label="{_ZNSaIcED1Ev}"];
+	Node0x55f4d1f85f50 [shape=record,shape=circle,label="{_Z3strB5cxx11i|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x55f4d1f85f50:s0 -> Node0x55f4d1f85fd0[color=black];
+	Node0x55f4d1f85f50:s1 -> Node0x55f4d1f86050[color=black];
+	Node0x55f4d1f85f50:s2 -> Node0x55f4d1f860d0[color=black];
+	Node0x55f4d1f85f50:s3 -> Node0x55f4d1f861d0[color=black];
+	Node0x55f4d1f85f50:s4 -> Node0x55f4d1f861d0[color=black];
+	Node0x55f4d1f862d0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55f4d1f86050 [shape=record,shape=Mrecord,label="{_ZNSaIcEC1Ev}"];
+	Node0x55f4d1f863d0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55f4d1f85dd0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55f4d1f86150 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+	Node0x55f4d1f864d0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Burunduk1_0_1.cpp|{<s0>15}}"];
+	Node0x55f4d1f864d0:s0 -> Node0x55f4d1f85940[color=black];
+	Node0x55f4d1f85ed0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55f4d1f86250 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9|<s2>10|<s3>11|<s4>12|<s5>13|<s6>14}}"];
+	Node0x55f4d1f86250:s0 -> Node0x55f4d1f862d0[color=black];
+	Node0x55f4d1f86250:s1 -> Node0x55f4d1f862d0[color=black];
+	Node0x55f4d1f86250:s2 -> Node0x55f4d1f86350[color=black];
+	Node0x55f4d1f86250:s3 -> Node0x55f4d1f862d0[color=black];
+	Node0x55f4d1f86250:s4 -> Node0x55f4d1f863d0[color=black];
+	Node0x55f4d1f86250:s5 -> Node0x55f4d1f86450[color=black];
+	Node0x55f4d1f86250:s6 -> Node0x55f4d1f86450[color=black];
+	Node0x55f4d1f85fd0 [shape=record,shape=Mrecord,label="{sprintf}"];
+	Node0x55f4d1f86350 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

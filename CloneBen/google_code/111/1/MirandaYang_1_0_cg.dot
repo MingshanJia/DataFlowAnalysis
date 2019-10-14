@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55793b91c290 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55793b91c290:s0 -> Node0x55793b91c720[color=black];
+	Node0x55793b91c290:s1 -> Node0x55793b91c820[color=black];
+	Node0x55793b91ca20 [shape=record,shape=circle,label="{_Z4day2v}"];
+	Node0x55793b91cda0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_MirandaYang_1_0.cpp|{<s0>16}}"];
+	Node0x55793b91cda0:s0 -> Node0x55793b91c290[color=black];
+	Node0x55793b91c7a0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55793b91cb20 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55793b91c8a0 [shape=record,shape=circle,label="{_Z4day0v}"];
+	Node0x55793b91cc20 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55793b91c9a0 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55793b91cd20 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55793b91c720 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55793b91caa0 [shape=record,shape=circle,label="{_Z2gov|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12}}"];
+	Node0x55793b91caa0:s0 -> Node0x55793b91cb20[color=black];
+	Node0x55793b91caa0:s1 -> Node0x55793b91cb20[color=black];
+	Node0x55793b91caa0:s2 -> Node0x55793b91cb20[color=black];
+	Node0x55793b91caa0:s3 -> Node0x55793b91cb20[color=black];
+	Node0x55793b91caa0:s4 -> Node0x55793b91cba0[color=black];
+	Node0x55793b91caa0:s5 -> Node0x55793b91c8a0[color=black];
+	Node0x55793b91caa0:s6 -> Node0x55793b91c920[color=black];
+	Node0x55793b91caa0:s7 -> Node0x55793b91ca20[color=black];
+	Node0x55793b91caa0:s8 -> Node0x55793b91cc20[color=black];
+	Node0x55793b91c820 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55793b91cba0 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x55793b91c920 [shape=record,shape=circle,label="{_Z4day1v|{<s0>3}}"];
+	Node0x55793b91c920:s0 -> Node0x55793b91c9a0[color=black];
+	Node0x55793b91cca0 [shape=record,shape=circle,label="{main|{<s0>13|<s1>14|<s2>15}}"];
+	Node0x55793b91cca0:s0 -> Node0x55793b91cd20[color=black];
+	Node0x55793b91cca0:s1 -> Node0x55793b91cc20[color=black];
+	Node0x55793b91cca0:s2 -> Node0x55793b91caa0[color=black];
+}

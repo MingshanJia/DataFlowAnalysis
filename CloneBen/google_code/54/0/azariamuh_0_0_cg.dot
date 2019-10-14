@@ -1,0 +1,30 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x555ee85cff50 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x555ee85cff50:s0 -> Node0x555ee85d03e0[color=black];
+	Node0x555ee85cff50:s1 -> Node0x555ee85d04e0[color=black];
+	Node0x555ee85d06e0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10}}"];
+	Node0x555ee85d06e0:s0 -> Node0x555ee85d0760[color=black];
+	Node0x555ee85d06e0:s1 -> Node0x555ee85d0760[color=black];
+	Node0x555ee85d06e0:s2 -> Node0x555ee85d07e0[color=black];
+	Node0x555ee85d06e0:s3 -> Node0x555ee85d0860[color=black];
+	Node0x555ee85d06e0:s4 -> Node0x555ee85d08e0[color=black];
+	Node0x555ee85d06e0:s5 -> Node0x555ee85d0960[color=black];
+	Node0x555ee85d0460 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x555ee85d07e0 [shape=record,shape=Mrecord,label="{_ZStrsIcSt11char_traitsIcESaIcEERSt13basic_istreamIT_T0_ES7_RNSt7__cxx1112basic_stringIS4_S5_T1_EE}"];
+	Node0x555ee85d0560 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3|<s1>4}}"];
+	Node0x555ee85d0560:s0 -> Node0x555ee85d05e0[color=black];
+	Node0x555ee85d0560:s1 -> Node0x555ee85d04e0[color=black];
+	Node0x555ee85d08e0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEixEm}"];
+	Node0x555ee85d0660 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev}"];
+	Node0x555ee85d09e0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_azariamuh_0_0.cpp|{<s0>11|<s1>12}}"];
+	Node0x555ee85d09e0:s0 -> Node0x555ee85cff50[color=black];
+	Node0x555ee85d09e0:s1 -> Node0x555ee85d0560[color=black];
+	Node0x555ee85d03e0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x555ee85d0760 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x555ee85d04e0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x555ee85d0860 [shape=record,shape=Mrecord,label="{_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4sizeEv}"];
+	Node0x555ee85d05e0 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev}"];
+	Node0x555ee85d0960 [shape=record,shape=Mrecord,label="{printf}"];
+}

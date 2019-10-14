@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x555fbd9a27f0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x555fbd9a27f0:s0 -> Node0x555fbd9a2c80[color=black];
+	Node0x555fbd9a27f0:s1 -> Node0x555fbd9a2d80[color=black];
+	Node0x555fbd9a2f80 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x555fbd9a2d00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x555fbd9a3080 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12|<s3>13|<s4>14|<s5>15}}"];
+	Node0x555fbd9a3080:s0 -> Node0x555fbd9a2e80[color=black];
+	Node0x555fbd9a3080:s1 -> Node0x555fbd9a3100[color=black];
+	Node0x555fbd9a3080:s2 -> Node0x555fbd9a3000[color=black];
+	Node0x555fbd9a3080:s3 -> Node0x555fbd9a2e00[color=black];
+	Node0x555fbd9a3080:s4 -> Node0x555fbd9a3180[color=black];
+	Node0x555fbd9a3080:s5 -> Node0x555fbd9a3180[color=black];
+	Node0x555fbd9a2e00 [shape=record,shape=circle,label="{_Z6docasev|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8}}"];
+	Node0x555fbd9a2e00:s0 -> Node0x555fbd9a2e80[color=black];
+	Node0x555fbd9a2e00:s1 -> Node0x555fbd9a2e80[color=black];
+	Node0x555fbd9a2e00:s2 -> Node0x555fbd9a2f00[color=black];
+	Node0x555fbd9a2e00:s3 -> Node0x555fbd9a2f00[color=black];
+	Node0x555fbd9a2e00:s4 -> Node0x555fbd9a2f80[color=black];
+	Node0x555fbd9a2e00:s5 -> Node0x555fbd9a3000[color=black];
+	Node0x555fbd9a3180 [shape=record,shape=Mrecord,label="{fflush}"];
+	Node0x555fbd9a2f00 [shape=record,shape=circle,label="{_Z6setmaxIiERT_S1_RKS0_|{<s0>9}}"];
+	Node0x555fbd9a2f00:s0 -> Node0x555fbd9a2f80[color=black];
+	Node0x555fbd9a2c80 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x555fbd9a3000 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x555fbd9a2d80 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x555fbd9a3100 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x555fbd9a2e80 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x555fbd9a3200 [shape=record,shape=circle,label="{_GLOBAL__sub_I_fagu_1_0.cpp|{<s0>16}}"];
+	Node0x555fbd9a3200:s0 -> Node0x555fbd9a27f0[color=black];
+}

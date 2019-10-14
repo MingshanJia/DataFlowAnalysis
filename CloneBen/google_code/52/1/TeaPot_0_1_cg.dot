@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x556e691ea7a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x556e691ea7a0:s0 -> Node0x556e691eac30[color=black];
+	Node0x556e691ea7a0:s1 -> Node0x556e691ead30[color=black];
+	Node0x556e691eaf30 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x556e691eb2b0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_TeaPot_0_1.cpp|{<s0>14|<s1>15}}"];
+	Node0x556e691eb2b0:s0 -> Node0x556e691ea7a0[color=black];
+	Node0x556e691eb2b0:s1 -> Node0x556e691eadb0[color=black];
+	Node0x556e691eacb0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x556e691eb030 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x556e691eadb0 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3}}"];
+	Node0x556e691eadb0:s0 -> Node0x556e691eae30[color=black];
+	Node0x556e691eb130 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x556e691eaeb0 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13}}"];
+	Node0x556e691eaeb0:s0 -> Node0x556e691eaf30[color=black];
+	Node0x556e691eaeb0:s1 -> Node0x556e691eaf30[color=black];
+	Node0x556e691eaeb0:s2 -> Node0x556e691eafb0[color=black];
+	Node0x556e691eaeb0:s3 -> Node0x556e691eb030[color=black];
+	Node0x556e691eaeb0:s4 -> Node0x556e691eb0b0[color=black];
+	Node0x556e691eaeb0:s5 -> Node0x556e691eb130[color=black];
+	Node0x556e691eaeb0:s6 -> Node0x556e691eb0b0[color=black];
+	Node0x556e691eaeb0:s7 -> Node0x556e691eb1b0[color=black];
+	Node0x556e691eaeb0:s8 -> Node0x556e691eb0b0[color=black];
+	Node0x556e691eb230 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x556e691eac30 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x556e691eafb0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x556e691ead30 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x556e691eb0b0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x556e691eae30 [shape=record,shape=circle,label="{_ZSt4acosIiEN9__gnu_cxx11__enable_ifIXsr12__is_integerIT_EE7__valueEdE6__typeES2_|{<s0>4}}"];
+	Node0x556e691eae30:s0 -> Node0x556e691eb230[color=black];
+	Node0x556e691eb1b0 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+}

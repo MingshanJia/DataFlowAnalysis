@@ -1,0 +1,31 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55f413fb4af0 [shape=record,shape=circle,label="{_Z5renewRii|{<s0>1}}"];
+	Node0x55f413fb4af0:s0 -> Node0x55f413fb4f80[color=black];
+	Node0x55f413fb5280 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x55f413fb5000 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8|<s7>9|<s8>10|<s9>11|<s10>12|<s11>13}}"];
+	Node0x55f413fb5000:s0 -> Node0x55f413fb5080[color=black];
+	Node0x55f413fb5000:s1 -> Node0x55f413fb5080[color=black];
+	Node0x55f413fb5000:s2 -> Node0x55f413fb5100[color=black];
+	Node0x55f413fb5000:s3 -> Node0x55f413fb5100[color=black];
+	Node0x55f413fb5000:s4 -> Node0x55f413fb5180[color=black];
+	Node0x55f413fb5000:s5 -> Node0x55f413fb5200[color=black];
+	Node0x55f413fb5000:s6 -> Node0x55f413fb5300[color=black];
+	Node0x55f413fb5000:s7 -> Node0x55f413fb5280[color=black];
+	Node0x55f413fb5000:s8 -> Node0x55f413fb4af0[color=black];
+	Node0x55f413fb5000:s9 -> Node0x55f413fb5280[color=black];
+	Node0x55f413fb5000:s10 -> Node0x55f413fb4f80[color=black];
+	Node0x55f413fb5000:s11 -> Node0x55f413fb5380[color=black];
+	Node0x55f413fb5380 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55f413fb5100 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55f413fb5200 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55f413fb4f80 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55f413fb5300 [shape=record,shape=Mrecord,label="{abs}"];
+	Node0x55f413fb5080 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x55f413fb5400 [shape=record,shape=circle,label="{_ZSt4moveIRiEONSt16remove_referenceIT_E4typeEOS2_}"];
+	Node0x55f413fb5180 [shape=record,shape=circle,label="{_ZSt4swapIiENSt9enable_ifIXsr6__and_ISt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS3_ESt18is_move_assignableIS3_EEE5valueEvE4typeERS3_SC_|{<s0>14|<s1>15|<s2>16}}"];
+	Node0x55f413fb5180:s0 -> Node0x55f413fb5400[color=black];
+	Node0x55f413fb5180:s1 -> Node0x55f413fb5400[color=black];
+	Node0x55f413fb5180:s2 -> Node0x55f413fb5400[color=black];
+}

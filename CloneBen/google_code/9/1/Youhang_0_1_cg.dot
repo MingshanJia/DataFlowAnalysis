@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x559bbe1a61c0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x559bbe1a61c0:s0 -> Node0x559bbe1a6650[color=black];
+	Node0x559bbe1a61c0:s1 -> Node0x559bbe1a6750[color=black];
+	Node0x559bbe1a6950 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x559bbe1a66d0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x559bbe1a6a50 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x559bbe1a67d0 [shape=record,shape=circle,label="{_Z6getresix|{<s0>3|<s1>4}}"];
+	Node0x559bbe1a67d0:s0 -> Node0x559bbe1a67d0[color=black];
+	Node0x559bbe1a67d0:s1 -> Node0x559bbe1a67d0[color=black];
+	Node0x559bbe1a6b50 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x559bbe1a68d0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x559bbe1a6c50 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Youhang_0_1.cpp|{<s0>17}}"];
+	Node0x559bbe1a6c50:s0 -> Node0x559bbe1a61c0[color=black];
+	Node0x559bbe1a6650 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x559bbe1a69d0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x559bbe1a6750 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x559bbe1a6ad0 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x559bbe1a6850 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15|<s11>16}}"];
+	Node0x559bbe1a6850:s0 -> Node0x559bbe1a68d0[color=black];
+	Node0x559bbe1a6850:s1 -> Node0x559bbe1a68d0[color=black];
+	Node0x559bbe1a6850:s2 -> Node0x559bbe1a6950[color=black];
+	Node0x559bbe1a6850:s3 -> Node0x559bbe1a6950[color=black];
+	Node0x559bbe1a6850:s4 -> Node0x559bbe1a6950[color=black];
+	Node0x559bbe1a6850:s5 -> Node0x559bbe1a69d0[color=black];
+	Node0x559bbe1a6850:s6 -> Node0x559bbe1a67d0[color=black];
+	Node0x559bbe1a6850:s7 -> Node0x559bbe1a6a50[color=black];
+	Node0x559bbe1a6850:s8 -> Node0x559bbe1a6ad0[color=black];
+	Node0x559bbe1a6850:s9 -> Node0x559bbe1a6a50[color=black];
+	Node0x559bbe1a6850:s10 -> Node0x559bbe1a6ad0[color=black];
+	Node0x559bbe1a6850:s11 -> Node0x559bbe1a6b50[color=black];
+	Node0x559bbe1a6bd0 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+}

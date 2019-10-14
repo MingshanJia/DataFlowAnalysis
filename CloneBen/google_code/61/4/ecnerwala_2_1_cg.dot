@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55cad51cebb0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55cad51cebb0:s0 -> Node0x55cad51cf040[color=black];
+	Node0x55cad51cebb0:s1 -> Node0x55cad51cf140[color=black];
+	Node0x55cad51cf340 [shape=record,shape=circle,label="{main|{<s0>5|<s1>6|<s2>7|<s3>8|<s4>9|<s5>10|<s6>11|<s7>12|<s8>13|<s9>14|<s10>15|<s11>16|<s12>17}}"];
+	Node0x55cad51cf340:s0 -> Node0x55cad51cf3c0[color=black];
+	Node0x55cad51cf340:s1 -> Node0x55cad51cf3c0[color=black];
+	Node0x55cad51cf340:s2 -> Node0x55cad51cf3c0[color=black];
+	Node0x55cad51cf340:s3 -> Node0x55cad51cf3c0[color=black];
+	Node0x55cad51cf340:s4 -> Node0x55cad51cf1c0[color=black];
+	Node0x55cad51cf340:s5 -> Node0x55cad51cf4c0[color=black];
+	Node0x55cad51cf340:s6 -> Node0x55cad51cf540[color=black];
+	Node0x55cad51cf340:s7 -> Node0x55cad51cf440[color=black];
+	Node0x55cad51cf340:s8 -> Node0x55cad51cf440[color=black];
+	Node0x55cad51cf340:s9 -> Node0x55cad51cf440[color=black];
+	Node0x55cad51cf340:s10 -> Node0x55cad51cf440[color=black];
+	Node0x55cad51cf340:s11 -> Node0x55cad51cf4c0[color=black];
+	Node0x55cad51cf340:s12 -> Node0x55cad51cf440[color=black];
+	Node0x55cad51cf0c0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55cad51cf440 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c}"];
+	Node0x55cad51cf1c0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>3|<s1>4}}"];
+	Node0x55cad51cf1c0:s0 -> Node0x55cad51cf240[color=black];
+	Node0x55cad51cf1c0:s1 -> Node0x55cad51cf2c0[color=black];
+	Node0x55cad51cf540 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55cad51cf2c0 [shape=record,shape=Mrecord,label="{llvm.trap}"];
+	Node0x55cad51cf040 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55cad51cf3c0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x55cad51cf140 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55cad51cf4c0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55cad51cf240 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55cad51cf5c0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_ecnerwala_2_1.cpp|{<s0>18}}"];
+	Node0x55cad51cf5c0:s0 -> Node0x55cad51cebb0[color=black];
+}

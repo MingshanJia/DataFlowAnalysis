@@ -1,0 +1,22 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x56533093ec70 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x56533093ec70:s0 -> Node0x56533093f100[color=black];
+	Node0x56533093ec70:s1 -> Node0x56533093f200[color=black];
+	Node0x56533093f400 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x56533093f180 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x56533093f280 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8}}"];
+	Node0x56533093f280:s0 -> Node0x56533093f300[color=black];
+	Node0x56533093f280:s1 -> Node0x56533093f300[color=black];
+	Node0x56533093f280:s2 -> Node0x56533093f380[color=black];
+	Node0x56533093f280:s3 -> Node0x56533093f400[color=black];
+	Node0x56533093f280:s4 -> Node0x56533093f380[color=black];
+	Node0x56533093f280:s5 -> Node0x56533093f400[color=black];
+	Node0x56533093f380 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x56533093f100 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x56533093f480 [shape=record,shape=circle,label="{_GLOBAL__sub_I_AntiForest_0_0.cpp|{<s0>9}}"];
+	Node0x56533093f480:s0 -> Node0x56533093ec70[color=black];
+	Node0x56533093f200 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x56533093f300 [shape=record,shape=Mrecord,label="{freopen}"];
+}

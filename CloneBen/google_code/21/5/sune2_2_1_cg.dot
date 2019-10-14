@@ -1,0 +1,23 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x561a041f6b70 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x561a041f6b70:s0 -> Node0x561a041f7000[color=black];
+	Node0x561a041f6b70:s1 -> Node0x561a041f7100[color=black];
+	Node0x561a041f7300 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x561a041f7080 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x561a041f7400 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x561a041f7180 [shape=record,shape=circle,label="{_Z6bitnumx}"];
+	Node0x561a041f7280 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x561a041f7000 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x561a041f7380 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x561a041f7100 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x561a041f7480 [shape=record,shape=circle,label="{_GLOBAL__sub_I_sune2_2_1.cpp|{<s0>8}}"];
+	Node0x561a041f7480:s0 -> Node0x561a041f6b70[color=black];
+	Node0x561a041f7200 [shape=record,shape=circle,label="{main|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x561a041f7200:s0 -> Node0x561a041f7280[color=black];
+	Node0x561a041f7200:s1 -> Node0x561a041f7300[color=black];
+	Node0x561a041f7200:s2 -> Node0x561a041f7180[color=black];
+	Node0x561a041f7200:s3 -> Node0x561a041f7380[color=black];
+	Node0x561a041f7200:s4 -> Node0x561a041f7400[color=black];
+}

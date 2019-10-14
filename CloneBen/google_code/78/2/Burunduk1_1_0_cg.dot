@@ -1,0 +1,31 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5635e21a67a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5635e21a67a0:s0 -> Node0x5635e21a6c30[color=black];
+	Node0x5635e21a67a0:s1 -> Node0x5635e21a6d30[color=black];
+	Node0x5635e21a6f30 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_}"];
+	Node0x5635e21a6cb0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5635e21a7030 [shape=record,shape=Mrecord,label="{_ZNSaIcED1Ev}"];
+	Node0x5635e21a6db0 [shape=record,shape=circle,label="{_Z3strB5cxx11i|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7}}"];
+	Node0x5635e21a6db0:s0 -> Node0x5635e21a6e30[color=black];
+	Node0x5635e21a6db0:s1 -> Node0x5635e21a6eb0[color=black];
+	Node0x5635e21a6db0:s2 -> Node0x5635e21a6f30[color=black];
+	Node0x5635e21a6db0:s3 -> Node0x5635e21a7030[color=black];
+	Node0x5635e21a6db0:s4 -> Node0x5635e21a7030[color=black];
+	Node0x5635e21a7130 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5635e21a6eb0 [shape=record,shape=Mrecord,label="{_ZNSaIcEC1Ev}"];
+	Node0x5635e21a7230 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Burunduk1_1_0.cpp|{<s0>13}}"];
+	Node0x5635e21a7230:s0 -> Node0x5635e21a67a0[color=black];
+	Node0x5635e21a6c30 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5635e21a6fb0 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+	Node0x5635e21a6d30 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5635e21a70b0 [shape=record,shape=circle,label="{main|{<s0>8|<s1>9|<s2>10|<s3>11|<s4>12}}"];
+	Node0x5635e21a70b0:s0 -> Node0x5635e21a7130[color=black];
+	Node0x5635e21a70b0:s1 -> Node0x5635e21a7130[color=black];
+	Node0x5635e21a70b0:s2 -> Node0x5635e21a7130[color=black];
+	Node0x5635e21a70b0:s3 -> Node0x5635e21a71b0[color=black];
+	Node0x5635e21a70b0:s4 -> Node0x5635e21a71b0[color=black];
+	Node0x5635e21a6e30 [shape=record,shape=Mrecord,label="{sprintf}"];
+	Node0x5635e21a71b0 [shape=record,shape=Mrecord,label="{printf}"];
+}

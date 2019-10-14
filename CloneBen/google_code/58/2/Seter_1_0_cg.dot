@@ -1,0 +1,43 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x559f1491d840 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x559f1491d840:s0 -> Node0x559f1491dcd0[color=black];
+	Node0x559f1491d840:s1 -> Node0x559f1491ddd0[color=black];
+	Node0x559f1491dfd0 [shape=record,shape=circle,label="{_Z3runv|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12|<s9>13|<s10>14|<s11>15|<s12>16|<s13>17}}"];
+	Node0x559f1491dfd0:s0 -> Node0x559f1491e0d0[color=black];
+	Node0x559f1491dfd0:s1 -> Node0x559f1491e050[color=black];
+	Node0x559f1491dfd0:s2 -> Node0x559f1491e0d0[color=black];
+	Node0x559f1491dfd0:s3 -> Node0x559f1491e050[color=black];
+	Node0x559f1491dfd0:s4 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491dfd0:s5 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491dfd0:s6 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491dfd0:s7 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491dfd0:s8 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491dfd0:s9 -> Node0x559f1491e150[color=black];
+	Node0x559f1491dfd0:s10 -> Node0x559f1491e1d0[color=black];
+	Node0x559f1491dfd0:s11 -> Node0x559f1491df50[color=black];
+	Node0x559f1491dfd0:s12 -> Node0x559f1491df50[color=black];
+	Node0x559f1491dfd0:s13 -> Node0x559f1491de50[color=black];
+	Node0x559f1491e350 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Seter_1_0.cpp|{<s0>24}}"];
+	Node0x559f1491e350:s0 -> Node0x559f1491d840[color=black];
+	Node0x559f1491dd50 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x559f1491e0d0 [shape=record,shape=Mrecord,label="{getchar}"];
+	Node0x559f1491de50 [shape=record,shape=circle,label="{_Z5checki|{<s0>3}}"];
+	Node0x559f1491de50:s0 -> Node0x559f1491ded0[color=black];
+	Node0x559f1491e1d0 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x559f1491df50 [shape=record,shape=circle,label="{_Z2fai}"];
+	Node0x559f1491e2d0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x559f1491dcd0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x559f1491e050 [shape=record,shape=Mrecord,label="{isdigit}"];
+	Node0x559f1491ddd0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x559f1491e150 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x559f1491ded0 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x559f1491e250 [shape=record,shape=circle,label="{main|{<s0>18|<s1>19|<s2>20|<s3>21|<s4>22|<s5>23}}"];
+	Node0x559f1491e250:s0 -> Node0x559f1491e0d0[color=black];
+	Node0x559f1491e250:s1 -> Node0x559f1491e050[color=black];
+	Node0x559f1491e250:s2 -> Node0x559f1491e0d0[color=black];
+	Node0x559f1491e250:s3 -> Node0x559f1491e050[color=black];
+	Node0x559f1491e250:s4 -> Node0x559f1491dfd0[color=black];
+	Node0x559f1491e250:s5 -> Node0x559f1491e2d0[color=black];
+}

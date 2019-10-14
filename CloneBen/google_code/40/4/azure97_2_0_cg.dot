@@ -1,0 +1,31 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563bafaa9260 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563bafaa9260:s0 -> Node0x563bafaa96f0[color=black];
+	Node0x563bafaa9260:s1 -> Node0x563bafaa97f0[color=black];
+	Node0x563bafaa99f0 [shape=record,shape=circle,label="{_Z3cand|{<s0>7}}"];
+	Node0x563bafaa99f0:s0 -> Node0x563bafaa9a70[color=black];
+	Node0x563bafaa9770 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563bafaa9af0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>8|<s1>9}}"];
+	Node0x563bafaa9af0:s0 -> Node0x563bafaa99f0[color=black];
+	Node0x563bafaa9af0:s1 -> Node0x563bafaa9a70[color=black];
+	Node0x563bafaa9870 [shape=record,shape=circle,label="{_Z4readv|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x563bafaa9870:s0 -> Node0x563bafaa98f0[color=black];
+	Node0x563bafaa9870:s1 -> Node0x563bafaa98f0[color=black];
+	Node0x563bafaa9870:s2 -> Node0x563bafaa9970[color=black];
+	Node0x563bafaa9870:s3 -> Node0x563bafaa9970[color=black];
+	Node0x563bafaa9bf0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563bafaa9970 [shape=record,shape=Mrecord,label="{_ZNSirsERd}"];
+	Node0x563bafaa96f0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563bafaa9a70 [shape=record,shape=circle,label="{_ZSt3maxIdERKT_S2_S2_}"];
+	Node0x563bafaa97f0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563bafaa9b70 [shape=record,shape=circle,label="{main|{<s0>10|<s1>11|<s2>12|<s3>13}}"];
+	Node0x563bafaa9b70:s0 -> Node0x563bafaa98f0[color=black];
+	Node0x563bafaa9b70:s1 -> Node0x563bafaa9870[color=black];
+	Node0x563bafaa9b70:s2 -> Node0x563bafaa9af0[color=black];
+	Node0x563bafaa9b70:s3 -> Node0x563bafaa9bf0[color=black];
+	Node0x563bafaa98f0 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x563bafaa9c70 [shape=record,shape=circle,label="{_GLOBAL__sub_I_azure97_2_0.cpp|{<s0>14}}"];
+	Node0x563bafaa9c70:s0 -> Node0x563bafaa9260[color=black];
+}

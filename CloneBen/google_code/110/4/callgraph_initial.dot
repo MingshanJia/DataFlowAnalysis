@@ -1,0 +1,21 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563e6a5d29e0 [shape=record,shape=circle,label="{_Z3soli|{<s0>1|<s1>2}}"];
+	Node0x563e6a5d29e0:s0 -> Node0x563e6a5d2e70[color=black];
+	Node0x563e6a5d29e0:s1 -> Node0x563e6a5d2ef0[color=black];
+	Node0x563e6a5d2ef0 [shape=record,shape=Mrecord,label="{llvm.ceil.f64}"];
+	Node0x563e6a5d2ff0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563e6a5d30f0 [shape=record,shape=Mrecord,label="{log10}"];
+	Node0x563e6a5d2e70 [shape=record,shape=circle,label="{_ZSt5log10IiEN9__gnu_cxx11__enable_ifIXsr12__is_integerIT_EE7__valueEdE6__typeES2_|{<s0>3}}"];
+	Node0x563e6a5d2e70:s0 -> Node0x563e6a5d30f0[color=black];
+	Node0x563e6a5d2f70 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10}}"];
+	Node0x563e6a5d2f70:s0 -> Node0x563e6a5d2ff0[color=black];
+	Node0x563e6a5d2f70:s1 -> Node0x563e6a5d2ff0[color=black];
+	Node0x563e6a5d2f70:s2 -> Node0x563e6a5d3070[color=black];
+	Node0x563e6a5d2f70:s3 -> Node0x563e6a5d29e0[color=black];
+	Node0x563e6a5d2f70:s4 -> Node0x563e6a5d3070[color=black];
+	Node0x563e6a5d2f70:s5 -> Node0x563e6a5d3070[color=black];
+	Node0x563e6a5d2f70:s6 -> Node0x563e6a5d3070[color=black];
+	Node0x563e6a5d3070 [shape=record,shape=Mrecord,label="{printf}"];
+}

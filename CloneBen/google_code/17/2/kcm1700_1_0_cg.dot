@@ -1,0 +1,39 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x558c4386ed80 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1}}"];
+	Node0x558c4386ed80:s0 -> Node0x558c4386f210[color=black];
+	Node0x558c4386f510 [shape=record,shape=circle,label="{_ZSt3maxIdERKT_S2_S2_}"];
+	Node0x558c4386f290 [shape=record,shape=circle,label="{_Z8getangleddd|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7}}"];
+	Node0x558c4386f290:s0 -> Node0x558c4386f310[color=black];
+	Node0x558c4386f290:s1 -> Node0x558c4386f210[color=black];
+	Node0x558c4386f290:s2 -> Node0x558c4386f390[color=black];
+	Node0x558c4386f290:s3 -> Node0x558c4386f490[color=black];
+	Node0x558c4386f290:s4 -> Node0x558c4386f510[color=black];
+	Node0x558c4386f290:s5 -> Node0x558c4386f410[color=black];
+	Node0x558c4386f610 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x558c4386f390 [shape=record,shape=Mrecord,label="{atan2}"];
+	Node0x558c4386f710 [shape=record,shape=circle,label="{_ZSt7forwardIRKdEOT_RNSt16remove_referenceIS2_E4typeE}"];
+	Node0x558c4386f490 [shape=record,shape=circle,label="{_ZSt3minIdERKT_S2_S2_}"];
+	Node0x558c4386f810 [shape=record,shape=circle,label="{_GLOBAL__sub_I_kcm1700_1_0.cpp|{<s0>21}}"];
+	Node0x558c4386f810:s0 -> Node0x558c4386ed80[color=black];
+	Node0x558c4386f210 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x558c4386f590 [shape=record,shape=circle,label="{main|{<s0>11|<s1>12|<s2>13|<s3>14|<s4>15|<s5>16|<s6>17|<s7>18|<s8>19|<s9>20}}"];
+	Node0x558c4386f590:s0 -> Node0x558c4386f610[color=black];
+	Node0x558c4386f590:s1 -> Node0x558c4386f610[color=black];
+	Node0x558c4386f590:s2 -> Node0x558c4386f610[color=black];
+	Node0x558c4386f590:s3 -> Node0x558c4386f310[color=black];
+	Node0x558c4386f590:s4 -> Node0x558c4386f390[color=black];
+	Node0x558c4386f590:s5 -> Node0x558c4386f290[color=black];
+	Node0x558c4386f590:s6 -> Node0x558c4386f510[color=black];
+	Node0x558c4386f590:s7 -> Node0x558c4386f490[color=black];
+	Node0x558c4386f590:s8 -> Node0x558c4386f490[color=black];
+	Node0x558c4386f590:s9 -> Node0x558c4386f690[color=black];
+	Node0x558c4386f310 [shape=record,shape=Mrecord,label="{sqrt}"];
+	Node0x558c4386f690 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x558c4386f410 [shape=record,shape=circle,label="{_ZSt9make_pairIRKdS1_ESt4pairINSt17__decay_and_stripIT_E6__typeENS3_IT0_E6__typeEEOS4_OS7_|{<s0>8|<s1>9|<s2>10}}"];
+	Node0x558c4386f410:s0 -> Node0x558c4386f710[color=black];
+	Node0x558c4386f410:s1 -> Node0x558c4386f710[color=black];
+	Node0x558c4386f410:s2 -> Node0x558c4386f790[color=black];
+	Node0x558c4386f790 [shape=record,shape=circle,label="{_ZNSt4pairIddEC2IddLb1EEERKdS3_}"];
+}

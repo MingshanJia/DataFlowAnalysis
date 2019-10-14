@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55d9a4a084a0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55d9a4a084a0:s0 -> Node0x55d9a4a08930[color=black];
+	Node0x55d9a4a084a0:s1 -> Node0x55d9a4a08a30[color=black];
+	Node0x55d9a4a08c30 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x55d9a4a089b0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55d9a4a08d30 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+	Node0x55d9a4a08ab0 [shape=record,shape=circle,label="{_Z2goxxx|{<s0>3}}"];
+	Node0x55d9a4a08ab0:s0 -> Node0x55d9a4a08ab0[color=black];
+	Node0x55d9a4a08e30 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x55d9a4a08bb0 [shape=record,shape=Mrecord,label="{_ZNSirsERx}"];
+	Node0x55d9a4a08930 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55d9a4a08cb0 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55d9a4a08a30 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55d9a4a08db0 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x55d9a4a08b30 [shape=record,shape=circle,label="{main|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12|<s9>13|<s10>14|<s11>15}}"];
+	Node0x55d9a4a08b30:s0 -> Node0x55d9a4a08bb0[color=black];
+	Node0x55d9a4a08b30:s1 -> Node0x55d9a4a08bb0[color=black];
+	Node0x55d9a4a08b30:s2 -> Node0x55d9a4a08bb0[color=black];
+	Node0x55d9a4a08b30:s3 -> Node0x55d9a4a08c30[color=black];
+	Node0x55d9a4a08b30:s4 -> Node0x55d9a4a08ab0[color=black];
+	Node0x55d9a4a08b30:s5 -> Node0x55d9a4a08cb0[color=black];
+	Node0x55d9a4a08b30:s6 -> Node0x55d9a4a08d30[color=black];
+	Node0x55d9a4a08b30:s7 -> Node0x55d9a4a08cb0[color=black];
+	Node0x55d9a4a08b30:s8 -> Node0x55d9a4a08d30[color=black];
+	Node0x55d9a4a08b30:s9 -> Node0x55d9a4a08cb0[color=black];
+	Node0x55d9a4a08b30:s10 -> Node0x55d9a4a08cb0[color=black];
+	Node0x55d9a4a08b30:s11 -> Node0x55d9a4a08db0[color=black];
+	Node0x55d9a4a08eb0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_marcina_2_0.cpp|{<s0>16}}"];
+	Node0x55d9a4a08eb0:s0 -> Node0x55d9a4a084a0[color=black];
+}

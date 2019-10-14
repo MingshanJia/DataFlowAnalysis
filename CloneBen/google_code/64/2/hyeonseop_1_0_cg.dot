@@ -1,0 +1,34 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x5563b1e34260 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x5563b1e34260:s0 -> Node0x5563b1e346f0[color=black];
+	Node0x5563b1e34260:s1 -> Node0x5563b1e347f0[color=black];
+	Node0x5563b1e349f0 [shape=record,shape=circle,label="{_Z4bestx}"];
+	Node0x5563b1e34770 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x5563b1e34af0 [shape=record,shape=circle,label="{_Z6outputv|{<s0>6|<s1>7|<s2>8}}"];
+	Node0x5563b1e34af0:s0 -> Node0x5563b1e34a70[color=black];
+	Node0x5563b1e34af0:s1 -> Node0x5563b1e34a70[color=black];
+	Node0x5563b1e34af0:s2 -> Node0x5563b1e34b70[color=black];
+	Node0x5563b1e34870 [shape=record,shape=circle,label="{_Z5inputv|{<s0>3}}"];
+	Node0x5563b1e34870:s0 -> Node0x5563b1e348f0[color=black];
+	Node0x5563b1e34bf0 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13}}"];
+	Node0x5563b1e34bf0:s0 -> Node0x5563b1e34c70[color=black];
+	Node0x5563b1e34bf0:s1 -> Node0x5563b1e34c70[color=black];
+	Node0x5563b1e34bf0:s2 -> Node0x5563b1e348f0[color=black];
+	Node0x5563b1e34bf0:s3 -> Node0x5563b1e34870[color=black];
+	Node0x5563b1e34bf0:s4 -> Node0x5563b1e34af0[color=black];
+	Node0x5563b1e34970 [shape=record,shape=circle,label="{_Z5worstx}"];
+	Node0x5563b1e34cf0 [shape=record,shape=circle,label="{_GLOBAL__sub_I_hyeonseop_1_0.cpp|{<s0>14}}"];
+	Node0x5563b1e34cf0:s0 -> Node0x5563b1e34260[color=black];
+	Node0x5563b1e346f0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x5563b1e34a70 [shape=record,shape=circle,label="{_Z6binaryxxPFxxE|{<s0>4|<s1>5|<s2>15|<s3>16}}"];
+	Node0x5563b1e34a70:s0 -> Node0x5563b1e34a70[color=black];
+	Node0x5563b1e34a70:s1 -> Node0x5563b1e34a70[color=black];
+	Node0x5563b1e34a70:s2 -> Node0x5563b1e34970[color=red];
+	Node0x5563b1e34a70:s3 -> Node0x5563b1e349f0[color=red];
+	Node0x5563b1e347f0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x5563b1e34b70 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x5563b1e348f0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x5563b1e34c70 [shape=record,shape=Mrecord,label="{freopen}"];
+}

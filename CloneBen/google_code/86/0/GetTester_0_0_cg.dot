@@ -1,0 +1,20 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x557f5d91e6c0 [shape=record,shape=circle,label="{_Z9OpenFilesv|{<s0>1|<s1>2}}"];
+	Node0x557f5d91e6c0:s0 -> Node0x557f5d91eb50[color=black];
+	Node0x557f5d91e6c0:s1 -> Node0x557f5d91eb50[color=black];
+	Node0x557f5d91ebd0 [shape=record,shape=circle,label="{_Z7Crossedii}"];
+	Node0x557f5d91ecd0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x557f5d91edd0 [shape=record,shape=circle,label="{main|{<s0>7|<s1>8|<s2>9}}"];
+	Node0x557f5d91edd0:s0 -> Node0x557f5d91e6c0[color=black];
+	Node0x557f5d91edd0:s1 -> Node0x557f5d91ecd0[color=black];
+	Node0x557f5d91edd0:s2 -> Node0x557f5d91ec50[color=black];
+	Node0x557f5d91eb50 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x557f5d91ec50 [shape=record,shape=circle,label="{_Z5Solvei|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x557f5d91ec50:s0 -> Node0x557f5d91ecd0[color=black];
+	Node0x557f5d91ec50:s1 -> Node0x557f5d91ecd0[color=black];
+	Node0x557f5d91ec50:s2 -> Node0x557f5d91ebd0[color=black];
+	Node0x557f5d91ec50:s3 -> Node0x557f5d91ed50[color=black];
+	Node0x557f5d91ed50 [shape=record,shape=Mrecord,label="{printf}"];
+}

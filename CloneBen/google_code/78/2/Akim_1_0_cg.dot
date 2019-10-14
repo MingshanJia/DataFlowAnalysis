@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x560d1ffea4f0 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x560d1ffea4f0:s0 -> Node0x560d1ffea980[color=black];
+	Node0x560d1ffea4f0:s1 -> Node0x560d1ffeaa80[color=black];
+	Node0x560d1ffeac80 [shape=record,shape=circle,label="{_Z7is_goodiii|{<s0>3|<s1>4|<s2>5|<s3>6}}"];
+	Node0x560d1ffeac80:s0 -> Node0x560d1ffeab00[color=black];
+	Node0x560d1ffeac80:s1 -> Node0x560d1ffeab80[color=black];
+	Node0x560d1ffeac80:s2 -> Node0x560d1ffeac00[color=black];
+	Node0x560d1ffeac80:s3 -> Node0x560d1ffeac00[color=black];
+	Node0x560d1ffeb000 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev}"];
+	Node0x560d1ffeaa00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x560d1ffead80 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x560d1ffeb100 [shape=record,shape=circle,label="{main|{<s0>16|<s1>17}}"];
+	Node0x560d1ffeb100:s0 -> Node0x560d1ffead80[color=black];
+	Node0x560d1ffeb100:s1 -> Node0x560d1ffead00[color=black];
+	Node0x560d1ffeab00 [shape=record,shape=circle,label="{_Z7getHSumiiii}"];
+	Node0x560d1ffeae80 [shape=record,shape=Mrecord,label="{_ZStrsIcSt11char_traitsIcESaIcEERSt13basic_istreamIT_T0_ES7_RNSt7__cxx1112basic_stringIS4_S5_T1_EE}"];
+	Node0x560d1ffeac00 [shape=record,shape=circle,label="{_Z6getSumiiii}"];
+	Node0x560d1ffeaf80 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEixEm}"];
+	Node0x560d1ffea980 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x560d1ffead00 [shape=record,shape=circle,label="{_Z5solvei|{<s0>7|<s1>8|<s2>9|<s3>10|<s4>11|<s5>12|<s6>13|<s7>14|<s8>15}}"];
+	Node0x560d1ffead00:s0 -> Node0x560d1ffead80[color=black];
+	Node0x560d1ffead00:s1 -> Node0x560d1ffeae00[color=black];
+	Node0x560d1ffead00:s2 -> Node0x560d1ffeae80[color=black];
+	Node0x560d1ffead00:s3 -> Node0x560d1ffeaf80[color=black];
+	Node0x560d1ffead00:s4 -> Node0x560d1ffeb000[color=black];
+	Node0x560d1ffead00:s5 -> Node0x560d1ffeb000[color=black];
+	Node0x560d1ffead00:s6 -> Node0x560d1ffeac80[color=black];
+	Node0x560d1ffead00:s7 -> Node0x560d1ffeb080[color=black];
+	Node0x560d1ffead00:s8 -> Node0x560d1ffeb080[color=black];
+	Node0x560d1ffeb080 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x560d1ffeaa80 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x560d1ffeae00 [shape=record,shape=Mrecord,label="{_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1Ev}"];
+	Node0x560d1ffeb180 [shape=record,shape=circle,label="{_GLOBAL__sub_I_Akim_1_0.cpp|{<s0>18}}"];
+	Node0x560d1ffeb180:s0 -> Node0x560d1ffea4f0[color=black];
+	Node0x560d1ffeab80 [shape=record,shape=circle,label="{_Z7getVSumiiii}"];
+	Node0x560d1ffeaf00 [shape=record,shape=Mrecord,label="{__gxx_personality_v0}"];
+}

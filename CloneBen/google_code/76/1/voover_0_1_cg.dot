@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563f6e592f20 [shape=record,shape=circle,label="{_Z3GCDxx}"];
+	Node0x563f6e5936b0 [shape=record,shape=circle,label="{_Z5scasei|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12|<s7>13}}"];
+	Node0x563f6e5936b0:s0 -> Node0x563f6e593730[color=black];
+	Node0x563f6e5936b0:s1 -> Node0x563f6e5937b0[color=black];
+	Node0x563f6e5936b0:s2 -> Node0x563f6e593830[color=black];
+	Node0x563f6e5936b0:s3 -> Node0x563f6e5935b0[color=black];
+	Node0x563f6e5936b0:s4 -> Node0x563f6e593630[color=black];
+	Node0x563f6e5936b0:s5 -> Node0x563f6e593630[color=black];
+	Node0x563f6e5936b0:s6 -> Node0x563f6e5938b0[color=black];
+	Node0x563f6e5936b0:s7 -> Node0x563f6e593930[color=black];
+	Node0x563f6e593a30 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x563f6e593430 [shape=record,shape=circle,label="{_Z7inversexx|{<s0>2}}"];
+	Node0x563f6e593430:s0 -> Node0x563f6e5933b0[color=black];
+	Node0x563f6e5937b0 [shape=record,shape=Mrecord,label="{strlen}"];
+	Node0x563f6e593530 [shape=record,shape=circle,label="{_Z2SNii}"];
+	Node0x563f6e5938b0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563f6e593630 [shape=record,shape=circle,label="{_Z6getWstii|{<s0>5}}"];
+	Node0x563f6e593630:s0 -> Node0x563f6e593530[color=black];
+	Node0x563f6e5939b0 [shape=record,shape=circle,label="{main|{<s0>14|<s1>15|<s2>16}}"];
+	Node0x563f6e5939b0:s0 -> Node0x563f6e593a30[color=black];
+	Node0x563f6e5939b0:s1 -> Node0x563f6e593730[color=black];
+	Node0x563f6e5939b0:s2 -> Node0x563f6e5936b0[color=black];
+	Node0x563f6e5933b0 [shape=record,shape=circle,label="{_Z4eGCDxxRxS_|{<s0>1}}"];
+	Node0x563f6e5933b0:s0 -> Node0x563f6e5933b0[color=black];
+	Node0x563f6e593730 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563f6e5934b0 [shape=record,shape=circle,label="{_Z3gcdxx|{<s0>3}}"];
+	Node0x563f6e5934b0:s0 -> Node0x563f6e5934b0[color=black];
+	Node0x563f6e593830 [shape=record,shape=Mrecord,label="{llvm.stacksave}"];
+	Node0x563f6e5935b0 [shape=record,shape=circle,label="{_Z7getPodzii|{<s0>4}}"];
+	Node0x563f6e5935b0:s0 -> Node0x563f6e593530[color=black];
+	Node0x563f6e593930 [shape=record,shape=Mrecord,label="{llvm.stackrestore}"];
+}

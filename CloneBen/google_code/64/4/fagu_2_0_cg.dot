@@ -1,0 +1,20 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55ba15003d80 [shape=record,shape=circle,label="{_Z5visiti|{<s0>1}}"];
+	Node0x55ba15003d80:s0 -> Node0x55ba15003d80[color=black];
+	Node0x55ba15004290 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55ba15004390 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55ba15004210 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8|<s7>9|<s8>10|<s9>11}}"];
+	Node0x55ba15004210:s0 -> Node0x55ba15004290[color=black];
+	Node0x55ba15004210:s1 -> Node0x55ba15004310[color=black];
+	Node0x55ba15004210:s2 -> Node0x55ba15004390[color=black];
+	Node0x55ba15004210:s3 -> Node0x55ba15004290[color=black];
+	Node0x55ba15004210:s4 -> Node0x55ba15004290[color=black];
+	Node0x55ba15004210:s5 -> Node0x55ba15004290[color=black];
+	Node0x55ba15004210:s6 -> Node0x55ba15003d80[color=black];
+	Node0x55ba15004210:s7 -> Node0x55ba15004390[color=black];
+	Node0x55ba15004210:s8 -> Node0x55ba15004390[color=black];
+	Node0x55ba15004210:s9 -> Node0x55ba15004390[color=black];
+	Node0x55ba15004310 [shape=record,shape=Mrecord,label="{fprintf}"];
+}

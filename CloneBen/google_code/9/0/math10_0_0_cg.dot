@@ -1,0 +1,40 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563deb056a40 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563deb056a40:s0 -> Node0x563deb056ed0[color=black];
+	Node0x563deb056a40:s1 -> Node0x563deb056fd0[color=black];
+	Node0x563deb0571d0 [shape=record,shape=Mrecord,label="{llvm.fabs.f64}"];
+	Node0x563deb057550 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x563deb056f50 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563deb0572d0 [shape=record,shape=circle,label="{_Z4callii|{<s0>5}}"];
+	Node0x563deb0572d0:s0 -> Node0x563deb0572d0[color=black];
+	Node0x563deb057650 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+	Node0x563deb057050 [shape=record,shape=circle,label="{__cxx_global_var_init.1|{<s0>3}}"];
+	Node0x563deb057050:s0 -> Node0x563deb0570d0[color=black];
+	Node0x563deb0573d0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563deb057750 [shape=record,shape=circle,label="{_GLOBAL__sub_I_math10_0_0.cpp|{<s0>16|<s1>17}}"];
+	Node0x563deb057750:s0 -> Node0x563deb056a40[color=black];
+	Node0x563deb057750:s1 -> Node0x563deb057050[color=black];
+	Node0x563deb057150 [shape=record,shape=circle,label="{_Z2EQd|{<s0>4}}"];
+	Node0x563deb057150:s0 -> Node0x563deb0571d0[color=black];
+	Node0x563deb0574d0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563deb056ed0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563deb057250 [shape=record,shape=circle,label="{_Z6BigModxxx}"];
+	Node0x563deb0575d0 [shape=record,shape=Mrecord,label="{_ZNSolsEx}"];
+	Node0x563deb056fd0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563deb057350 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12|<s7>13|<s8>14|<s9>15}}"];
+	Node0x563deb057350:s0 -> Node0x563deb057250[color=black];
+	Node0x563deb057350:s1 -> Node0x563deb0573d0[color=black];
+	Node0x563deb057350:s2 -> Node0x563deb057450[color=black];
+	Node0x563deb057350:s3 -> Node0x563deb0573d0[color=black];
+	Node0x563deb057350:s4 -> Node0x563deb0573d0[color=black];
+	Node0x563deb057350:s5 -> Node0x563deb0574d0[color=black];
+	Node0x563deb057350:s6 -> Node0x563deb057550[color=black];
+	Node0x563deb057350:s7 -> Node0x563deb0572d0[color=black];
+	Node0x563deb057350:s8 -> Node0x563deb0575d0[color=black];
+	Node0x563deb057350:s9 -> Node0x563deb057650[color=black];
+	Node0x563deb0576d0 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x563deb0570d0 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x563deb057450 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+}

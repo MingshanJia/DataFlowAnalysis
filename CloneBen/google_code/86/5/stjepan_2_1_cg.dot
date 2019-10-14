@@ -1,0 +1,32 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x562093daa4c0 [shape=record,shape=circle,label="{_Z5queryiii|{<s0>1|<s1>2|<s2>3|<s3>4}}"];
+	Node0x562093daa4c0:s0 -> Node0x562093daa950[color=black];
+	Node0x562093daa4c0:s1 -> Node0x562093daa950[color=black];
+	Node0x562093daa4c0:s2 -> Node0x562093daa950[color=black];
+	Node0x562093daa4c0:s3 -> Node0x562093daa950[color=black];
+	Node0x562093daac50 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x562093daa9d0 [shape=record,shape=circle,label="{_Z6oznaciiii|{<s0>5}}"];
+	Node0x562093daa9d0:s0 -> Node0x562093daaa50[color=black];
+	Node0x562093daad50 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x562093daaad0 [shape=record,shape=circle,label="{main|{<s0>6|<s1>7|<s2>8|<s3>9|<s4>10|<s5>11|<s6>12|<s7>13|<s8>14|<s9>15|<s10>16|<s11>17|<s12>18}}"];
+	Node0x562093daaad0:s0 -> Node0x562093daab50[color=black];
+	Node0x562093daaad0:s1 -> Node0x562093daabd0[color=black];
+	Node0x562093daaad0:s2 -> Node0x562093daac50[color=black];
+	Node0x562093daaad0:s3 -> Node0x562093daab50[color=black];
+	Node0x562093daaad0:s4 -> Node0x562093daacd0[color=black];
+	Node0x562093daaad0:s5 -> Node0x562093daab50[color=black];
+	Node0x562093daaad0:s6 -> Node0x562093daad50[color=black];
+	Node0x562093daaad0:s7 -> Node0x562093daa950[color=black];
+	Node0x562093daaad0:s8 -> Node0x562093daa4c0[color=black];
+	Node0x562093daaad0:s9 -> Node0x562093daa9d0[color=black];
+	Node0x562093daaad0:s10 -> Node0x562093daac50[color=black];
+	Node0x562093daaad0:s11 -> Node0x562093daad50[color=black];
+	Node0x562093daaad0:s12 -> Node0x562093daac50[color=black];
+	Node0x562093daabd0 [shape=record,shape=Mrecord,label="{fprintf}"];
+	Node0x562093daa950 [shape=record,shape=circle,label="{_ZN7fenwick5queryEii}"];
+	Node0x562093daacd0 [shape=record,shape=circle,label="{_ZN7fenwick5clearEv}"];
+	Node0x562093daaa50 [shape=record,shape=circle,label="{_ZN7fenwick6updateEii}"];
+	Node0x562093daab50 [shape=record,shape=Mrecord,label="{scanf}"];
+}

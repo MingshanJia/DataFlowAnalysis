@@ -1,0 +1,36 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x564aa9a8e700 [shape=record,shape=circle,label="{main|{<s0>1|<s1>2|<s2>3|<s3>4|<s4>5|<s5>6}}"];
+	Node0x564aa9a8e700:s0 -> Node0x564aa9b0edc0[color=black];
+	Node0x564aa9a8e700:s1 -> Node0x564aa9b0ee40[color=black];
+	Node0x564aa9a8e700:s2 -> Node0x564aa9b0edc0[color=black];
+	Node0x564aa9a8e700:s3 -> Node0x564aa9b0edc0[color=black];
+	Node0x564aa9a8e700:s4 -> Node0x564aa9b0eec0[color=black];
+	Node0x564aa9a8e700:s5 -> Node0x564aa9b0ef40[color=black];
+	Node0x564aa9b0f0c0 [shape=record,shape=circle,label="{_Z6mytimeiixi}"];
+	Node0x564aa9b0ee40 [shape=record,shape=Mrecord,label="{llvm.memset.p0i8.i64}"];
+	Node0x564aa9b0ef40 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x564aa9b0f040 [shape=record,shape=circle,label="{_Z8checkminRxx}"];
+	Node0x564aa9b0edc0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x564aa9b0f140 [shape=record,shape=Mrecord,label="{llvm.memcpy.p0i8.p0i8.i64}"];
+	Node0x564aa9b0eec0 [shape=record,shape=circle,label="{_Z5solvev|{<s0>7|<s1>8}}"];
+	Node0x564aa9b0eec0:s0 -> Node0x564aa9b0ee40[color=black];
+	Node0x564aa9b0eec0:s1 -> Node0x564aa9b0efc0[color=black];
+	Node0x564aa9b0efc0 [shape=record,shape=circle,label="{_Z6updatev|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13|<s5>14|<s6>15|<s7>16|<s8>17|<s9>18|<s10>19|<s11>20|<s12>21|<s13>22|<s14>23}}"];
+	Node0x564aa9b0efc0:s0 -> Node0x564aa9b0ee40[color=black];
+	Node0x564aa9b0efc0:s1 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s2 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s3 -> Node0x564aa9b0f0c0[color=black];
+	Node0x564aa9b0efc0:s4 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s5 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s6 -> Node0x564aa9b0f0c0[color=black];
+	Node0x564aa9b0efc0:s7 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s8 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s9 -> Node0x564aa9b0f0c0[color=black];
+	Node0x564aa9b0efc0:s10 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s11 -> Node0x564aa9b0f0c0[color=black];
+	Node0x564aa9b0efc0:s12 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s13 -> Node0x564aa9b0f040[color=black];
+	Node0x564aa9b0efc0:s14 -> Node0x564aa9b0f140[color=black];
+}

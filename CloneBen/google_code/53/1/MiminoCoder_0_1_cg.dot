@@ -1,0 +1,33 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x55e705755250 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x55e705755250:s0 -> Node0x55e7057556e0[color=black];
+	Node0x55e705755250:s1 -> Node0x55e7057557e0[color=black];
+	Node0x55e7057559e0 [shape=record,shape=circle,label="{_ZSt3minIiERKT_S2_S2_}"];
+	Node0x55e705755d60 [shape=record,shape=circle,label="{_GLOBAL__sub_I_MiminoCoder_0_1.cpp|{<s0>14}}"];
+	Node0x55e705755d60:s0 -> Node0x55e705755250[color=black];
+	Node0x55e705755760 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x55e705755ae0 [shape=record,shape=circle,label="{main|{<s0>9|<s1>10|<s2>11|<s3>12|<s4>13}}"];
+	Node0x55e705755ae0:s0 -> Node0x55e7057558e0[color=black];
+	Node0x55e705755ae0:s1 -> Node0x55e705755b60[color=black];
+	Node0x55e705755ae0:s2 -> Node0x55e705755be0[color=black];
+	Node0x55e705755ae0:s3 -> Node0x55e705755c60[color=black];
+	Node0x55e705755ae0:s4 -> Node0x55e705755860[color=black];
+	Node0x55e705755860 [shape=record,shape=circle,label="{_Z5Solvei|{<s0>3|<s1>4|<s2>5|<s3>6|<s4>7|<s5>8}}"];
+	Node0x55e705755860:s0 -> Node0x55e7057558e0[color=black];
+	Node0x55e705755860:s1 -> Node0x55e7057558e0[color=black];
+	Node0x55e705755860:s2 -> Node0x55e705755960[color=black];
+	Node0x55e705755860:s3 -> Node0x55e705755960[color=black];
+	Node0x55e705755860:s4 -> Node0x55e7057559e0[color=black];
+	Node0x55e705755860:s5 -> Node0x55e705755a60[color=black];
+	Node0x55e705755be0 [shape=record,shape=Mrecord,label="{_ZNSolsEi}"];
+	Node0x55e705755960 [shape=record,shape=circle,label="{_ZSt3maxIiERKT_S2_S2_}"];
+	Node0x55e705755ce0 [shape=record,shape=Mrecord,label="{_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_}"];
+	Node0x55e7057556e0 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x55e705755a60 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x55e7057557e0 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x55e705755b60 [shape=record,shape=Mrecord,label="{_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc}"];
+	Node0x55e7057558e0 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x55e705755c60 [shape=record,shape=Mrecord,label="{_ZNSolsEPFRSoS_E}"];
+}

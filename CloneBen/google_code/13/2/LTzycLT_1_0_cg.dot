@@ -1,0 +1,22 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x558228ecce10 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1}}"];
+	Node0x558228ecce10:s0 -> Node0x558228ecd2a0[color=black];
+	Node0x558228ecd5a0 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x558228ecd320 [shape=record,shape=circle,label="{main|{<s0>2|<s1>3|<s2>4|<s3>5|<s4>6|<s5>7|<s6>8}}"];
+	Node0x558228ecd320:s0 -> Node0x558228ecd3a0[color=black];
+	Node0x558228ecd320:s1 -> Node0x558228ecd3a0[color=black];
+	Node0x558228ecd320:s2 -> Node0x558228ecd420[color=black];
+	Node0x558228ecd320:s3 -> Node0x558228ecd420[color=black];
+	Node0x558228ecd320:s4 -> Node0x558228ecd4a0[color=black];
+	Node0x558228ecd320:s5 -> Node0x558228ecd520[color=black];
+	Node0x558228ecd320:s6 -> Node0x558228ecd5a0[color=black];
+	Node0x558228ecd420 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x558228ecd520 [shape=record,shape=Mrecord,label="{asin}"];
+	Node0x558228ecd2a0 [shape=record,shape=Mrecord,label="{acos}"];
+	Node0x558228ecd620 [shape=record,shape=circle,label="{_GLOBAL__sub_I_LTzycLT_1_0.cpp|{<s0>9}}"];
+	Node0x558228ecd620:s0 -> Node0x558228ecce10[color=black];
+	Node0x558228ecd3a0 [shape=record,shape=Mrecord,label="{freopen}"];
+	Node0x558228ecd4a0 [shape=record,shape=Mrecord,label="{llvm.fabs.f64}"];
+}

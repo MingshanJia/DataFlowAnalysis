@@ -1,0 +1,35 @@
+digraph "Call Graph" {
+	label="Call Graph";
+
+	Node0x563c26a63870 [shape=record,shape=circle,label="{__cxx_global_var_init|{<s0>1|<s1>2}}"];
+	Node0x563c26a63870:s0 -> Node0x563c26a63d00[color=black];
+	Node0x563c26a63870:s1 -> Node0x563c26a63e00[color=black];
+	Node0x563c26a64000 [shape=record,shape=circle,label="{_Z5solveiiii|{<s0>4|<s1>5|<s2>6|<s3>7|<s4>8|<s5>9|<s6>10|<s7>11|<s8>12}}"];
+	Node0x563c26a64000:s0 -> Node0x563c26a63e80[color=black];
+	Node0x563c26a64000:s1 -> Node0x563c26a64080[color=black];
+	Node0x563c26a64000:s2 -> Node0x563c26a63f00[color=black];
+	Node0x563c26a64000:s3 -> Node0x563c26a63f00[color=black];
+	Node0x563c26a64000:s4 -> Node0x563c26a63e80[color=black];
+	Node0x563c26a64000:s5 -> Node0x563c26a63f00[color=black];
+	Node0x563c26a64000:s6 -> Node0x563c26a63f00[color=black];
+	Node0x563c26a64000:s7 -> Node0x563c26a63e80[color=black];
+	Node0x563c26a64000:s8 -> Node0x563c26a63f00[color=black];
+	Node0x563c26a63d80 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitD1Ev}"];
+	Node0x563c26a64100 [shape=record,shape=circle,label="{main|{<s0>13|<s1>14|<s2>15|<s3>16|<s4>17}}"];
+	Node0x563c26a64100:s0 -> Node0x563c26a64180[color=black];
+	Node0x563c26a64100:s1 -> Node0x563c26a64200[color=black];
+	Node0x563c26a64100:s2 -> Node0x563c26a64200[color=black];
+	Node0x563c26a64100:s3 -> Node0x563c26a64200[color=black];
+	Node0x563c26a64100:s4 -> Node0x563c26a64000[color=black];
+	Node0x563c26a63e80 [shape=record,shape=circle,label="{_Z13count_squaresi}"];
+	Node0x563c26a64200 [shape=record,shape=Mrecord,label="{_ZNSirsERi}"];
+	Node0x563c26a63f80 [shape=record,shape=Mrecord,label="{printf}"];
+	Node0x563c26a63d00 [shape=record,shape=Mrecord,label="{_ZNSt8ios_base4InitC1Ev}"];
+	Node0x563c26a64080 [shape=record,shape=Mrecord,label="{abs}"];
+	Node0x563c26a63e00 [shape=record,shape=Mrecord,label="{__cxa_atexit}"];
+	Node0x563c26a64180 [shape=record,shape=Mrecord,label="{scanf}"];
+	Node0x563c26a63f00 [shape=record,shape=circle,label="{_Z13output_answerid|{<s0>3}}"];
+	Node0x563c26a63f00:s0 -> Node0x563c26a63f80[color=black];
+	Node0x563c26a64280 [shape=record,shape=circle,label="{_GLOBAL__sub_I_lunae_1_0.cpp|{<s0>18}}"];
+	Node0x563c26a64280:s0 -> Node0x563c26a63870[color=black];
+}
