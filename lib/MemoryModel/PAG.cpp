@@ -51,8 +51,11 @@ bool PAG::addAddrEdge(NodeID src, NodeID dst) {
     PAGNode* dstNode = getPAGNode(dst);
     if(hasIntraEdge(srcNode,dstNode, PAGEdge::Addr))
         return false;
-    else
+    else{
+        NodeID dummyVal = addDummyValNode();
+        addStoreEdge(dummyVal, dst);     //Store uninitialized value
         return addEdge(srcNode,dstNode, new AddrPE(srcNode, dstNode));
+    }
 }
 
 /*!
